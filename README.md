@@ -1,4 +1,4 @@
-# 475Diplomacy
+# 475Diplomacy GROUP E
 
 [![Waffle.io - Issues in progress](https://badge.waffle.io/JessicaHilario/475Diplomacy.png?label=in%20progress&title=In%20Progress)](http://waffle.io/JessicaHilario/475Diplomacy)
 
