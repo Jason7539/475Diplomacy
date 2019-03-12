@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+
+  <body>
+
+<form id="sendForm" action="javascript:sending()" method="post">
+    <label for="name">UserName (2 to 8 characters):</label> <br>
+    <input type="text" id="UserName" required minlength="2"
+    maxlength="8" size="10">
+    <br>
+    <label for="name">IP To Join:</label> <br>
+    <input type="text" id="ip" size="10">
+    <br>
+    <br>
+    <input type="submit" value="Submit" name="S">
+</form>
+
+    <a href="startScreen.html"> BACK </a>
+  </body>
+<!--  Insert scripts to post to server-->
+<script type="text/javascript">
+  const electron = require('electron');
+  const http = require('http');
+  function sending(){
+
+    // getting typed information
+    var x = document.getElementById("sendForm");
+    //send info to the server
+    const {ipcRenderer} = electron;
+
+    let jsonex = {"userName": x.elements[0].value,
+                        "ip": x.elements[1].value};
+
+    ipcRenderer.send("SendUser", jsonex);
+    // send username based on ip
+    // to the server
+  }
+
+</script>
+
+
+</html>

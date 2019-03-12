@@ -1,0 +1,18 @@
+html,#start-page{
+      text-align:center;
+      margin-top:10%;
+      background-color:#173A58;
+    }
+
+
+.navbar-inverse{
+      background-color:#173A58;
+    }
+    .active li{
+      background-color:#A5C0D8;
+
+}
+
+#btn-play .button{
+	top:5%;
+}
