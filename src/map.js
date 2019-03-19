@@ -1,11 +1,11 @@
 
 
-function move(){
+function move(id){
     alert("click country to move to")
     D = document.getElementById("E")
     doc = D.getSVGDocument()
-    rus = doc.getElementById("russia")
-    rus.style.fill = "#000000"
+    country = doc.getElementById(id)
+    country.style.fill = "#000000"
 }
 
 function moveunit(id, dest){
