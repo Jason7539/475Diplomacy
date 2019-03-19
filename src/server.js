@@ -1,10 +1,12 @@
 const express = require('express')
 const app = express()
 const http = require('http')
-var os = require("os");
+const os = require('os');
+const ip = require('ip')
 
 const port = 3001
-const ip = 'localhost'
+const hostIP = ip.address()
+
 
 let users = [];             // array to hold userNames of clients
 
@@ -34,7 +36,7 @@ app.get('/', function(req, res){
 
 app.use(express.static('./images'))
 
-app.listen(port, ip, () =>{
+app.listen(port, hostIP, () =>{
   console.log("connected");
 });
 
@@ -62,7 +64,7 @@ app.listen(port, ip, () =>{
 //     });
 //   }
 //   response.end();
-// }).listen(port, ip ,()=>{
+// }).listen(port, hostIP ,()=>{
 //   console.log("server started");
 // }); // Activates this server, listening on port
 // hosting.on("error", (err) => {
