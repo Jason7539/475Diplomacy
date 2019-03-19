@@ -76,9 +76,13 @@
         <![CDATA[
         function Here(id){
 		  alert(id)
-          //RUS=document.getElementById("russia")
-          //RUS.style.fill = "#ea0b8c"
-
+          prv=document.getElementById(id)
+		  if(prv.style.fill === "rgb(234, 11, 140)"){
+			prv.style.fill = "#3399ff"
+		  }
+		  else{
+			prv.style.fill = "#ea0b8c"
+		  }
         }
       ]]>
     </script>
