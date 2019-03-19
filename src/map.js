@@ -1,0 +1,42 @@
+
+
+
+    function move(){
+        alert("click country to move to")
+        D = document.getElementById("E")
+        doc = D.getSVGDocument()
+        rus = doc.getElementById("russia")
+        rus.style.fill = "#000000"
+      }
+  
+      function support() {
+        alert("click country to support")
+      }
+  
+      function convoy() {
+        alert("Select army to convoy")
+      }
+  
+      function hold() {
+        alert("Selected country will hold")
+      }
+  
+      /* for chat display */
+       function openForm() {
+        document.getElementById("myForm").style.display = "block";
+      }
+  
+      function closeForm() {
+        document.getElementById("myForm").style.display = "none";
+      }
+
+  function Here(id){
+    alert(id)
+    prv=document.getElementById(id)
+    if(prv.style.fill === "rgb(234, 11, 140)"){
+      prv.style.fill = "#3399ff"
+    }
+    else{
+      prv.style.fill = "#ea0b8c"
+    }
+  }
