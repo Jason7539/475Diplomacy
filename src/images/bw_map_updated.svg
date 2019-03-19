@@ -71,16 +71,6 @@
      id="layer2"
      inkscape:label="paths"
      transform="translate(0,-232.71443)">
-	 
-	  <script>
-        <!-- <![CDATA[
-        function Here(id){
-		  alert(id)
-          prv=document.getElementById(id)
-		  prv.style.fill = "#ea0b8c"
-        }
-      ]]> -->
-    </script>
 
     <path
        style="fill:#3399ff;stroke:#000000;stroke-width:0.06832593px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
