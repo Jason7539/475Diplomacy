@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+  <head>
+    <meta charset="utf-8">
+    <title>START SCREEN</title>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+  </head>
+  <style media="screen">
+     .button {
+      display: inline-block;
+      margin-top:2%;
+    } 
+    html,#start-page{
+      text-align:center;
+      margin-top:10%;
+      background-color:transparent;
+    } 
+
+
+  </style>
+  <body>
+  <div id="start-page">
+  <img src="images/diplomacySplash.jpg" alt="Diplomacy Board" style="position:fixed;top:0px;left:0px;width:100%;height:100%;z-index:-1;">
+   <p> <button type="button" class="btn  btn-danger btn-sm" onclick="Host()"> Create game </button></p>
+    <p><button type="button" class="btn btn-danger btn-sm" onclick="Join()"> Join game </button></p>
+    <p><button type="Help,button" class="btn btn-info btn-sm" onclick="Help()"> Help </button></p>
+    <p><button type="exit,button" class="btn btn-primary btn-sm" onclick="window.top.close(); return false">Exit</button></p>
+
+    <a href="index.html"> start </a>
+    <a href="./map.html"> map view </a>
+
+  </div>
+
+    <script type="text/javascript">
+      //location.href="host.html";
+      const electron = require('electron');
+
+      function Host() {
+        location.href="host.html";
+
+        const {ipcRenderer} = electron;
+
+        ipcRenderer.send("Host", "You selected Host");
+
+      }
+
+      function Join() {
+        location.href="join.html";
+
+        const {
+          ipcRenderer
+        } = electron;
+
+        ipcRenderer.send("Join", "You selected Join");
+        location.href="join.html"
+      }
+
+      function Help() {
+        const {
+          ipcRenderer
+        } = electron;
+
+        ipcRenderer.send("Options", "You selected Options");
+
+      }
+
+    </script>
+  </body>
+
+</html>
