@@ -12,7 +12,7 @@
    <link rel="stylesheet" href="main.css" >
    <script>if (window.module) module = window.module;</script>
 
-    <title>Map</title>
+    <title>Manual</title>
   </head>
   <style >
 
@@ -29,7 +29,7 @@
           <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">ABOUT <span class="caret"></span></a>
             <ul class="dropdown-menu">
-                <li><a href="manual.html">How to Play</a></li>
+                <li><a href="#">How to Play</a></li>
                 <li><a href="#">FAQs</a></li>
                 <li><a href="#">Send Feedback</a></li>
 
@@ -39,35 +39,7 @@
       </div>
     </nav>
     <!-- End of header -->
-    <div class="container-fluid">
-      <div class="col-sm-9">
-        <span><embed id = "E" src="./images/bw_map_updated.svg" width="100%"></span><br/><br/>
-        <button type="button" class="btn btn-warning" onclick="move()" >move</button>
-        <button type="button" class="btn btn-warning" onclick="support()" >support</button>
-        <button type="button" class="btn btn-warning" onclick="convoy()" >convoy</button>
-        <button type="button" class="btn btn-warning"onclick="hold()" >hold</button>
-      </div> 
-    </div>
-    
 
-        <button class="open-button" onclick="openForm()">Chat</button>
-        <div class="chat-popup" id="myForm">
-          <form action="/action_page.php" class="form-container">
-            <h1>Chat</h1>
-            <label for="msg"><b>Message</b></label>
-            <textarea placeholder="="type message..." name="msg" required></textarea>
-            <button type="submit" class="btn">Send</button>
-            <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
-          </form>
-        </div>
-      </div>
-
-  
   </body>
-  <script type="text/javascript" src="map.js">
-  </script>
-
-
-
-
+ 
 </html>
