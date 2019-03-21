@@ -41,8 +41,8 @@
     //alert(server.nameTaken(x.elements[0].value));
 
     let jsonex = {"userName": x.elements[0].value,
-                        "ip": x.elements[1].value,
-                        "clientIP": clientIP};
+                  "ip": x.elements[1].value,
+                  "clientIP": clientIP};
 
     ipcRenderer.send("SendUser", jsonex);
     // send username based on ip

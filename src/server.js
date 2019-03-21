@@ -27,7 +27,8 @@ app.post("/", (req, res) => {
 
     users.push(jsonClient);     // add the username to the list of usernames
     res.writeHead(201);
-    res.write("");
+    res.write("User Added");
+    console.log("User added");
     console.log("the users so far are ");
     console.log(users);
   })
@@ -44,6 +45,25 @@ app.listen(port, hostIP, () =>{
   console.log("connected");
 });
 
+
+
+
+app.post("/sendParam", (req, res) => {
+  let body = []
+  console.log("client received post request");
+  req.on("data", (chunk) =>{ 
+    body.push(chunk);
+  }).on("end", () => {
+    let jsonObj = JSON.parse(Buffer.concat(body).toString());
+    
+    let jsonParam = {"id": jsonObj.id,
+                      "src": jsonObj.src,
+                      "target": jsonObj.target};  
+  })
+});
+
+
+
 function nameTaken(name){
   //return users.find(item => {
   //  return item.username == name;
@@ -56,8 +76,10 @@ function nameTaken(name){
     }
   }
   return 0;
-
 }
+
+
+
 
 module.exports.nameTaken = nameTaken;
 

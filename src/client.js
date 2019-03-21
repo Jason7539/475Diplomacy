@@ -1,4 +1,5 @@
 const http = require("http");
+
 //const server = require("./server.js");
 // const host = require("./server.js")
 
@@ -38,5 +39,27 @@ function sendUser(ip, userName, clientIP, obj){
   post.write(JSON.stringify(obj));
   post.end();
 }
+
+
+function sendParam(id, src, target, clientIP){
+  var post = http.request({
+  hostname: clientIP,
+  port: 3001,
+  path: '/sendParam',
+  method: 'POST',
+  'content-type': 'text/plain'
+}, (res) => {console.log(res.statusCode);
+}).on("Error", (err) => {
+  console.log(err);
+});
+
+
+post.write(JSON.stringify(obj));
+post.end();
+}
+
+
+
+
 
 module.exports.sendUser = sendUser;
