@@ -2,33 +2,62 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-     <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'/>
-     <link rel="stylesheet/css" href="main.css"/>
+     <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'/>   
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-
+     <link rel="stylesheet" href="main.css">
+    <style>
+      body{
+        /* background-color: #f48f42; */
+        background-color: #39383a;
+      }
+  </style>
     <title>HOSTING</title>
   </head>
   <body>
-  	<div class="container-fluid">
-  		<div class="col-sm-4">
-  			<form action="host.html">
-		  		<div class="form-group">
-		  			<label for="gameName">Game Name</label>
-		  			<input type="text" class="form-control" id="gameName" placeholder="Game Name">
+    <div class="container-fluid" style="margin-top:5%;">
+    <div class="col-sm-3"></div>
+      <div class="col-sm-6 form-white">
+    
+        <form action="map.html">
+        <fieldset>
+        <legend >Let's Create a Game</legend>
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username" placeholder="Username"><br/>
+            
+            <label for="gameName">Game Name</label>
+            <input type="text" class="form-control" id="gameName" placeholder="Game Name"><br/>
 
-		  			<label for="gameDescription">Game Description</label>
-		  			<input type="text" class="form-control" id="gameName" placeholder="Optional"><br/>
-		  			<button type="submit" class="btn btn-primary">Submit</button>
-		  		</div>
-  			</form>
-  		</div>
-      
-  	</div>
-
-  	
-    <h1 id="ip">TELL YOUR FRIENDS TO JOIN YOUR IP: </h1>
-
-    <a href="startScreen.html"> BACK </a>
+            <label for="gameDescription">Game Description</label>
+            <input type="text" class="form-control" id="gameName" placeholder="Optional"><br/>
+            
+            <label for="typePlayer">Type of Player</label>
+            <select class="form-control" id="typePlayer">
+              <option id="player">Player</option>
+              <option id="player-master">Game Master</option> 
+            </select><br/>
+            
+            <label for="adjPeriod">Adjudication Period</label>
+            <select class="form-control" id="adjPeriod">
+              <option id="form-control" id="">15 minutes</option>
+              <option id="form-control" id="">30 minutes</option>
+              <option id="form-control" id="">60 minutes</option>
+              <option id="form-control" id="">120 minutes</option>
+              <option id="form-control" id="">Daily</option>
+              
+            </select><br/>
+            <input type="button" class="btn btn-danger" onclick="location.href='startScreen.html';" value="Back" /> 
+            <button type="submit" class="btn btn-primary">Submit</button>
+           
+            
+          <h4 id="ip">TELL YOUR FRIENDS TO JOIN YOUR IP: </h4>
+            
+          </div>
+        </fieldset>
+        </form>
+      </div>
+    <div class="col-sm-3"></div>
+  </div>
   </body>
   <script>
 function openForm() {

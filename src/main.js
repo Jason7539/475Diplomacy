@@ -99,8 +99,8 @@ ipcMain.on("Options", (event, arg) => {
 })
 
 ipcMain.on("SendUser", (event, arg) => {
+<<<<<<< HEAD
   client.sendUser(arg.ip, arg.userName, arg.clientIP, arg);    // send username to server
-                                            // determined by ip
 })
 
 
