@@ -1,4 +1,4 @@
-const { app, ipcMain,BrowserWindow} = require('electron')
+const { app, ipcMain, BrowserWindow} = require('electron')
 const client = require("./client.js");
 
 
@@ -16,7 +16,7 @@ function createWindow () {
 
   // and load the index.html of the app.
   win.loadFile('index.html')
-    
+
   win.setMenuBarVisibility(false)
   // Open the DevTools.
  // win.webContents.openDevTools()
@@ -33,6 +33,10 @@ function createWindow () {
 
 }
 
+/**
+ * This function creates a new window and loads startScreen.html
+ * this function should be called when the presses the play button from index.html
+ */
 function createStart () {
   // Create the browser window.
   startWin = new BrowserWindow({ width: 969, height: 545 })
@@ -51,9 +55,6 @@ function createStart () {
   })
 
 }
-
-
-
 
 
 
@@ -79,7 +80,10 @@ app.on('activate', () => {
   }
 })
 
-// When the Play button is pressed open a start menu
+/**
+ * Event listenter that opens startScreen.html from index.html
+ * @listens Played
+ */
 ipcMain.on("Played", (event, arg) => {
   console.log(arg)  // prints arg
   createStart();    // Open a new Window for start menu
@@ -98,10 +102,27 @@ ipcMain.on("Options", (event, arg) => {
   console.log(arg); // prints arg
 })
 
+/**
+ * Event listener that triggers the sendUser function which sends the userName
+ * to the host.
+ * @listens SendUser
+ */
 ipcMain.on("SendUser", (event, arg) => {
   client.sendUser(arg.ip, arg.userName, arg);    // send username to server
                                             // determined by ip
-})
+});
+
+
+/**
+ * Event listener that switches to lobby html after a client has succesfully sent
+ * the userName and ip to the host
+ */
+ipcMain.on("SwitchToLobby", (event, arg) => {
+
+});
+
+
+
 
 
 // In this file you can include the rest of your app's specific main process

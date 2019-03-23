@@ -14,32 +14,55 @@ let users = [];             // array to hold userNames of clients
 //   res.send("got a get");
 // })
 
+/**
+ * handle post request from clients trying to Join
+ * This stores the username and ip of clients trying to join a game
+ */
 app.post("/", (req, res) => {
   let body = []
   console.log("you posted something");
-  req.on("data", (chunk) =>{ // process the username and
+  req.on("data", (chunk) =>{ // process the username and ip
     body.push(chunk);
 
   }).on("end", () => {
-    let jsonObj = JSON.parse(Buffer.concat(body).toString());
+    let jsonObj = JSON.parse(Buffer.concat(body).toString());  // push it to the array
+
+
 
     users.push(jsonObj.userName);     // add the username to the list of usernames
     console.log("the users so far are ");
     console.log(users);
-  })
+    res.end();
+  });
+  req.on("error", (err)=>{
+    console.log("got an error");
+  });
 });
 
 
+
+
+
+/**
+ * Send images when a response is sent
+ */
 app.get('/', function(req, res){
   res.sendFile(__dirname + '/map.html');
 });
 
 app.use(express.static('./images'))
 
+/**
+ * Start the server
+ */
 app.listen(port, hostIP, () =>{
   console.log("connected");
 });
 
+function display_ip(){
+  document.getElementById("ip").write("hello world")
+  alert("hello world")
+}
 
 // var hosting = http.createServer((request, response) => {
 //   const { headers, method, url } = request;

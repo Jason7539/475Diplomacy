@@ -1,11 +1,17 @@
 
+instruction = {}    // Json object that holds instructions to send to host
+index = 0           // index for instructions
 
-function move(id){
-    alert("click country to move to")
-    D = document.getElementById("E")
-    doc = D.getSVGDocument()
-    country = doc.getElementById(id)
-    country.style.fill = "#000000"
+current_instruction = []
+
+function move(){
+
+    current_instruction.push("")
+    // alert("click country to move to")
+    // D = document.getElementById("E")
+    // doc = D.getSVGDocument()
+    // country = doc.getElementById(id)
+    // country.style.fill = "#000000"
 }
 
 function moveunit(id, dest){
@@ -46,13 +52,23 @@ function closeForm() {
     document.getElementById("myForm").style.display = "none";
 }
 
+/**
+ * Grabs a valid path from bw_map_updated.svg when click.
+ */
 function Here(id){
     alert(id)
     prv=document.getElementById(id)
+
+    current_instruction.push(id)    // add province to current instruction
+
+    alert(current_instruction)
+
     if(prv.style.fill === "rgb(234, 11, 140)"){
     prv.style.fill = "#3399ff"
     }
     else{
     prv.style.fill = "#ea0b8c"
     }
+
+    
 }
