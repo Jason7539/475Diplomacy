@@ -1,4 +1,4 @@
-const { app, ipcMain, BrowserWindow} = require('electron')
+const { app, ipcMain, BrowserWindow, ipcRenderer} = require('electron')
 const client = require("./client.js");
 
 
@@ -35,7 +35,7 @@ function createWindow () {
 
 /**
  * This function creates a new window and loads startScreen.html
- * this function should be called when the presses the play button from index.html
+ * this function should be called when the user presses the play button from index.html
  */
 function createStart () {
   // Create the browser window.
@@ -53,7 +53,27 @@ function createStart () {
     // when you should delete the corresponding element.
     startWin = null
   })
+}
 
+/**
+ * This function creates a new window and loads lobby.html
+ * this function should be called after the user succesfully joins a host's game
+ */
+function lobby () {
+  // Create the browser window.
+  startWin = new BrowserWindow({ width: 969, height: 545 })
+
+  // and load the index.html of the app.
+  startWin.loadFile('map.html')
+  // Open the DevTools.
+
+  // Emitted when the window is closed.
+  startWin.on('closed', () => {
+    // Dereference the window object, usually you would store windows
+    // in an array if your app supports multi windows, this is the time
+    // when you should delete the corresponding element.
+    startWin = null
+  })
 }
 
 
@@ -90,6 +110,21 @@ ipcMain.on("Played", (event, arg) => {
   win.close();      // close the previous window
 })
 
+/**
+ * Event listener that switches to lobby html after a client has succesfully sent
+ * the userName and ip to the host
+ */
+client.clientEvent.on("SwitchToLobby", () => {
+  console.log("Switching to lobby");
+  lobby();      // open lobby.html when succesfully joining host
+  win.close();
+});
+
+
+
+
+
+
 ipcMain.on("Host", (event, arg) => {
   console.log(arg); // prints arg
 })
@@ -112,14 +147,6 @@ ipcMain.on("SendUser", (event, arg) => {
                                             // determined by ip
 });
 
-
-/**
- * Event listener that switches to lobby html after a client has succesfully sent
- * the userName and ip to the host
- */
-ipcMain.on("SwitchToLobby", (event, arg) => {
-
-});
 
 
 

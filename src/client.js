@@ -1,4 +1,9 @@
 const http = require("http");
+const electron = require('electron');
+const {ipcRenderer} = electron;
+const events = require('events');
+
+var em = new events.EventEmitter();
 
 /**
  * This function sends the client username to the host.
@@ -16,14 +21,21 @@ function sendUser(ip, userName, obj){
     console.log("you got a response")
     console.log(res.statusCode);
 
+    // tell main to siwtch to lobby.html when the response succeeds
+    if(res.statusCode == 200){
+      em.emit("SwitchToLobby");
+    }
+
   })
+
+
   post.on("Error", (err) => {
     console.log(err);
   });
-
   post.write(JSON.stringify(obj));
   post.end();
+
 }
 
-
+module.exports.clientEvent = em;
 module.exports.sendUser = sendUser;
