@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-     <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'/>   
+     <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
      <link rel="stylesheet" href="main.css">
     <style>
@@ -14,30 +14,33 @@
 
     <title>HOSTING</title>
   </head>
-  <body>
+  <body onload="display_ip()">
+    <script src="server.js" type="text/javascript">
+
+    </script>
     <div class="container-fluid" style="margin-top:5%;">
     <div class="col-sm-3"></div>
       <div class="col-sm-6 form-white">
-    
+
         <form action="map.html">
         <fieldset>
         <legend >Let's Create a Game</legend>
           <div class="form-group">
             <label for="username">Username</label>
             <input type="text" class="form-control" id="username" placeholder="Username"><br/>
-            
+
             <label for="gameName">Game Name</label>
             <input type="text" class="form-control" id="gameName" placeholder="Game Name"><br/>
 
             <label for="gameDescription">Game Description</label>
             <input type="text" class="form-control" id="gameName" placeholder="Optional"><br/>
-            
+
             <label for="typePlayer">Type of Player</label>
             <select class="form-control" id="typePlayer">
               <option id="player">Player</option>
-              <option id="player-master">Game Master</option> 
+              <option id="player-master">Game Master</option>
             </select><br/>
-            
+
             <label for="adjPeriod">Adjudication Period</label>
             <select class="form-control" id="adjPeriod">
               <option id="form-control" id="">15 minutes</option>
@@ -45,14 +48,15 @@
               <option id="form-control" id="">60 minutes</option>
               <option id="form-control" id="">120 minutes</option>
               <option id="form-control" id="">Daily</option>
-              
+
             </select><br/>
-            <input type="button" class="btn btn-danger" onclick="location.href='startScreen.html';" value="Back" /> 
+            <input type="button" class="btn btn-danger" onclick="location.href='startScreen.html';" value="Back" />
             <button type="submit" class="btn btn-primary">Submit</button>
-           
-            
-          <h4 id="ip">TELL YOUR FRIENDS TO JOIN YOUR IP: </h4>
-            
+
+
+          <h4>TELL YOUR FRIENDS TO JOIN YOUR IP: </h4>
+          <p id="ip"> asdf</p>
+
           </div>
         </fieldset>
         </form>
@@ -61,6 +65,9 @@
   </div>
   </body>
   <script>
+
+
+
 function openForm() {
   document.getElementById("myForm").style.display = "block";
 }
