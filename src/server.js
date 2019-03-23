@@ -64,6 +64,7 @@ app.post("/sendParam", (req, res) => {
 
 
 
+/*
 function nameTaken(name){
   //return users.find(item => {
   //  return item.username == name;
@@ -77,11 +78,17 @@ function nameTaken(name){
   }
   return 0;
 }
+*/
+
+
+function getHostIp(){
+  return String(hostIP);
+}
 
 
 
-
-module.exports.nameTaken = nameTaken;
+module.exports.getHostIp = getHostIp;
+//module.exports.nameTaken = nameTaken;
 
 // var hosting = http.createServer((request, response) => {
 //   const { headers, method, url } = request;

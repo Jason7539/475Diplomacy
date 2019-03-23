@@ -50,8 +50,8 @@
             <button type="submit" class="btn btn-primary">Submit</button>
            
             
-          <h4 id="ip">TELL YOUR FRIENDS TO JOIN YOUR IP: </h4>
-            
+            <h4 id="ip">TELL YOUR FRIENDS TO JOIN YOUR IP: </h4>
+            <h4 id="hostIP"></h4>
           </div>
         </fieldset>
         </form>
@@ -60,12 +60,20 @@
   </div>
   </body>
   <script>
-function openForm() {
-  document.getElementById("myForm").style.display = "block";
-}
+    const server = require("./server.js");
+    
+    document.getElementById("hostIP").innerHTML = server.getHostIp();  
+    
+    function displayIP(){
+      document.getElementById("hostIP").innerHTML = server.getHostIp();  
+    }
 
-function closeForm() {
-  document.getElementById("myForm").style.display = "none";
-}
+    function openForm() {
+      document.getElementById("myForm").style.display = "block";
+    }
+
+    function closeForm() {
+      document.getElementById("myForm").style.display = "none";
+    }
 </script>
 </html>
