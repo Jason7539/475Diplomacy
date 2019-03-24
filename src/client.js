@@ -9,7 +9,7 @@ var em = new events.EventEmitter();
  * This function sends the client username to the host.
  * should be called from join.html.
  */
-function sendUser(ip, userName, obj){
+function sendUser(ip, userName, clientIP, obj){
     var post = http.request({
     hostname: ip,
     port: 3001,

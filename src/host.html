@@ -55,7 +55,7 @@
 
 
           <h4>TELL YOUR FRIENDS TO JOIN YOUR IP: </h4>
-          <p id="ip"> asdf</p>
+          <h4 id="hostIP"></h4>
 
           </div>
         </fieldset>
@@ -66,14 +66,17 @@
   </body>
   <script>
 
+  const server = require("./server.js");
 
+  // display the local ip
+  document.getElementById("hostIP").innerHTML = server.getHostIp();
 
-function openForm() {
-  document.getElementById("myForm").style.display = "block";
-}
+  function openForm() {
+    document.getElementById("myForm").style.display = "block";
+  }
 
-function closeForm() {
-  document.getElementById("myForm").style.display = "none";
-}
+  function closeForm() {
+    document.getElementById("myForm").style.display = "none";
+  }
 </script>
 </html>

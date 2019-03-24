@@ -64,7 +64,7 @@ function lobby () {
   startWin = new BrowserWindow({ width: 969, height: 545 })
 
   // and load the index.html of the app.
-  startWin.loadFile('map.html')
+  startWin.loadFile('lobby.html')
   // Open the DevTools.
 
   // Emitted when the window is closed.
@@ -143,7 +143,7 @@ ipcMain.on("Options", (event, arg) => {
  * @listens SendUser
  */
 ipcMain.on("SendUser", (event, arg) => {
-  client.sendUser(arg.ip, arg.userName, arg);    // send username to server
+  client.sendUser(arg.ip, arg.userName, arg.clientIP, arg);    // send username to server
                                             // determined by ip
 });
 
