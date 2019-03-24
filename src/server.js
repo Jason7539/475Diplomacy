@@ -1,14 +1,20 @@
 const express = require('express')
-const app = express()
-const http = require('http')
+const app = express();
+const http = require('http');
 const os = require('os');
-const ip = require('ip')
+const ip = require('ip');
+const eventsasd = require('events');
+
+var em = new events.EventEmitter();
+
 
 const port = 3001
 const hostIP = ip.address()
 
 
 let users = [];             // array to hold userNames of clients
+let intervalObj;            // Timeout object that polls for user information
+
 
 // app.get("/", (req, res) => {
 //   res.send("got a get");
@@ -54,11 +60,46 @@ app.post("/", (req, res) => {
  * Start the server
  */
 
-app.listen(port, hostIP, () =>{
-  console.log("connected");
-});
+/**
+ * This function begins the server that listens to post request
+ * from clients sending their usernames and ip addresses
+ */
+function startServer () {
+  app.listen(port, hostIP, () =>{
+    console.log("connected");
+  });
+}
 
 
+/**
+ * Function that regularly checks and updates the current list of players
+ * and returns the list as a string
+ */
+function checkClients () {
+
+
+}
+
+/**
+ * Function that starts client polling in an interval every 10 seconds
+ */
+function startClientPolling () {
+  intervalObj = setInterval(print, 10000);      // poll every 10 seconds
+}
+
+/**
+ * Function that cancels the client poll
+ * called when the host cancels the game or starts the game
+ */
+function stopClientPolling () {
+  clearInterval(intervalObj);
+}
+
+
+/*
+ * Return the local ip as a string
+ * Used in host.html to display ip to join
+ */
 function display_ip(){
   document.getElementById("ip").write("hello world")
   alert("hello world")
@@ -73,7 +114,10 @@ function getHostIp(){
   return String(hostIP);
 }
 
+startServer();
+
 module.exports.getHostIp = getHostIp;
+module.exports.serverEvent = em;
 
 // var hosting = http.createServer((request, response) => {
 //   const { headers, method, url } = request;
