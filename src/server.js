@@ -3,7 +3,7 @@ const app = express();
 const http = require('http');
 const os = require('os');
 const ip = require('ip');
-const eventsasd = require('events');
+const events = require('events');
 
 var em = new events.EventEmitter();
 
@@ -56,9 +56,6 @@ app.post("/", (req, res) => {
 //
 // app.use(express.static('./images'))
 
-/**
- * Start the server
- */
 
 /**
  * This function begins the server that listens to post request
@@ -76,15 +73,24 @@ function startServer () {
  * and returns the list as a string
  */
 function checkClients () {
+  var names = []
 
+  console.log("*************")
+  for (var item in users){
+    names.push(users[item].username)
+  }
+  console.log(names.join(" - "));
+  // call main and pass usernames
+  // mains will update lobby.html
 
+  return names.join(" - ");
 }
 
 /**
  * Function that starts client polling in an interval every 10 seconds
  */
 function startClientPolling () {
-  intervalObj = setInterval(print, 10000);      // poll every 10 seconds
+  intervalObj = setInterval(checkClients, 1500);      // poll every 10 seconds
 }
 
 /**
@@ -114,44 +120,8 @@ function getHostIp(){
   return String(hostIP);
 }
 
-startServer();
-
+// startServer();
+// startClientPolling();
 module.exports.getHostIp = getHostIp;
 module.exports.serverEvent = em;
-
-// var hosting = http.createServer((request, response) => {
-//   const { headers, method, url } = request;
-//   let body = [];
-//   response.write('<html>');
-//   response.write('<body>');
-//   response.write('<h1>Hey David</h1>');
-//   response.write('</body>');
-//   response.write('</html>');
-//
-//   // responding to a Post request
-//   if (method == "POST"){
-//     console.log("got a post");
-//     request.on("data", (chunk) => {
-//       body.push(chunk);
-//     }).on('end', () => {
-//       jsonObj = JSON.parse(Buffer.concat(body).toString());
-//       //console.log(JSON.parse(jsonObj));
-//
-//       users.push(jsonObj.userName);   // adding client username is list
-//       console.log("just added" + jsonObj.userName);
-//     });
-//   }
-//   response.end();
-// }).listen(port, hostIP ,()=>{
-//   console.log("server started");
-// }); // Activates this server, listening on port
-// hosting.on("error", (err) => {
-//   console.log(err);
-// });
-
-
-//Handle client trying to join
-// hosting.close();
-// hosting.on("close", () => {
-//   console.log("you closed it");
-// });
+module.exports.checkClients = checkClients;

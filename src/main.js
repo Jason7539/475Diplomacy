@@ -88,7 +88,7 @@ app.on('window-all-closed', () => {
   // On macOS it is common for applications and their menu bar
   // to stay active until the user quits explicitly with Cmd + Q
   if (process.platform !== 'darwin') {
-    app.quit()
+    app.quit();
   }
 })
 
@@ -96,7 +96,7 @@ app.on('activate', () => {
   // On macOS it's common to re-create a window in the app when the
   // dock icon is clicked and there are no other windows open.
   if (win === null) {
-    createWindow()
+    createWindow();
   }
 })
 
@@ -116,8 +116,8 @@ ipcMain.on("Played", (event, arg) => {
  */
 client.clientEvent.on("SwitchToLobby", () => {
   console.log("Switching to lobby");
-  lobby();      // open lobby.html when succesfully joining host
-  win.close();
+  // lobby();      // open lobby.html when succesfully joining host
+  // win.close();
 });
 
 

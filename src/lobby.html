@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>GAME LOBBY</title>
+  </head>
+  <body>
+
+    <h2>Current Players</h2>
+    <h3 id="users"></h3>
+  </body>
+
+  <script>
+  const server = require("./server.js");
+  server.startClientPolling();
+
+  
+  document.getElementById("users").innerHTML = server.checkClients();
+
+
+  </script>
+</html>
