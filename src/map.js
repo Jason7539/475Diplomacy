@@ -1,17 +1,24 @@
-
+/*let countries = {
+		c1: "c1",
+		c2: "c2"
+}*/
 
 function move(id){
+	alert(id)
+	//alert(countries.c1)
     alert("click country to move to")
+	
     D = document.getElementById("E")
     doc = D.getSVGDocument()
     country = doc.getElementById(id)
     country.style.fill = "#000000"
+	
 }
 
-function moveunit(id, dest){
-    D = document.getElementById("E")
+/*function moveunit(id, dest){
+    D = document.getElementById("ukraine")
     doc = D.getSVGDocument()
-    troop = doc.getElementById(id)
+    troop = doc.getElementById("russia")
 
     alert(troop.getAttribute("cx"))
 
@@ -23,7 +30,7 @@ function moveunit(id, dest){
     troop.setAttribute("cx", targetX)
 
     // moving
-}
+}*/
 
 function support() {
     alert("click country to support")
@@ -37,7 +44,7 @@ function hold() {
     alert("Selected country will hold")
 }
 
-/* for chat display */
+/** Open and close chat display */
 function openForm() {
     document.getElementById("myForm").style.display = "block";
 }
@@ -46,6 +53,7 @@ function closeForm() {
     document.getElementById("myForm").style.display = "none";
 }
 
+/** Return function id & change color of clicked province */
 function Here(id){
     alert(id)
     prv=document.getElementById(id)
@@ -55,4 +63,11 @@ function Here(id){
     else{
     prv.style.fill = "#ea0b8c"
     }
+	
+	//move(id)//test
+	
+	//return id;
+	
+	/*countries.c1 = id;
+	alert(countries.c1)*/
 }

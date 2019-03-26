@@ -69,7 +69,12 @@
   <script
      xlink:href="../map.js"
      id="script99"
-     type="text/javascript" />
+     type="text/javascript">
+	 <![CDATA[
+		getId(){
+			return Id;
+		}
+	]]></script>
   <g
      inkscape:groupmode="layer"
      id="layer2"
