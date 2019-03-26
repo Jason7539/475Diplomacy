@@ -3,7 +3,7 @@ const app = express();
 const http = require('http');
 const os = require('os');
 const ip = require('ip');
-const eventsasd = require('events');
+const events = require('events');
 
 var em = new events.EventEmitter();
 
