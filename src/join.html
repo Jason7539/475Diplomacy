@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+     <link rel="stylesheet" href="main.css">
+     <style>
+      body{
+        /* background-color: #f48f42; */
+        background-color: #39383a;
+      }
+  </style>
+    <title>Join Game</title>
+  </head>
+
+  <body>
+    <div class="container-fluid" style="margin-top:5%;">
+      <div class="col-sm-3"></div>
+      <div class="col-sm-6 form-white">
+
+        <form id="sendForm" action="javascript:sending()" method="post">
+            <label for="name">UserName (2 to 8 characters):</label> <br>
+            <input type="text" id="UserName" required minlength="2"
+            maxlength="8" size="10">
+            <br>
+            <label for="name">IP To Join:</label> <br>
+            <input type="text" id="ip" size="10">
+            <br>
+            <br>
+            <input type="button" class="btn btn-danger" onclick="location.href='startScreen.html';" value="Back" />
+                        <button type="submit" class="btn btn-primary">Submit</button>
+
+
+        </form>
+
+
+      </div>
+    </div>
+
+  </body>
+
+
+<!--  Insert scripts to post to server-->
+<script type="text/javascript">
+  const electron = require('electron');
+  const http = require('http');
+  const ip = require('ip');
+  const clientIP = ip.address();
+
+  function sending(){
+
+    // getting typed information
+    var x = document.getElementById("sendForm");
+    //send info to the server
+    const {ipcRenderer} = electron;
+
+    let jsonex = {"userName": x.elements[0].value,
+                  "ip": x.elements[1].value,
+                  "clientIP": clientIP};
+
+    ipcRenderer.send("SendUser", jsonex);
+    // send username based on ip
+    // to the server
+  }
+
+</script>
+
+
+</html>

@@ -1,0 +1,28 @@
+{
+  "name": "test_app",
+  "version": "1.0.0",
+  "description": "[![Waffle.io - Issues in progress](https://badge.waffle.io/JessicaHilario/475Diplomacy.png?label=in%20progress&title=In%20Progress)](http://waffle.io/JessicaHilario/475Diplomacy)",
+  "main": "main.js",
+  "dependencies": {
+    "electron": "^4.0.4",
+    "express": "^4.16.4",
+    "ip": "^1.1.5",
+    "mongodb": "^3.1.13"
+  },
+  "devDependencies": {
+    "jsdoc": "^3.5.5"
+  },
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JessicaHilario/475Diplomacy.git"
+  },
+  "bugs": {
+    "url": "https://github.com/JessicaHilario/475Diplomacy/issues"
+  },
+  "homepage": "https://github.com/JessicaHilario/475Diplomacy#readme"
+}
