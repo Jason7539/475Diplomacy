@@ -1,3 +1,7 @@
+var order = require('./models/order')
+
+let order_requested = ""
+let orders = []
 
 instruction = {}    // Json object that holds instructions to send to host
 index = 0           // index for instructions
@@ -5,8 +9,10 @@ index = 0           // index for instructions
 current_instruction = []
 
 function move(){
-
+    
     current_instruction.push("")
+
+    order_requested.concat("move"," ")
     // alert("click country to move to")
     // D = document.getElementById("E")
     // doc = D.getSVGDocument()
@@ -27,7 +33,7 @@ function moveunit(id, dest){
 
     targetX = target.getAttribute("cx")
     troop.setAttribute("cx", targetX)
-
+    
     // moving
 }
 
@@ -69,6 +75,12 @@ function Here(id){
     else{
     prv.style.fill = "#ea0b8c"
     }
-
     
+    order_requested.concat(id," ")
+    alert(order_requested)
+
+    //order.orderInfo = 'Ukraine move Russia'
+
+    //console.log(order.orderInfo)
+       
 }
