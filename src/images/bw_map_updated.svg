@@ -15,6 +15,7 @@
    viewBox="150 0 30.976469 39.857165"
    version="1.1"
    id="svg8"
+   class = "map"
    inkscape:version="0.92.3 (2405546, 2018-03-11)"
    sodipodi:docname="bw_map_updated.svg">
   <defs
@@ -55,6 +56,7 @@
      inkscape:groupmode="layer"
      id="layer1"
      transform="translate(0,-317.1429)"
+     class="country"
      style="display:inline">
     <image
        y="317.88657"
@@ -73,19 +75,25 @@
   <g
      inkscape:groupmode="layer"
      id="layer2"
+     class="section"
      inkscape:label="paths"
      transform="translate(0,-230.143)">
     <path
-       style="fill:#3399ff;stroke:#000000;stroke-width:0.06832593px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       style="fill:#3399ff;stroke:#000000;stroke-width:0.06832593px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;"
        d="m 170.10418,253.29039 0.16365,-1.29169 2.4003,-0.68196 2.91852,-0.51346 0.90921,0.17651 0.12727,0.61776 -0.50914,0.82636 -0.14547,1.3639 -1.51836,1.04298 -0.82736,0.85845 c 0,0 -0.28187,0.48137 -0.33642,0.48939 -0.0545,0.007 -0.99103,-0.7381 -0.99103,-0.7381 l -0.66371,-0.43325 -0.60915,-1.37191 z"
-       id="ukraine"
+       id="ukraine" 
        onclick="Here(id)"
-       inkscape:connector-curvature="0" />
+       onmouseover="hoverIn(id)"
+       onmouseout="hoverOut(id)"
+       inkscape:connector-curvature="0"
+       />
     <path
        style="fill:#3399ff;fill-opacity:0.5;stroke:#000000;stroke-width:0.06832593px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 169.76778,250.55457 0.43641,1.10716 4.92787,-1.18738 2.90944,-0.0963 0.87282,-1.26763 1.65475,0.8023 2.10936,-0.016 2.67303,2.90428 2.47302,1.41204 0.18184,-0.0481 0.0182,-14.48939 -0.9092,0.24069 -1.20015,0.7381 -1.32742,0.52952 c 0,0 -1.18195,0.0482 -1.2547,0.0803 -0.0727,0.0322 -1.01829,0.46532 -1.30924,0.49742 -0.29094,0.0322 -1.87295,0.35301 -1.87295,0.35301 l -1.40017,0.83438 -1.83658,0.0641 -0.72736,0.5937 -0.30913,1.3318 -0.36368,0.32091 -0.81829,-0.40114 -0.90919,1.01089 c 0,0 -0.58188,0.57764 -0.65463,0.57764 -0.0727,0 -1.09103,-0.0963 -1.09103,-0.0963 l -0.3455,0.72206 -0.12729,2.43897 z"
        id="russia"
        onclick="Here(id)"
+       onmouseover="hoverIn(id)"
+       onmouseout="hoverOut(id)"
        inkscape:connector-curvature="0" />
   </g>
 </svg>
