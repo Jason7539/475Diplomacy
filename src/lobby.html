@@ -8,14 +8,24 @@
 
     <h2>Current Players</h2>
     <h3 id="users"></h3>
+
+
+    <br>
+    <button type="button" name="button">Cancel</button>
+    <button type="button" name="button">Start Game</button>
   </body>
 
-  <script>
-  const server = require("./server.js");
-  server.startClientPolling();
+  <script >
+  // call main to call start
+  const electron = require('electron');
+  const server = require('./server.js');
+  const {ipcRenderer} = electron;
 
-  
-  document.getElementById("users").innerHTML = server.checkClients();
+  // update users trying to join
+  server.updateUsers();
+  ipcRenderer.on("ping", (event, message) => {
+      document.getElementById("users").innerHTML = message;
+  })
 
 
   </script>

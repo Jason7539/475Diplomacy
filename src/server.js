@@ -4,21 +4,20 @@ const http = require('http');
 const os = require('os');
 const ip = require('ip');
 const events = require('events');
+const electron = require('electron');
+const {ipcRenderer} = electron;
 
 var em = new events.EventEmitter();
 
 
-const port = 3001
-const hostIP = ip.address()
-
+const port = 3001;
+const hostIP = ip.address();
+pollFlag = false;
+serverFlag = false;
 
 let users = [];             // array to hold userNames of clients
 let intervalObj;            // Timeout object that polls for user information
 
-
-// app.get("/", (req, res) => {
-//   res.send("got a get");
-// })
 
 /**
  * handle post request from clients trying to Join
@@ -47,14 +46,18 @@ app.post("/", (req, res) => {
   });
 });
 
+
 /**
- * Send images when a response is sent
+ * Respond to get user request for lobby.html
  */
-// app.get('/', function(req, res){
-//   res.sendFile(__dirname + '/map.html');
-// });
-//
-// app.use(express.static('./images'))
+app.get('/lobby', function(req, res){
+  // get username of current users
+  var names = []
+  for (var item in users){
+    names.push(users[item].username)
+  }
+  res.send(names);
+});
 
 
 /**
@@ -63,34 +66,51 @@ app.post("/", (req, res) => {
  */
 function startServer () {
   app.listen(port, hostIP, () =>{
-    console.log("connected");
+    console.log("connected----------------------------");
   });
 }
 
 
 /**
  * Function that regularly checks and updates the current list of players
- * and returns the list as a string
+ *
  */
-function checkClients () {
-  var names = []
+function updateUsers () {
+  if(serverFlag == false){
+    serverFlag = true;
+    intervalObj = setInterval(updateUsers, 5000);
 
-  console.log("*************")
-  for (var item in users){
-    names.push(users[item].username)
   }
-  console.log(names.join(" - "));
-  // call main and pass usernames
-  // mains will update lobby.html
-
-  return names.join(" - ");
+  ipcRenderer.send("StartChecking");
 }
 
 /**
  * Function that starts client polling in an interval every 10 seconds
+ * and returns the list as a string
  */
 function startClientPolling () {
-  intervalObj = setInterval(checkClients, 1500);      // poll every 10 seconds
+
+  if(pollFlag == false){
+    //intervalObj = setInterval(startClientPolling, 1500);      // poll every 10 seconds
+    console.log("server flag is false");
+    startServer();        // start server to handle client's post
+
+    pollFlag = true;
+  }
+  else{
+    var names = [];
+
+    console.log("*************")
+    for (var item in users){
+      names.push(users[item].username)
+    }
+    console.log("the names is " + names)
+    return names.join(" - ");
+    // mains will update lobby.html
+
+  //  em.emit("PollUsers", names.join(" - "));     // notify main to update lobby.html
+  }
+
 }
 
 /**
@@ -120,8 +140,8 @@ function getHostIp(){
   return String(hostIP);
 }
 
-// startServer();
-// startClientPolling();
+module.exports.startServer = startServer;
 module.exports.getHostIp = getHostIp;
 module.exports.serverEvent = em;
-module.exports.checkClients = checkClients;
+module.exports.startClientPolling = startClientPolling;
+module.exports.updateUsers = updateUsers;

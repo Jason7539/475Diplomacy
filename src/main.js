@@ -1,6 +1,6 @@
-const { app, ipcMain, BrowserWindow, ipcRenderer} = require('electron')
+const {app, ipcMain, BrowserWindow, ipcRenderer} = require('electron')
 const client = require("./client.js");
-
+const server = require("./server.js");
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -64,7 +64,7 @@ function lobby () {
   startWin = new BrowserWindow({ width: 969, height: 545 })
 
   // and load the index.html of the app.
-  startWin.loadFile('lobby.html')
+  startWin.loadFile('clientLobby.html')
   // Open the DevTools.
 
   // Emitted when the window is closed.
@@ -81,7 +81,7 @@ function lobby () {
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
-app.on('ready', createWindow)
+app.on('ready', createWindow);
 
 // Quit when all windows are closed.
 app.on('window-all-closed', () => {
@@ -116,14 +116,38 @@ ipcMain.on("Played", (event, arg) => {
  */
 client.clientEvent.on("SwitchToLobby", () => {
   console.log("Switching to lobby");
-  // lobby();      // open lobby.html when succesfully joining host
-  // win.close();
+  lobby();      // open lobby.html when succesfully joining host
+  win.close();
 });
 
 
+/**
+ * This event is triggered after a game host creates a game from
+ * host.html
+ */
+ipcMain.on("StartChecking", (event, arg) => {
+  console.log("we started checking in the lobby");
 
+  names = server.startClientPolling();
+  console.log(names);
+  event.sender.send("ping", names);
+})
 
+/**
+ * This event is triggered after a client has sent username to host
+ * The list of current users is updated in client.js
+ */
+ ipcMain.on("updateClientLobby", (event, arg) =>{
+   console.log("starting to check client's lobby");
+   names = client.requestUsers(); // send http get request to host and return userNames
 
+   sNames = "";
+   for(items in names){
+     console.log("each item is " + names[items]);
+   }
+   console.log("the name retrieved is " + names);
+   event.sender.send("clientPing", names);
+ })
 
 ipcMain.on("Host", (event, arg) => {
   console.log(arg); // prints arg
