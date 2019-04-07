@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>GAME LOBBY</title>
+  </head>
+  <body>
+
+    <h2>Current Players</h2>
+    <h3 id="users"></h3>
+
+
+    <br>
+    <button type="button" name="button">Cancel</button>
+  </body>
+
+  <script >
+  const electron = require('electron');
+  const client = require('./client.js');
+  const {ipcRenderer} = electron;
+
+  client.updateUsers();         // start interval
+  ipcRenderer.on("clientPing", (event, message) => {
+      document.getElementById("users").innerHTML = message;
+  })
+
+  </script>
+</html>
