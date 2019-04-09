@@ -22,7 +22,7 @@
     <div class="col-sm-3"></div>
       <div class="col-sm-6 form-white">
 
-        <form action="lobby.html">
+        <form id="setting" action="javascript:sendSetting()" method="POST">
         <fieldset>
         <legend >Let's Create a Game</legend>
           <div class="form-group">
@@ -33,7 +33,7 @@
             <input type="text" class="form-control" id="gameName" placeholder="Game Name"><br/>
 
             <label for="gameDescription">Game Description</label>
-            <input type="text" class="form-control" id="gameName" placeholder="Optional"><br/>
+            <input type="text" class="form-control" id="gameDescription" placeholder="Optional"><br/>
 
             <label for="typePlayer">Type of Player</label>
             <select class="form-control" id="typePlayer">
@@ -43,11 +43,11 @@
 
             <label for="adjPeriod">Adjudication Period</label>
             <select class="form-control" id="adjPeriod">
-              <option id="form-control" id="">15 minutes</option>
-              <option id="form-control" id="">30 minutes</option>
-              <option id="form-control" id="">60 minutes</option>
-              <option id="form-control" id="">120 minutes</option>
-              <option id="form-control" id="">Daily</option>
+              <option id="15">15 minutes</option>
+              <option id="30">30 minutes</option>
+              <option id="60">60 minutes</option>
+              <option id="120">120 minutes</option>
+              <option id="daily">Daily</option>
 
             </select><br/>
             <input type="button" class="btn btn-danger" onclick="location.href='startScreen.html';" value="Back" />
@@ -66,17 +66,37 @@
   </body>
   <script>
 
-  const server = require("./server.js");
+  
+    const server = require("./server.js");
+    const electron = require('electron');
 
-  // display the local ip
-  document.getElementById("hostIP").innerHTML = server.getHostIp();
+    // display the local ip
+    document.getElementById("hostIP").innerHTML = server.getHostIp();
 
-  function openForm() {
-    document.getElementById("myForm").style.display = "block";
-  }
+    function openForm() {
+      document.getElementById("myForm").style.display = "block";
+    }
 
-  function closeForm() {
-    document.getElementById("myForm").style.display = "none";
-  }
+    function closeForm() {
+      document.getElementById("myForm").style.display = "none";
+    }
+
+    //send game setting to server
+    function sendSetting(){
+      let form = document.getElementById("setting");
+      const {ipcRenderer} = electron;
+      let ip = server.getHostIp();
+
+      let jsonSetting = {
+        "username": form.elements[1].value,
+        "gameName": form.elements[2].value,
+        "description": form.elements[3].value,
+        "playerType": form.elements[4].value,
+        "adjucation": form.elements[5].value,
+        "ip": ip
+      };
+      ipcRenderer.send("SendSetting", jsonSetting)
+    }
+
 </script>
 </html>
