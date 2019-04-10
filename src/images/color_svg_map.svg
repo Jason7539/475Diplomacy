@@ -681,4 +681,525 @@
        onmouseout="hoverOut(id)"
        inkscape:connector-curvature="0" />
   </g>
+
+   <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="Centers">
+    <ellipse
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C North Africa"
+       cx="146.74121"
+       cy="37.473972"
+       rx="0.27061054"
+       ry="0.25557661" />
+    <ellipse
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C Tunisia"
+       cx="157.02441"
+       cy="37.458942"
+       rx="0.30067837"
+       ry="0.24054271" />
+    <ellipse
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C Napoli"
+       cx="162.94505"
+       cy="33.022285"
+       rx="0.079729393"
+       ry="0.095675275" />
+    <ellipse
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C Apulia"
+       cx="163.38623"
+       cy="32.129314"
+       rx="0.11693645"
+       ry="0.085044682" />
+    <ellipse
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C Roma"
+       cx="160.81363"
+       cy="31.092833"
+       rx="0.095675275"
+       ry="0.090359986" />
+    <ellipse
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C Tuscany"
+       cx="159.61768"
+       cy="29.556713"
+       rx="0.10099057"
+       ry="0.074414097" />
+    <ellipse
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C Venezia"
+       cx="160.09074"
+       cy="28.467077"
+       rx="0.11693645"
+       ry="0.10099057" />
+    <ellipse
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C Piemonte"
+       cx="157.52345"
+       cy="27.393389"
+       rx="0.090359986"
+       ry="0.079729393" />
+    <ellipse
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C Greece"
+       cx="168.45702"
+       cy="33.883362"
+       rx="0.15945879"
+       ry="0.18071997" />
+    <ellipse
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C Bulgaria"
+       cx="171.14655"
+       cy="30.630402"
+       rx="0.21261172"
+       ry="0.20198114" />
+    <ellipse
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C Constantinople"
+       cx="174.94167"
+       cy="32.78841"
+       rx="0.22324231"
+       ry="0.14882819" />
+    <circle
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C Ankara"
+       cx="179.35336"
+       cy="31.87418"
+       r="0.21261172" />
+    <ellipse
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C Smyrna"
+       cx="178.71553"
+       cy="34.872009"
+       rx="0.27639523"
+       ry="0.12756702" />
+    <ellipse
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C Syria"
+       cx="185.23209"
+       cy="36.094524"
+       rx="0.18071997"
+       ry="0.22324231" />
+    <ellipse
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C Armenia"
+       cx="186.16757"
+       cy="31.969856"
+       rx="0.11693644"
+       ry="0.18071997" />
+    <ellipse
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C Albania"
+       cx="166.90495"
+       cy="32.256882"
+       rx="0.13819762"
+       ry="0.12756702" />
+    <ellipse
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C Serbia"
+       cx="167.64909"
+       cy="30.077612"
+       rx="0.15945879"
+       ry="0.13819762" />
+    <ellipse
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C Trieste"
+       cx="164.27919"
+       cy="28.195997"
+       rx="0.23387288"
+       ry="0.21261172" />
+    <ellipse
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C Rumania"
+       cx="172.34781"
+       cy="28.06843"
+       rx="0.18071997"
+       ry="0.12756702" />
+    <circle
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C Budapest"
+       cx="167.8298"
+       cy="26.176186"
+       r="0.14882819" />
+    <ellipse
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C Vienna"
+       cx="164.19415"
+       cy="24.868624"
+       rx="0.17008936"
+       ry="0.13819762" />
+    <ellipse
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C Galicia"
+       cx="169.63701"
+       cy="23.476017"
+       rx="0.25513405"
+       ry="0.21261172" />
+    <ellipse
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C Bohemia"
+       cx="162.86533"
+       cy="23.029533"
+       rx="0.20198114"
+       ry="0.14882819" />
+    <ellipse
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C Tyrolia"
+       cx="160.89867"
+       cy="25.644657"
+       rx="0.14882819"
+       ry="0.12756702" />
+    <ellipse
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C Portugal"
+       cx="142.60342"
+       cy="29.301579"
+       rx="0.15945879"
+       ry="0.14882819" />
+    <ellipse
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C Spain"
+       cx="146.22845"
+       cy="30.194548"
+       rx="0.21261172"
+       ry="0.19135055" />
+    <circle
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C Gascony"
+       cx="150.98033"
+       cy="26.909697"
+       r="0.18071997" />
+    <ellipse
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C Marseilles"
+       cx="154.70103"
+       cy="27.770775"
+       rx="0.15945879"
+       ry="0.14882819" />
+    <ellipse
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C Burgundy"
+       cx="154.94554"
+       cy="24.741056"
+       rx="0.12756702"
+       ry="0.095675275" />
+    <ellipse
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C Paris"
+       cx="152.7769"
+       cy="23.401604"
+       rx="0.14882819"
+       ry="0.13819762" />
+    <ellipse
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C Brest"
+       cx="150.6189"
+       cy="23.433495"
+       rx="0.13819762"
+       ry="0.12756702" />
+    <ellipse
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C Picardy"
+       cx="153.59546"
+       cy="22.008997"
+       rx="0.15945879"
+       ry="0.14882819" />
+    <ellipse
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C Munich"
+       cx="159.505"
+       cy="23.537533"
+       rx="0.1653731"
+       ry="0.13530527" />
+    <ellipse
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C Ruhr"
+       cx="157.48294"
+       cy="22.011589"
+       rx="0.14282222"
+       ry="0.12778831" />
+    <circle
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C Kiel"
+       cx="159.21185"
+       cy="20.342823"
+       r="0.067652635" />
+    <ellipse
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C Holland"
+       cx="156.88159"
+       cy="20.117315"
+       rx="0.2029579"
+       ry="0.15785615" />
+    <ellipse
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C Berlin"
+       cx="161.95554"
+       cy="19.974493"
+       rx="0.19544093"
+       ry="0.18040702" />
+    <circle
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C Silesia"
+       cx="164.12042"
+       cy="21.507952"
+       r="0.1653731" />
+    <ellipse
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C Prussia"
+       cx="165.85684"
+       cy="19.034874"
+       rx="0.15785615"
+       ry="0.14282222" />
+    <ellipse
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C Denmark"
+       cx="159.88837"
+       cy="16.366352"
+       rx="0.1127544"
+       ry="0.19544093" />
+    <ellipse
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C London"
+       cx="152.60681"
+       cy="19.447027"
+       rx="0.095675275"
+       ry="0.10630586" />
+    <ellipse
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C Wales"
+       cx="151.26204"
+       cy="18.580633"
+       rx="0.047837637"
+       ry="0.069098808" />
+    <ellipse
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C York"
+       cx="152.69717"
+       cy="17.25181"
+       rx="0.10099057"
+       ry="0.090359986" />
+    <ellipse
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C Liverpool"
+       cx="151.96365"
+       cy="16.768118"
+       rx="0.069098808"
+       ry="0.05315293" />
+    <ellipse
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C Edinburgh"
+       cx="151.96898"
+       cy="13.897861"
+       rx="0.095675275"
+       ry="0.063783512" />
+    <ellipse
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C Clyde"
+       cx="151.36304"
+       cy="13.329124"
+       rx="0.063783512"
+       ry="0.079729393" />
+    <ellipse
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C Norway"
+       cx="161.21227"
+       cy="11.203007"
+       rx="0.13288231"
+       ry="0.19666584" />
+    <ellipse
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C Finland"
+       cx="170.5399"
+       cy="8.8193245"
+       rx="0.25557661"
+       ry="0.3157123" />
+    <ellipse
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C Saint Petersburg"
+       cx="177.48557"
+       cy="9.5108852"
+       rx="0.1653731"
+       ry="0.19544093" />
+    <ellipse
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C Moscow"
+       cx="177.53067"
+       cy="16.456556"
+       rx="0.18040702"
+       ry="0.19544093" />
+    <ellipse
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C Livonia"
+       cx="170.04379"
+       cy="17.057913"
+       rx="0.18040702"
+       ry="0.22550879" />
+    <ellipse
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C Warsaw"
+       cx="167.90897"
+       cy="21.011833"
+       rx="0.24054271"
+       ry="0.15033919" />
+    <ellipse
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="Ukraine"
+       cx="173.71207"
+       cy="22.605429"
+       rx="0.24054271"
+       ry="0.21047485" />
+    <ellipse
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C Stevastopol"
+       cx="179.21448"
+       cy="22.940004"
+       rx="0.18040702"
+       ry="0.19544093" />
+    <ellipse
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C Belgium"
+       cx="155.31761"
+       cy="21.360533"
+       rx="0.074414097"
+       ry="0.11693644" />
+    <ellipse
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C Sweden"
+       cx="164.08784"
+       cy="10.62364"
+       rx="0.14882819"
+       ry="0.18071997" />
+    <circle
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C Barents Sea"
+       cx="175.06511"
+       cy="1.5880102"
+       r="0.18040702" />
+    <circle
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C Norwegian Sea"
+       cx="157.38522"
+       cy="4.2941155"
+       r="0.30067837" />
+    <ellipse
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C North Atlantic"
+       cx="142.92259"
+       cy="9.104969"
+       rx="0.45101759"
+       ry="0.48108542" />
+    <ellipse
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C Gulf of Botbnia"
+       cx="167.15727"
+       cy="13.464806"
+       rx="0.15033919"
+       ry="0.21047485" />
+    <ellipse
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C Baltic Sea"
+       cx="165.53362"
+       cy="16.802336"
+       rx="0.21047485"
+       ry="0.24054271" />
+    <ellipse
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C Skagerrak"
+       cx="160.94826"
+       cy="14.111265"
+       rx="0.10523742"
+       ry="0.075169593" />
+    <circle
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C Helgoland Bigbt"
+       cx="158.36243"
+       cy="17.689337"
+       r="0.10523742" />
+    <ellipse
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C North Sea"
+       cx="155.79163"
+       cy="15.238808"
+       rx="0.18040702"
+       ry="0.27061054" />
+    <ellipse
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C English Channel"
+       cx="150.40628"
+       cy="20.658913"
+       rx="0.11693644"
+       ry="0.095675275" />
+    <circle
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C Irish Sea"
+       cx="147.72737"
+       cy="18.809191"
+       r="0.074414097" />
+    <ellipse
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C Mid Atlantic"
+       cx="140.27533"
+       cy="25.134388"
+       rx="0.23387288"
+       ry="0.21261172" />
+    <ellipse
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C West Mediterranean"
+       cx="152.22411"
+       cy="33.766426"
+       rx="0.14882819"
+       ry="0.12756702" />
+    <ellipse
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C Gulf of Lyon"
+       cx="154.09509"
+       cy="30.279593"
+       rx="0.10630586"
+       ry="0.085044682" />
+    <ellipse
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C Tyrbennian Sea"
+       cx="159.85687"
+       cy="33.298679"
+       rx="0.21261172"
+       ry="0.17008936" />
+    <ellipse
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C Ionian Sea"
+       cx="165.70369"
+       cy="36.70047"
+       rx="0.14882819"
+       ry="0.12756702" />
+    <ellipse
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C Aegean Sea"
+       cx="171.99699"
+       cy="35.892544"
+       rx="0.19135055"
+       ry="0.12756702" />
+    <ellipse
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C East Mediterranean"
+       cx="177.5249"
+       cy="37.508392"
+       rx="0.23387288"
+       ry="0.17008936" />
+    <circle
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C Black Sea"
+       cx="178.22652"
+       cy="29.046444"
+       r="0.12756702" />
+    <circle
+       style="opacity:0;fill:#e9afaf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.08357147;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="C Adriatic Sea"
+       cx="163.27852"
+       cy="30.272728"
+       r="0.18040702" />
+  </g>
+
 </svg>
