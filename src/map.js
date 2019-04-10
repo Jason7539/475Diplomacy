@@ -1,7 +1,7 @@
 
 instruction = {}    // Json object that holds instructions to send to host
 index = 0           // index for instructions
-
+originalColor = ""
 
 current_instruction = []
 
@@ -81,7 +81,7 @@ function hoverIn(id){
 function hoverOut(id) {
     prv=document.getElementById(id)
     if (prv.style.fill !=  "#ea0b8c") {
-        prv.style.fill = "#3399ff"
+        prv.style.fill = originalColor
     }
 }
 
