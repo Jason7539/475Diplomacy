@@ -1,7 +1,8 @@
 
 instruction = {}    // Json object that holds instructions to send to host
 index = 0           // index for instructions
-originalColor = ""
+var originalColor 
+var isSelected = false;
 
 current_instruction = []
 
@@ -57,6 +58,7 @@ function closeForm() {
  * Grabs a valid path from bw_map_updated.svg when click.
  */
 function Here(id){
+    isSelected = true;
     alert(id)
     prv=document.getElementById(id)
 
@@ -75,6 +77,7 @@ function Here(id){
 
 function hoverIn(id){
     prv=document.getElementById(id)
+    originalColor = document.getElementById(id).style.fill
     prv.style.fill="#000000"
 }
 
