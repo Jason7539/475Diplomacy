@@ -70,7 +70,16 @@ var user = (function(){
 		}
 	}
 
-}
+	//test
+	alert(country1 + " " + order + " " + country1);
+	//
+	
+	return pub;
+}());
+
+/*user.setOrder("c1");
+user.setOrder("move");
+user.setOrder("c2");*/
 
 function openForm() {
     document.getElementById("myForm").style.display = "block";

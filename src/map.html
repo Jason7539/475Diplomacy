@@ -43,10 +43,10 @@
     <div class="container-fluid">
       <div class="col-sm-9">
         <span><embed id = "E" src="./images/bw_map_updated.svg" width="100%"></span><br/><br/>
-        <button type="button" class="btn btn-warning" id="move" onclick="order(id)" >move</button>
-        <button type="button" class="btn btn-warning" id="support" onclick="order(id)" >support</button>
-        <button type="button" class="btn btn-warning" id="convoy" onclick="order(id)" >convoy</button>
-        <button type="button" class="btn btn-warning" id="hold" onclick="order(id)" >hold</button>
+        <button type="button" class="btn btn-warning" id="move" onclick="user.setOrder("move")" >move</button>
+        <button type="button" class="btn btn-warning" id="support" onclick="user.setOrder("support")" >support</button>
+        <button type="button" class="btn btn-warning" id="convoy" onclick="user.setOrder("convoy")" >convoy</button>
+        <button type="button" class="btn btn-warning" id="hold" onclick="user.setOrder("hold")" >hold</button>
       </div>
     </div>
 
