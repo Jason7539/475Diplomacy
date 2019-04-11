@@ -29,7 +29,8 @@
           <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">ABOUT <span class="caret"></span></a>
             <ul class="dropdown-menu">
-                <li><a href="#">How to Play</a></li>
+                <li><a href="gameInstructions.html" target="_blank">How to Play</a></li>
+                
                 <li><a href="#">FAQs</a></li>
                 <li><a href="#">Send Feedback</a></li>
 
@@ -42,10 +43,10 @@
     <div class="container-fluid">
       <div class="col-sm-9">
         <span><embed id = "E" src="./images/bw_map_updated.svg" width="100%"></span><br/><br/>
-        <button type="button" class="btn btn-warning" onclick="move_order()" >move</button>
-        <button type="button" class="btn btn-warning" onclick="support_order()" >support</button>
-        <button type="button" class="btn btn-warning" onclick="convoy_order()" >convoy</button>
-        <button type="button" class="btn btn-warning"onclick="hold_order()" >hold</button>
+        <button type="button" class="btn btn-warning" id="move" onclick="order(id)" >move</button>
+        <button type="button" class="btn btn-warning" id="support" onclick="order(id)" >support</button>
+        <button type="button" class="btn btn-warning" id="convoy" onclick="order(id)" >convoy</button>
+        <button type="button" class="btn btn-warning" id="hold" onclick="order(id)" >hold</button>
       </div>
     </div>
 
@@ -55,15 +56,14 @@
           <form action="/action_page.php" class="form-container">
             <h1>Chat</h1>
             <label for="msg"><b>Message</b></label>
-            <textarea placeholder="="type message..." name="msg" required></textarea>
-            <button type="submit" class="btn">Send</button>
+            <textarea placeholder="type message..." name="msg" required></textarea>
+            <button type="submit" class="btn" onclick="send()">Send</button>
             <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
           </form>
         </div>
-      </div>
-
-  
+      
   </body>
   <script type="text/javascript" src="map.js">
   </script>
+
 </html>

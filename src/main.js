@@ -1,6 +1,6 @@
 const { app, ipcMain, BrowserWindow, ipcRenderer} = require('electron')
 const client = require("./client.js");
-
+const http = require("http");
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -146,6 +146,26 @@ ipcMain.on("SendUser", (event, arg) => {
   client.sendUser(arg.ip, arg.userName, arg.clientIP, arg);    // send username to server
                                             // determined by ip
 });
+
+ipcMain.on("SendSetting", (event, arg) => {
+  var post = http.request({
+    hostname: arg.ip,
+    port: 3001,
+    path: '/sendSetting',
+    method: 'POST',
+    'content-type': 'text/plain'
+  }, (res) => { 
+    console.log("Setting captured")
+    console.log(res.statusCode);
+  })
+
+  post.on("Error", (err) => {
+    console.log(err);
+  });
+  post.write(JSON.stringify(arg));
+  post.end();
+});
+
 
 
 

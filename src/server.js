@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express();
+const mongoose = require('mongoose')
 const http = require('http');
 const os = require('os');
 const ip = require('ip');
@@ -14,11 +15,8 @@ const hostIP = ip.address()
 
 let users = [];             // array to hold userNames of clients
 let intervalObj;            // Timeout object that polls for user information
+let setting;
 
-
-// app.get("/", (req, res) => {
-//   res.send("got a get");
-// })
 
 /**
  * handle post request from clients trying to Join
@@ -46,6 +44,58 @@ app.post("/", (req, res) => {
     console.log("got an error");
   });
 });
+
+/**
+ * Create a game object.
+ */
+app.post("/sendSetting", (req, res) => {
+  let body = []
+  
+  req.on("data", (chunk) =>{ 
+    body.push(chunk);
+
+  }).on("end", () => {
+    let jsonObj = JSON.parse(Buffer.concat(body).toString()); 
+
+    setting = {
+      "gameName": jsonObj.gameName,
+      "description": jsonObj.description,
+      "playerType": jsonObj.playerType,
+      "adjucation": jsonObj.adjucation
+    };
+
+    let host = {
+      "username": jsonObj.username,
+      "IP": hostIP
+    };
+    users.push(host);     // add host username to the list of usernames
+    console.log("the users so far are ");
+    console.log(users);
+
+    console.log("Game setting are: ");
+    console.log(setting);
+
+    res.end();
+  });
+  req.on("error", (err)=>{
+    console.log("got an error");
+  });
+});
+
+
+app.post("/addOrders", (req,res) => {
+    let body = []
+	
+	req.on("data", (chunk) =>{
+		body.push(chunk)
+	}).on("end", () =>{
+		
+	})
+});
+
+
+
+
 
 /**
  * Send images when a response is sent

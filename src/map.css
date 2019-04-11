@@ -1,0 +1,9 @@
+a .svg-class:hover paths {
+    fill: #50c8e8;
+}
+
+.svg-class {
+    height: 20px;
+    width: 20px;
+    display: inline-block;
+}

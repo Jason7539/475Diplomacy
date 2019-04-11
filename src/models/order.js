@@ -1,4 +1,4 @@
-let mongoose = require('mongoose');
+let mongoose = require('mongoose')
 
 let orderSchema = new mongoose.Schema({
     country1: String,
@@ -20,10 +20,8 @@ orderSchema.virtual('orderInfo').set(function(order) {
 
 var OrderModel = mongoose.model('Order', orderSchema)
 
-//var order = new OrderModel();//{country1:'Ukraine',country2:'Russia',order:'move'});
+//var order = new OrderModel();
 
-//OrderModel.orderInfo = 'Ukraine move Russia'//setter
+//OrderModel.orderInfo = 'Ukraine move Russia'
 
-//console.log(OrderModel.orderInfo)//getter
 
-//LAN connection using same wifi for database
