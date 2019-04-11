@@ -1,42 +1,65 @@
-const http = require("http");
-//const server = require("./server.js");
-// const host = require("./server.js")
+const http = require("http")
+const electron = require('electron')
+const {ipcRenderer} = electron
+const events = require('events')
 
-// const ip = "localhost";
-// console.log(ip);
-// 192.168.1.22
-// const options = {
-//   hostname: ip,
-//   port: 3001,
-//   path: '/',
-// };
+var em = new events.EventEmitter()
+let post
 
-// http.get(options, (res) => {
-//   res.on("data", function(chunk) {
-//     console.log("BODY: " + chunk);
-//   });
-//   res.on("error", (err) => {
-//     console.log(err);
-//   });
-// }).on("error", (err) =>{
-//   console.log("error");
-// });
-//
-// //send info to the server
-function sendUser(ip, userName, obj){
-    var post = http.request({
+/**
+ * This function sends the client username to the host.
+ * should be called from join.html.
+ */
+function sendUser(ip, userName, clientIP, obj){
+    post = http.request({
     hostname: ip,
     port: 3001,
     path: '/',
     method: 'POST',
     'content-type': 'text/plain'
-  }, (res) => {console.log(res.statusCode);
-  }).on("Error", (err) => {
-    console.log(err);
-  });
+  }, (res) => {   // add event listener to response event
+    // if the response is successful switch to the lobby.html
+    console.log("you got a response")
+    console.log(res.statusCode);
 
-  post.write(JSON.stringify(obj));
-  post.end();
+    // tell main to siwtch to lobby.html when the response succeeds
+    if(res.statusCode == 200){
+      em.emit("SwitchToLobby")
+    }
+
+  })
+
+
+  post.on("Error", (err) => {
+    console.log(err)
+  });
+  post.write(JSON.stringify(obj))
+  post.end()
+
+}
+function addOrders(orders){
+	//Convert the list of orders into a JSON string
+	payload = JSON.stringify(orders)
+	
+	options = {
+		host: '',
+		port: '8000',
+		method: 'POST',
+		path: '/addOrders',
+		headers: {
+			'Content-Type': 'application/json',
+			'Content-Length': Buffer.byteLength(payload)
+		}
+	}
+	
+	const req = http.request(options, 
+		(res) => {
+			console.log("Sent")
+		})
+	req.write(payload)
+	req.end()
 }
 
-module.exports.sendUser = sendUser;
+module.exports.clientEvent = em
+module.exports.sendUser = sendUser
+module.exports.addOrders = addOrders

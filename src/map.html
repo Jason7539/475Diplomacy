@@ -5,7 +5,7 @@
     <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'/>
     <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
 
-    
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
@@ -29,7 +29,8 @@
           <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">ABOUT <span class="caret"></span></a>
             <ul class="dropdown-menu">
-                <li><a href="#">How to Play</a></li>
+                <li><a href="gameInstructions.html" target="_blank">How to Play</a></li>
+                
                 <li><a href="#">FAQs</a></li>
                 <li><a href="#">Send Feedback</a></li>
 
@@ -42,32 +43,27 @@
     <div class="container-fluid">
       <div class="col-sm-9">
         <span><embed id = "E" src="./images/bw_map_updated.svg" width="100%"></span><br/><br/>
-        <button type="button" class="btn btn-warning" onclick="move()" >move</button>
-        <button type="button" class="btn btn-warning" onclick="support()" >support</button>
-        <button type="button" class="btn btn-warning" onclick="convoy()" >convoy</button>
-        <button type="button" class="btn btn-warning"onclick="hold()" >hold</button>
-      </div> 
+        <button type="button" class="btn btn-warning" id="move" onclick="order(id)" >move</button>
+        <button type="button" class="btn btn-warning" id="support" onclick="order(id)" >support</button>
+        <button type="button" class="btn btn-warning" id="convoy" onclick="order(id)" >convoy</button>
+        <button type="button" class="btn btn-warning" id="hold" onclick="order(id)" >hold</button>
+      </div>
     </div>
-    
+
 
         <button class="open-button" onclick="openForm()">Chat</button>
         <div class="chat-popup" id="myForm">
           <form action="/action_page.php" class="form-container">
             <h1>Chat</h1>
             <label for="msg"><b>Message</b></label>
-            <textarea placeholder="="type message..." name="msg" required></textarea>
-            <button type="submit" class="btn">Send</button>
+            <textarea placeholder="type message..." name="msg" required></textarea>
+            <button type="submit" class="btn" onclick="send()">Send</button>
             <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
           </form>
         </div>
-      </div>
-
-  
+      
   </body>
   <script type="text/javascript" src="map.js">
   </script>
-
-
-
 
 </html>
