@@ -140,13 +140,8 @@ ipcMain.on("StartChecking", (event, arg) => {
  ipcMain.on("updateClientLobby", (event, arg) =>{
    console.log("starting to check client's lobby");
    names = client.requestUsers(); // send http get request to host and return userNames
-
-   sNames = "";
-   for(items in names){
-     console.log("each item is " + names[items]);
-   }
-   console.log("the name retrieved is " + names);
-   event.sender.send("clientPing", names);
+   
+   event.sender.send("clientPing", names.join(" - "));
  })
 
 ipcMain.on("Host", (event, arg) => {

@@ -70,5 +70,17 @@ function Here(id){
     prv.style.fill = "#ea0b8c"
     }
 
-    
+
+}
+
+function hoverIn(id){
+    prv=document.getElementById(id)
+    prv.style.fill="#000000"
+}
+
+function hoverOut(id) {
+    prv=document.getElementById(id)
+    if (prv.style.fill !=  "#ea0b8c") {
+        prv.style.fill = "#3399ff"
+    }
 }

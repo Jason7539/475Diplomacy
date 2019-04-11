@@ -52,17 +52,15 @@ function requestUsers(){
   path: '/lobby',
   'content-type': 'text/plain'
   }, (res) => {
-    let body = []
+    names = []
     res.on("data", (chunk) => {
-      body.push(chunk);
-    }).on("end", () => {
-      names = []
-      for (var item in body){
-        names.push(body[item]);
-      }
+      names.push(chunk);
+    }).on("end", ()=>{
+      let jsonObj = JSON.parse(names);
+      names = jsonObj;
     })
   })
-  console.log("we are trying to return " + names);
+
   return names;
 }
 

@@ -17,7 +17,7 @@ serverFlag = false;
 
 let users = [];             // array to hold userNames of clients
 let intervalObj;            // Timeout object that polls for user information
-
+let serverObj;              // used to close http server
 
 /**
  * handle post request from clients trying to Join
@@ -65,7 +65,7 @@ app.get('/lobby', function(req, res){
  * from clients sending their usernames and ip addresses
  */
 function startServer () {
-  app.listen(port, hostIP, () =>{
+  serverObj = app.listen(port, hostIP, () =>{
     console.log("connected----------------------------");
   });
 }
@@ -119,6 +119,7 @@ function startClientPolling () {
  */
 function stopClientPolling () {
   clearInterval(intervalObj);
+  serverObj.close();
 }
 
 
@@ -140,6 +141,7 @@ function getHostIp(){
   return String(hostIP);
 }
 
+module.exports.stopClientPolling = stopClientPolling;
 module.exports.startServer = startServer;
 module.exports.getHostIp = getHostIp;
 module.exports.serverEvent = em;
