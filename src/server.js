@@ -15,6 +15,7 @@ const hostIP = ip.address()
 let users = [];             // array to hold userNames of clients
 let intervalObj;            // Timeout object that polls for user information
 let setting;
+let adjucation;
 
 // app.get("/", (req, res) => {
 //   res.send("got a get");
@@ -72,12 +73,18 @@ app.post("/sendSetting", (req, res) => {
       "username": jsonObj.username,
       "IP": hostIP
     };
+
+    setAdjucation(jsonObj.adjucation)
+
     users.push(host);     // add host username to the list of usernames
     console.log("the users so far are ");
     console.log(users);
 
     console.log("Game setting are: ");
     console.log(setting);
+
+    console.log("\nAdjucation is: ");
+    console.log(adjucation);
 
     res.end();
   });
@@ -88,7 +95,22 @@ app.post("/sendSetting", (req, res) => {
 
 
 
-
+function setAdjucation(adj){
+  switch(adj){
+    case "15 minutes": adjucation = 15;
+      break;
+    case "30 minutes": adjucation = 30;
+      break;
+    case "60 minutes": adjucation = 60;
+      break;
+    case "120 minutes": adjucation = 120;
+      break;
+    case "Daily": adjucation = 1440; 
+      break;
+    default: console.log("Adjucation period not valid");
+      break;
+  }
+}
 
 
 
