@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'/>   
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
      <link rel="stylesheet" href="main.css">
      <style>
@@ -28,13 +28,13 @@
             <input type="text" id="ip" size="10">
             <br>
             <br>
-            <input type="button" class="btn btn-danger" onclick="location.href='startScreen.html';" value="Back" /> 
+            <input type="button" class="btn btn-danger" onclick="location.href='startScreen.html';" value="Back" />
                         <button type="submit" class="btn btn-primary">Submit</button>
 
 
         </form>
 
-      
+
       </div>
     </div>
 
@@ -45,6 +45,9 @@
 <script type="text/javascript">
   const electron = require('electron');
   const http = require('http');
+  const ip = require('ip');
+  const clientIP = ip.address();
+
   function sending(){
 
     // getting typed information
@@ -53,7 +56,8 @@
     const {ipcRenderer} = electron;
 
     let jsonex = {"userName": x.elements[0].value,
-                        "ip": x.elements[1].value};
+                  "ip": x.elements[1].value,
+                  "clientIP": clientIP};
 
     ipcRenderer.send("SendUser", jsonex);
     // send username based on ip

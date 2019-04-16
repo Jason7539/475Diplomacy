@@ -1,1 +1,6 @@
+<<<<<<< HEAD
 node_modules/
+=======
+src/node_modules/*
+experimental.js
+>>>>>>> dcbb931f4b5a0248a46d1c2fbf6097a6af86e3bf
