@@ -1,3 +1,4 @@
+
 var user = (function(){
 
 	var orders = [];
@@ -12,6 +13,8 @@ var user = (function(){
 	
 	//set order function
 	pub.setOrder = function(id){
+		
+		alert("Within set order")//test
 		
 		//if clicked thing is a province
 		if (id != "move" && id != "support" && id != "convoy" && id != "hold") {
@@ -77,6 +80,12 @@ var user = (function(){
 	return pub;
 }());
 
+function move() {
+	alert("Clicked move")
+	user.setOrder("move")
+	alert("After function call")
+}
+
 /*user.setOrder("c1");
 user.setOrder("move");
 user.setOrder("c2");*/
@@ -91,12 +100,35 @@ function closeForm() {
 
 function hoverIn(id){
     prv=document.getElementById(id)
+    originalColor = document.getElementById(id).style.fill
     prv.style.fill="#000000"
 }
 
 function hoverOut(id) {
     prv=document.getElementById(id)
     if (prv.style.fill !=  "#ea0b8c") {
-        prv.style.fill = "#3399ff"
+        prv.style.fill = originalColor
     }
 }
+
+/**
+ * Grabs a valid path from bw_map_updated.svg when click.
+ */
+function Here(id){
+    isSelected = true;
+    alert(id)
+    prv=document.getElementById(id)
+
+    current_instruction.push(id)    // add province to current instruction
+
+    alert(current_instruction)
+
+    if(prv.style.fill === "rgb(234, 11, 140)"){
+    prv.style.fill = "#3399ff"
+    }
+    else{
+    prv.style.fill = "#ea0b8c"
+    }
+    
+}
+
