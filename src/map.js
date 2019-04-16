@@ -78,7 +78,7 @@ function Here(id){
 function hoverIn(id){
     prv=document.getElementById(id)
     originalColor = document.getElementById(id).style.fill
-    prv.style.fill="#000000"
+    prv.style.fill="#808080"
 }
 
 function hoverOut(id) {
