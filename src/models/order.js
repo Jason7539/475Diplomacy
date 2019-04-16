@@ -1,5 +1,8 @@
 let mongoose = require('mongoose')
 
+mongoose.Promise = global.Promise
+mongoose.connect("mongodb://localhost:27017/diplomacy")
+
 let orderSchema = new mongoose.Schema({
     country1: String,
     country2: String,
@@ -11,6 +14,7 @@ orderSchema.virtual('orderInfo').get(function() {
 })
 
 orderSchema.virtual('orderInfo').set(function(order) {
+    
     let str = order.split(' ')
     
     this.country1 = str[0]
@@ -18,7 +22,7 @@ orderSchema.virtual('orderInfo').set(function(order) {
     this.country2 = str[2]
 })
 
-var OrderModel = mongoose.model('Order', orderSchema)
+var Order = mongoose.model('Order', orderSchema)
 
 //var order = new OrderModel();
 

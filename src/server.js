@@ -6,12 +6,19 @@ const os = require('os');
 const ip = require('ip');
 const events = require('events');
 
+var bodyParser = require("body-parser")
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
+
+mongoose.Promise = global.Promise
+mongoose.connect("mongodb://localhost:27017/diplomacy")
 var em = new events.EventEmitter();
 
 
 const port = 3001
 const hostIP = ip.address()
 
+var order = require('./models/order')
 
 let users = [];             // array to hold userNames of clients
 let intervalObj;            // Timeout object that polls for user information
@@ -84,13 +91,21 @@ app.post("/sendSetting", (req, res) => {
 
 
 app.post("/addOrders", (req,res) => {
-    let body = []
-	
-	req.on("data", (chunk) =>{
-		body.push(chunk)
-	}).on("end", () =>{
-		
-	})
+    console.log(req.body)
+    for (let i = 0; i < (req.body).length; i++) {
+        let order = req.body[i];
+
+        var myOrder = new order.Order(order)
+
+        myOrder.save()
+            .then(item => {
+                console.log("item saved to database")
+            })
+            .catch(err => {
+                console.log("unable to save to database")
+            })
+
+        }
 });
 
 
