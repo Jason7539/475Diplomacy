@@ -6,6 +6,8 @@ const events = require('events')
 var em = new events.EventEmitter()
 let post
 
+const ip = '104.237.158.50'
+const port = 3001
 /**
  * This function sends the client username to the host.
  * should be called from join.html.
@@ -13,7 +15,7 @@ let post
 function sendUser(ip, userName, clientIP, obj){
     post = http.request({
     hostname: ip,
-    port: 3001,
+    port: port,
     path: '/',
     method: 'POST',
     'content-type': 'text/plain'
@@ -42,8 +44,8 @@ function addOrders(orders){
 	payload = JSON.stringify(orders)
 	
 	options = {
-		host: '',
-		port: '8000',
+		host: ip,
+		port: port,
 		method: 'POST',
 		path: '/addOrders',
 		headers: {
