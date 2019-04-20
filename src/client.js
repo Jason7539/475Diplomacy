@@ -8,7 +8,7 @@ var em = new events.EventEmitter();
 let hostIP = 0;             // hold host IP. value is updated sendUser function
 let intervalObj;            // Timeout object that polls for user information
 var names = [];             // hold the current list of user
-
+gameStatus = "false";
 let intervalFlag = false;
 
 /**
@@ -65,6 +65,28 @@ function requestUsers(){
 }
 
 /**
+ * open game map when game status is true
+ * from the server
+ */
+ function pollGameStatus(){
+   var post = http.get({
+   hostname: hostIP,
+   port: 3001,
+   path: '/gameStart',
+   'content-type': 'text/plain'
+   }, (res) => {
+     status = []
+     res.on("data", (chunk) => {
+       status.push(chunk);
+     }).on("end", ()=>{
+       gameStatus = status.toString();
+     })
+   })
+
+   return gameStatus;
+ }
+
+/**
  * calls main to ask for usernames from host
  */
 function updateUsers(){
@@ -79,3 +101,4 @@ module.exports.requestUsers = requestUsers;
 module.exports.clientEvent = em;
 module.exports.sendUser = sendUser;
 module.exports.updateUsers = updateUsers;
+module.exports.pollGameStatus= pollGameStatus

@@ -7,8 +7,7 @@ const server = require("./server.js");
 let win
 let startWin
 let chatWin
-
-
+let mapSwitch = false;    // flag to represent when the game screen is open
 
 function createWindow () {
   // Create the browser window.
@@ -76,6 +75,26 @@ function lobby () {
   })
 }
 
+/**
+ * This function creates a new window and loads map.html
+ * this function should be after host has started the game
+ */
+function map () {
+  // Create the browser window.
+  startWin = new BrowserWindow({ width: 969, height: 545 })
+  // and load the index.html of the app.
+  startWin.loadFile('map.html')
+  // Open the DevTools.
+
+  // Emitted when the window is closed.
+  startWin.on('closed', () => {
+    // Dereference the window object, usually you would store windows
+    // in an array if your app supports multi windows, this is the time
+    // when you should delete the corresponding element.
+    startWin = null
+  })
+}
+
 
 
 // This method will be called when Electron has finished
@@ -120,6 +139,13 @@ client.clientEvent.on("SwitchToLobby", () => {
   win.close();
 });
 
+ipcMain.on("openMap", ()=> {
+  // change game status inside server
+  gs = server.changeGameStatus();
+  console.log("the game status in main is " + gs);
+  map();
+  win.close();
+})
 
 /**
  * This event is triggered after a game host creates a game from
@@ -140,8 +166,18 @@ ipcMain.on("StartChecking", (event, arg) => {
  ipcMain.on("updateClientLobby", (event, arg) =>{
    console.log("starting to check client's lobby");
    names = client.requestUsers(); // send http get request to host and return userNames
-   
+
    event.sender.send("clientPing", names.join(" - "));
+
+   // poll for game status
+   // if its true open up game screen
+   status = client.pollGameStatus();
+   if (status == "True" && mapSwitch == false){
+     console.log("TRYING TO OPEN MAP");
+     mapSwitch = true;
+     map();
+     // win.close();
+   }
  })
 
 ipcMain.on("Host", (event, arg) => {
@@ -166,8 +202,11 @@ ipcMain.on("SendUser", (event, arg) => {
                                             // determined by ip
 });
 
-
-
+//      instructions and database interactions
+// map.mapEvent.on("updateUnit", (instructions) =>{
+//   console.log("inside update");
+// })
+//
 
 
 

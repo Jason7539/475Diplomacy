@@ -8,7 +8,7 @@ const electron = require('electron');
 const {ipcRenderer} = electron;
 
 var em = new events.EventEmitter();
-
+gameStatus = false;
 
 const port = 3001;
 const hostIP = ip.address();
@@ -57,6 +57,20 @@ app.get('/lobby', function(req, res){
     names.push(users[item].username)
   }
   res.send(names);
+});
+
+
+/**
+ * Create html to show the game start status
+ */
+app.get('/gameStart', function(req, res){
+  // get username of current users
+  if (gameStatus == false){
+    res.send("False");
+  }
+  else{
+    res.send("True");
+  }
 });
 
 
@@ -116,10 +130,14 @@ function startClientPolling () {
 /**
  * Function that cancels the client poll
  * called when the host cancels the game or starts the game
+ * open the game map in from main.js
+ * and change the contents of /getlobby
  */
 function stopClientPolling () {
-  clearInterval(intervalObj);
-  serverObj.close();
+  gameStatus = true;    // change gamestatus to tell clients to switch to map.html
+  alert("the game status = " + gameStatus);
+  clearInterval(intervalObj);     // close the repeated queue for clients
+  //serverObj.close(); closes the http server
 }
 
 
@@ -131,6 +149,17 @@ function display_ip(){
   document.getElementById("ip").write("hello world")
   alert("hello world")
 }
+
+/*
+ * tell clients that game started ,so they can switch to
+ * the game screen
+ *
+ */
+function changeGameStatus(){
+  gameStatus = true;
+  return gameStatus;
+}
+
 
 /**
  * Function that returns the localip
@@ -147,3 +176,4 @@ module.exports.getHostIp = getHostIp;
 module.exports.serverEvent = em;
 module.exports.startClientPolling = startClientPolling;
 module.exports.updateUsers = updateUsers;
+module.exports.changeGameStatus = changeGameStatus;

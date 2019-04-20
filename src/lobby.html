@@ -30,12 +30,12 @@
 
   /*
   * Close http server after names have been captured
+  * and stop client polling
   */
   function stopPolling(){
+    ipcRenderer.send("openMap")
     server.stopClientPolling();
-    alert("stopping")
     // send a message to client to stop
-
   }
 
   </script>
