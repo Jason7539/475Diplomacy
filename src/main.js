@@ -171,11 +171,36 @@ ipcMain.on("StartChecking", (event, arg) => {
 
    // poll for game status
    // if its true open up game screen
-   status = client.pollGameStatus();
-   if (status == "True" && mapSwitch == false){
+   stat = client.pollGameStatus(); // returns array of json
+   jsonObj = JSON.parse(stat)      // parse it to json
+   gameflag = ""
+
+   if(stat != undefined && mapSwitch == false){
+     try{
+        // look at countries
+       console.log("client's country is " + client.getCountry());
+       name = client.getName();         // grab the client name
+       for(i in jsonObj.status[1]){
+         // get the country for the user
+         if( name == jsonObj.status[1][i].username){
+           client.setCountry(jsonObj.status[1][i].Country);
+           console.log("country is now set");
+         }
+       }
+
+       gameflag = jsonObj.status[0];
+    }
+    catch(err){
+      console.log("error" + err);
+    }
+   }
+
+   if (gameflag == "True" && mapSwitch == false){
      console.log("TRYING TO OPEN MAP");
      mapSwitch = true;
-     map();
+     // udpate client country
+
+     map();   // change to ingame screen
      // win.close();
    }
  })

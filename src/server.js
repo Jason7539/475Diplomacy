@@ -15,6 +15,7 @@ const hostIP = ip.address();
 pollFlag = false;
 serverFlag = false;
 
+let countries = ["Russia", "Germany", "Italy", "Austria", "Turkey", "England", "France"]
 let users = [];             // array to hold userNames of clients
 let intervalObj;            // Timeout object that polls for user information
 let serverObj;              // used to close http server
@@ -33,7 +34,8 @@ app.post("/", (req, res) => {
     let jsonObj = JSON.parse(Buffer.concat(body).toString());  // push it to the array
 
     let jsonClient = {"username": jsonObj.userName,
-                      "IP": jsonObj.clientIP};
+                      "IP": jsonObj.clientIP,
+                      "Country": countries.pop()};
 
 
     users.push(jsonClient);     // add the username to the list of usernames
@@ -54,6 +56,7 @@ app.get('/lobby', function(req, res){
   // get username of current users
   var names = []
   for (var item in users){
+
     names.push(users[item].username)
   }
   res.send(names);
@@ -65,11 +68,15 @@ app.get('/lobby', function(req, res){
  */
 app.get('/gameStart', function(req, res){
   // get username of current users
+  jsonObj = users
   if (gameStatus == false){
-    res.send("False");
+    status = {"status":["False", jsonObj]}
+    res.send(status);
   }
   else{
-    res.send("True");
+    status = {"status":["True", jsonObj]}
+
+    res.send(status);
   }
 });
 
