@@ -4,17 +4,19 @@ index = 0           // index for instructions
 var originalColor 
 var isSelected = false;
 
-current_instruction = []
+region = [];
+var current_instruction;
 
 function move(){
 
-    current_instruction.push("move");
+   // current_instruction.push("move");
     // alert("click country to move to")
     // D = document.getElementById("E")
     // doc = D.getSVGDocument()
     // country = doc.getElementById(id)
     // country.style.fill = "#000000"
-    moveunit(current_instruction[0],current_instruction[1]);
+    current_instruction = "moves";
+    moveunit(region[0],region[1]);
 }
 
 function moveunit(id, dest){
@@ -28,20 +30,20 @@ function moveunit(id, dest){
 
    // targetX = target.getAttribute("cx")
     //troop.setAttribute("cx", targetX)
-    console.log(current_instruction);
+    console.log(region[0]+ " "+ current_instruction + " "+ region[1]);
 
     // store into the database 
 }
 
 function suportunit(id, dest){
-    console.log(current_instruction);
+    console.log(region);
 
 }
 
 function support() {
     alert("click country to support")
-    current_instruction.push("support");
-    console.log(current_instruction);
+    current_instruction = "supports";
+    console.log(region);
 
 }
 
@@ -51,7 +53,7 @@ function convoy() {
 
 function hold() {
     alert("Selected country will hold")
-    current.push("hold")
+    current_instruction = "holds"
 }
 
 /* for chat display */
@@ -68,12 +70,16 @@ function closeForm() {
  */
 function getId(id){
     alert(id)
-    current_instruction.push(id)    // add province to current instruction
+    if(region.length == 2)
+    {
+        region= []
+    }
+    region.push(id)    // add province to current instruction
 
   //  console.log(prv)//refer to the path
   /*  
     } */
-   console.log("here(): "+ current_instruction);
+   console.log("here(): "+ region);
 }
 
 function selected(id){
@@ -92,9 +98,7 @@ function hoverIn(id){
     originalColor = document.getElementById(id).style.fill
     prv.style.fill="#000000"
     prv.innerHTML = id;
-  /*  prv.addClass('active');
-    $description.html($(this).attr('id'));
-    console.log(prv.innerHTML);   */
+ 
 
 }
 
