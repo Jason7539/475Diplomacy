@@ -1,5 +1,10 @@
+// Json object that holds instructions to send to host
+var instruction = {
+    region_1: '',
+    region_2: '',
+    current_instruction: ''
+}    
 
-instruction = {}    // Json object that holds instructions to send to host
 index = 0           // index for instructions
 var originalColor 
 var isSelected = false;
@@ -16,7 +21,12 @@ function move(){
     // country = doc.getElementById(id)
     // country.style.fill = "#000000"
     current_instruction = "moves";
+      var instruction_1 = new Object();
+    instruction_1.region_1 = region[0];
+    instruction_1.region_2 = region[1];
+    console.log(" object : " + instruction_1.region_1)
     moveunit(region[0],region[1]);
+
 }
 
 function moveunit(id, dest){
@@ -32,7 +42,9 @@ function moveunit(id, dest){
     //troop.setAttribute("cx", targetX)
     console.log(region[0]+ " "+ current_instruction + " "+ region[1]);
 
+
     // store into the database 
+
 }
 
 function suportunit(id, dest){
@@ -70,6 +82,7 @@ function closeForm() {
  */
 function getId(id){
     alert(id)
+  
     if(region.length == 2)
     {
         region= []
