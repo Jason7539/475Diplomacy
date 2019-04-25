@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express();
+const mongoose = require('mongoose')
 const http = require('http');
 const os = require('os');
 const ip = require('ip');
@@ -7,14 +8,15 @@ const events = require('events');
 const Order = require('./models/order')
 const User = require('./models/user')
 
-var em = new events.EventEmitter();
-
 var bodyParser = require("body-parser")
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
 mongoose.Promise = global.Promise
 mongoose.connect("mongodb://localhost:27017/diplomacy",{ useNewUrlParser: true })
+var em = new events.EventEmitter();
+
+
 const port = 3001
 const hostIP = ip.address()
 
@@ -22,11 +24,7 @@ const hostIP = ip.address()
 let users = [];             // array to hold userNames of clients
 let intervalObj;            // Timeout object that polls for user information
 let setting;
-let adjucation;
 
-// app.get("/", (req, res) => {
-//   res.send("got a get");
-// })
 
 /**
  * handle post request from clients trying to Join
@@ -53,7 +51,9 @@ app.post("/", (req, res) => {
   req.on("error", (err)=>{
     console.log("got an error");
   });
-    //Send user to database
+  //Everything above is not needed anymore unless want to keep the array
+    console.log(req.body)
+
     var user = new User(req.body)
 
     console.log(user)
@@ -68,11 +68,9 @@ app.post("/", (req, res) => {
 
 });
 
-
-
-
-
-
+/**
+ * Create a game object.
+ */
 app.post("/sendSetting", (req, res) => {
   let body = []
   
@@ -93,18 +91,12 @@ app.post("/sendSetting", (req, res) => {
       "username": jsonObj.username,
       "IP": hostIP
     };
-
-    setAdjucation(jsonObj.adjucation)
-
     users.push(host);     // add host username to the list of usernames
     console.log("the users so far are ");
     console.log(users);
 
     console.log("Game setting are: ");
     console.log(setting);
-
-    console.log("\nAdjucation is: ");
-    console.log(adjucation);
 
     res.end();
   });
@@ -113,7 +105,7 @@ app.post("/sendSetting", (req, res) => {
   });
 });
 
-//Tells the server to put the orders in the database
+
 app.post("/addOrders", (req,res) => {
     console.log(req.body)
     console.log(typeof req.body)
@@ -142,22 +134,6 @@ app.post("/addOrders", (req,res) => {
     res.end()
 });
 
-function setAdjucation(adj){
-  switch(adj){
-    case "15 minutes": adjucation = 15;
-      break;
-    case "30 minutes": adjucation = 30;
-      break;
-    case "60 minutes": adjucation = 60;
-      break;
-    case "120 minutes": adjucation = 120;
-      break;
-    case "Daily": adjucation = 1440; 
-      break;
-    default: console.log("Adjucation period not valid");
-      break;
-  }
-}
 
 
 
@@ -234,6 +210,30 @@ startServer();
 module.exports.getHostIp = getHostIp;
 module.exports.serverEvent = em;
 
+//------------------------------------------------------------------
+//Databases
+
+//The order database
+/*let orderSchema = new mongoose.Schema({
+    country1: String,
+    country2: String,
+    order:  String
+})
+
+orderSchema.virtual('orderInfo').get(function() {
+    return this.country1 + ' ' + this.order + ' ' + this.country2
+})
+
+orderSchema.virtual('orderInfo').set(function(order) {
+    
+    let str = order.split(' ')
+    
+    this.country1 = str[0]
+    this.order = str[1]
+    this.country2 = str[2]
+})
+
+var Order = mongoose.model('Order', orderSchema)*/
 // var hosting = http.createServer((request, response) => {
 //   const { headers, method, url } = request;
 //   let body = [];

@@ -1,17 +1,11 @@
 let mongoose = require('mongoose');
 
 let userSchema = new mongoose.Schema({
-    user: String
-},{unique: true})
+    userName: String,
+    ip: String
+})
 
-userSchema.virutal().get(function() {
-    return this.user
-}
 
-userSchema.virtual().set(function(user) {
-    let str = user.split(' ')
+var User = mongoose.model('User', userSchema)
 
-    this.user = str[0]
-}
-
-var userModel = mongoose.model('User', userSchema)
+module.exports = User

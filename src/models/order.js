@@ -1,7 +1,7 @@
 let mongoose = require('mongoose')
 
-mongoose.Promise = global.Promise
-mongoose.connect("mongodb://localhost:27017/diplomacy")
+//mongoose.Promise = global.Promise
+mongoose.connect("mongodb://localhost:27017/diplomacy",{ useNewUrlParser: true })
 
 let orderSchema = new mongoose.Schema({
     country1: String,
@@ -23,6 +23,8 @@ orderSchema.virtual('orderInfo').set(function(order) {
 })
 
 var Order = mongoose.model('Order', orderSchema)
+
+module.exports = Order
 
 //var order = new OrderModel();
 
