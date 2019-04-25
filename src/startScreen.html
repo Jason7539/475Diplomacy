@@ -59,11 +59,26 @@
       }
 
       function Help() {
-        const {
-          ipcRenderer
-        } = electron;
-
-        ipcRenderer.send("Options", "You selected Options");
+          const { BrowserWindow } = require('electron').remote
+          const PDFWindow = require('electron-pdf-window')
+          const win = new BrowserWindow({ width: 800, height: 600 })
+          PDFWindow.addSupport(win)
+          win.loadURL('UserManual.pdf')
+          ipcRenderer.send("Options", "You selected Options");
+          
+        
+//        location.href="rules.html";
+//        const {
+//          ipcRenderer
+//        } = electron;
+//        
+//        let win = new BrowserWindow({
+//            webPreferences: {
+//                plugins: true
+//            }
+//        })
+//        ipcRenderer.send("Options", "You selected Options");
+//        location.href="rules.html"
 
       }
 
