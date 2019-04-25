@@ -3,15 +3,81 @@
 
   <head>
     <meta charset="UTF-8">
-    <title>Add Todo</title>
+    <title>Diplomacy - FAQ</title>
+    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="../node_modules/spectre.css/dist/spectre.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="gameInstructions.css" >
   </head>
 
   <body>
-  	<div class="container">
-  		<p>how to play</p>
-  	</div>
+  	<div>
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#"><i>DIPLOMACY</i></a>
+<!--                    <a class="navbar-brand form-inline my-2 my-lg-0" href="#"><i>HOW TO PLAY</i></a>-->
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div id = "content">
+            <h1 id = "title">Player Guide - FAQ</h1>
+            <hr>
+            
+            <!-- FAQ -->
+            <h3>Frequently Asked Questions</h3>
+            <div>
+                <!-- Player Needed? -->
+                <br>
+                <h4>How many player(s) are needed?</h4>
+                <p>The game is played by 7 players. The game can’t be started if there are less than 7 players.</p>
+                 
+                <!-- Game Objective? -->
+                <br>
+                <h4>What is the object of the game?</h4>
+                <p>As soon as 1 Great Power controls 18 supply centers, it’s considered to have gained control of Europe. The player representing that Great Power is the winner. However, players can end the game by agreement before a winner is determined. In this case, all players who still have pieces on the game board share equally in a draw.</p>
+                
+                <!-- Playable Countries? -->
+                <br>
+                <h4>What are the playable countries?</h4>
+                <p>One of 7 “Great Powers of Europe” in the years prior to World War I. These include England, Germany, Russia, Turkey, Italy, France, and Austria-Hungary (referred to as Austria).</p>
+                
+                <!-- Units and Movement? -->
+                <br>
+                <h4>What are the playable countries?</h4>
+                <p>Units are supply centers designated for each player (countries) at the beginning of the game. Three supply centers are given for each country, except Russia, which is designated with 4 supply centers. To move the unit, the player clicks on adjacent provinces and make the “move” order. If the order is successful, for example, “A Paris-Burgundy” which represent an order to move from Paris to Burgundy will be displayed on the player’s unit list.</p>
+                
+                <!-- Get More Troops? -->
+                <br>
+                <h4>How do I get more troops?</h4>
+                <p>During winter, players may create new units on their starting supply centers if certain conditions are met. The player must own more supply centers than units, and the number of units they create cannot bring the total amount greater than the number of centers. A starting supply center must also be unoccupied to build a unit on it. Army units may be created at any supply center, and fleet units at any coastal supply center.</p>
+                
+                <!-- Gameplay Phases? -->
+                <br>
+                <h4>What are the gameplay phases?</h4>
+                <p>There are three phases: Spring, Fall, and Winter phases. The game starts in Spring 1901. The game repeats each season for each incremented year.</p>
+                
+                <!-- How to Attack? -->
+                <br>
+                <h4>How do I attack?</h4>
+                <p>Moving and attacking are very similar actions. To attack, a unit only needs to be ordered into an already-occupied province. If the movement type is legal, the strengths of the attacker and attacked province are compared. If the attacker has greater strength, they advance to the province and force the loser to retreat or disband; otherwise, both hold. The strength is increased through use of the support command. A country cannot dislodge one of its own units.</p>
+                
+                <!-- Order Types? -->
+                <br>
+                <h4>What are the order types?</h4>
+                <p>There are four types of orders: hold, move, support and convoy. Only Fleets can be ordered to convoy. See section 4.2 for more information.</p>
+                
+                <!-- How to Win? -->
+                <br>
+                <h4>How do I win the game?</h4>
+                <p>When one country occupies eighteen or more of supply centers, it is the winner of the game. However, players can end the game by an agreement they have before the winner is determined.</p>
+            </div>
+            <br>
+            <hr>
+        </div>
   </body>
 
   </html>

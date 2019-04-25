@@ -4,10 +4,17 @@ const http = require('http');
 const os = require('os');
 const ip = require('ip');
 const events = require('events');
+const Order = require('./models/order')
+const User = require('./models/user')
 
 var em = new events.EventEmitter();
 
+var bodyParser = require("body-parser")
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
 
+mongoose.Promise = global.Promise
+mongoose.connect("mongodb://localhost:27017/diplomacy",{ useNewUrlParser: true })
 const port = 3001
 const hostIP = ip.address()
 
@@ -46,6 +53,19 @@ app.post("/", (req, res) => {
   req.on("error", (err)=>{
     console.log("got an error");
   });
+
+    var user = new User(req.body)
+
+    console.log(user)
+
+    user.save(req.body)
+        .then(item => {
+            console.log("item saved to database")
+        })
+        .catch(err => {
+            console.log("unable to save to database")
+        })
+
 });
 
 
@@ -93,7 +113,33 @@ app.post("/sendSetting", (req, res) => {
   });
 });
 
+app.post("/addOrders", (req,res) => {
+    console.log(req.body)
+    console.log(typeof req.body)
+    for (let i = 0; i < (req.body).length; i++) {
+        console.log("this happened")
 
+        let order = req.body[i]
+
+        console.log(order)
+
+        var myOrder = new Order(order)
+
+        console.log(myOrder)
+
+        myOrder.save()
+            .then(item => {
+                console.log("item saved to database")
+            })
+            .catch(err => {
+                console.log("unable to save to database")
+            })
+    }
+
+    console.log("my boi")
+
+    res.end()
+});
 
 function setAdjucation(adj){
   switch(adj){
