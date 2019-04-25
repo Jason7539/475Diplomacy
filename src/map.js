@@ -1,13 +1,13 @@
-
+const fs = require("fs")
+const db = require("./db_interactions/db_test.js")
 
 instruction = {};    // Json object that holds instructions to send to host
-index = 0;           // index for instructions
-
-total_instructions = [];
+index = 0;           // keep the count of the number of instuctiosn
 current_instruction = [];
-instruction_index = 0;        // keep the count of the number of instuctiosn
 instruction_position = 0;     // keep the count of the position of the instruction (A-Moscow-Russia/move)
 var originalColor;
+country = ""
+
 
 function peruse(id){
   D=document.getElementById("E")
@@ -21,9 +21,10 @@ function peruse(id){
 
 // push the move command after the unit has been selected
 function move(){
-  current_instruction[index] += "/move"
-  instruction_position++
-  alert(current_instruction)
+  if(instruction_position == 1){
+    current_instruction[index] += "/move"
+    instruction_position++
+  }
 }
 
 function moveunit(id, dest){
@@ -37,27 +38,54 @@ function moveunit(id, dest){
     target = doc.getElementById(dest)
     alert(target)
 
-    targetX = target.getAttGiacaloneribute("cx")
+    targetX = target.getAttribute("cx")
     troop.setAttribute("cx", targetX)
     // moving
 }
 
 function support() {
-  current_instruction[index] += "/support"
-  instruction_position++
-  // em.emit("updateUnit", current_instruction);
+  if(instruction_position == 1){
+    current_instruction[index] += "/support"
+    instruction_position++
+  }
 }
 
 function convoy() {
     alert(current_instruction)
+    // test to move the unit in moscow to ukraine
+
+
+    // D=document.getElementById("E")
+    // doc=D.getSVGDocument()
+    // unit = doc.getElementById("A-Moscow-Russia");
+    //
+    // alert("the unit is " + unit.id)
+    //
+    // // moving to province
+    // prov = doc.getElementById("C Ukraine");
+    // targetx = prov.getAttribute("cx");
+    // targety = prov.getAttribute("cy");
+    // alert("the x ,y is " + targetx + " " + targety)
+    //
+    // // moving the unit
+    // unit.setAttribute("cx", targetx);
+    // unit.setAttribute("cy", targety);
 }
 
+
 function hold() {
-    alert("Selected country will hold")
+  if(instruction_position == 1){
+    current_instruction[index] += "/hold"
+    instruction_position = 0;
+    index++;
+    alert("submitted: "  + current_instruction);
+  }
 }
 
 function endTurn() {
-// database interaction here
+// submit the current instruction to the database
+  db.testAdd(country, current_instruction);
+  alert("instuctions submitted to db")
 }
 
 
@@ -80,37 +108,37 @@ function Here(id){
 
     // grab the unit if this is the first click
     if(instruction_position == 0){
-      // grab the Army unit
       // we need to grab the owner of the country
 
+      country = fs.readFileSync('country.txt');
+      alert("your country is " + country)
+
       // then append it at the end of unitStr
-      unitStr = "A-" + String(id) + "-" + "Russia"
-      alert("the unitstr is " + unitStr)
+      // grab the Army unit
+      unitStr = "A-" + String(id) + "-" + country
       unit = SVGDoc.getElementById(unitStr);
       // if Army unit does not exist grab the fleet
       if(unit == null){
-        unitStr = "F-" + String(id) + "-" + "Russia"
+        unitStr = "F-" + String(id) + "-" + country
         unit = SVGDoc.getElementById(unitStr);
       }
       // if the unit is still null there is no troop in the province
       if(unit == null){
+        alert("no unit selected")
         return;
       }
       current_instruction.push(unitStr);
       // if the unit is still null there is no unit on that province //
       unitId = unit.id
-      alert("unit is " + unitStr)
 
       instruction_position++
-      //// delete //////////////////////
-      //current_instruction.push(unitStr)    // add province to current instruction
-      //instruction_index++;
     }
     else if(instruction_position == 2){
       // selecting the province to move the unit to
       current_instruction[index] += "/"+id
-      instruction_position++
-      // after the second province click we begin a new instruction
+      instruction_position = 0
+      index++;
+      alert("submitted: "  + current_instruction);
     }
 
 

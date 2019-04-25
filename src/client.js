@@ -11,7 +11,7 @@ var names = [];             // hold the current list of user. to be displayed in
 gameStatus = "false";
 let intervalFlag = false;
 name = "";                  // holds name of each player
-country = "";               //
+country = "";               // what country the player is in charge of
 
 /**
  * This function sends the client username to the host.

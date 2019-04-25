@@ -1,7 +1,8 @@
 const {app, ipcMain, BrowserWindow, ipcRenderer} = require('electron')
 const client = require("./client.js");
 const server = require("./server.js");
-
+const http = require("http");
+const fs = require("fs");
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let win
@@ -142,7 +143,6 @@ client.clientEvent.on("SwitchToLobby", () => {
 ipcMain.on("openMap", ()=> {
   // change game status inside server
   gs = server.changeGameStatus();
-  console.log("the game status in main is " + gs);
   map();
   win.close();
 })
@@ -184,7 +184,14 @@ ipcMain.on("StartChecking", (event, arg) => {
          // get the country for the user
          if( name == jsonObj.status[1][i].username){
            client.setCountry(jsonObj.status[1][i].Country);
-           console.log("country is now set");
+           console.log("country is now set to " + jsonObj.status[1][i].Country);
+
+           fs.writeFile('country.txt', jsonObj.status[1][i].Country, (err) => {
+               // throws an error, you could also catch it here
+               if (err) throw err;
+               // success case, the file was saved
+               console.log('country saved!');
+           });
          }
        }
 
@@ -226,6 +233,35 @@ ipcMain.on("SendUser", (event, arg) => {
   client.sendUser(arg.ip, arg.userName, arg.clientIP, arg);    // send username to server
                                             // determined by ip
 });
+
+ipcMain.on("SendSetting", (event, arg) => {
+  console.log("IN MAIN game name =" + arg.gameName);
+
+  var post = http.request({
+    hostname: arg.ip,
+    port: 3001,
+    path: '/sendSetting',
+    method: 'POST',
+    'content-type': 'text/plain'
+  }, (res) => {
+    console.log("Setting captured")
+    console.log(res.statusCode);
+  })
+
+
+  post.write(JSON.stringify(arg));
+  post.on("Error", (err) => {
+    console.log(err);
+  });
+  post.end();
+});
+
+
+
+
+
+
+
 
 //      instructions and database interactions
 // map.mapEvent.on("updateUnit", (instructions) =>{

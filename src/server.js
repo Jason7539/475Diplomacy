@@ -6,6 +6,8 @@ const ip = require('ip');
 const events = require('events');
 const electron = require('electron');
 const {ipcRenderer} = electron;
+const fs = require("fs")
+
 
 var em = new events.EventEmitter();
 gameStatus = false;
@@ -15,11 +17,13 @@ const hostIP = ip.address();
 pollFlag = false;
 serverFlag = false;
 
-let countries = ["Russia", "Germany", "Italy", "Austria", "Turkey", "England", "France"]
+country = ""                // what country the player is in charge of
+let countries = ["France", "Germany", "Italy", "Austria", "Turkey", "England", "Russia"]
 let users = [];             // array to hold userNames of clients
 let intervalObj;            // Timeout object that polls for user information
 let serverObj;              // used to close http server
-
+let setting;
+let adjucation;
 /**
  * handle post request from clients trying to Join
  * This stores the username and ip of clients trying to join a game
@@ -41,12 +45,80 @@ app.post("/", (req, res) => {
     users.push(jsonClient);     // add the username to the list of usernames
     console.log("the users so far are ");
     console.log(users);
+    console.log("settings are ");
+    console.log("GAME NAME ");
     res.end();
   });
   req.on("error", (err)=>{
     console.log("got an error");
   });
 });
+
+
+app.post("/sendSetting", (req, res) => {
+  console.log("ENTERING SEND SETTING");
+  let body = []
+
+  req.on("data", (chunk) =>{
+    body.push(chunk);
+
+  }).on("end", () => {
+    let jsonObj = JSON.parse(Buffer.concat(body).toString());
+
+    setting = {
+      "gameName": jsonObj.gameName,
+      "description": jsonObj.description,
+      "playerType": jsonObj.playerType,
+      "adjucation": jsonObj.adjucation
+    };
+
+    let host = {
+      "username": jsonObj.username,
+      "IP": hostIP,
+      "Country": countries.pop()
+    };
+    // setting the country
+    country = host.Country;
+    fs.writeFile('country.txt', country, (err) => {
+        // throws an error, you could also catch it here
+        if (err) throw err;
+        // success case, the file was saved
+        console.log('country saved!');
+    });
+
+
+
+
+    // setAdjucation(jsonObj.adjucation)
+
+    users.push(host);     // add host username to the list of usernames
+    console.log(setting);
+    res.end();
+  });
+  req.on("error", (err)=>{
+    console.log("got an error");
+  });
+});
+
+
+function setAdjucation(adj){
+  switch(adj){
+    case "15 minutes": adjucation = 15;
+      break;
+    case "30 minutes": adjucation = 30;
+      break;
+    case "60 minutes": adjucation = 60;
+      break;
+    case "120 minutes": adjucation = 120;
+      break;
+    case "Daily": adjucation = 1440;
+      break;
+    default: console.log("Adjucation period not valid");
+      break;
+  }
+}
+
+
 
 
 /**
@@ -114,7 +186,7 @@ function startClientPolling () {
   if(pollFlag == false){
     //intervalObj = setInterval(startClientPolling, 1500);      // poll every 10 seconds
     console.log("server flag is false");
-    startServer();        // start server to handle client's post
+    startServer();        // start server to handle client's post ///<<<<<<<<<<<<<<<<<
 
     pollFlag = true;
   }
@@ -142,7 +214,6 @@ function startClientPolling () {
  */
 function stopClientPolling () {
   gameStatus = true;    // change gamestatus to tell clients to switch to map.html
-  alert("the game status = " + gameStatus);
   clearInterval(intervalObj);     // close the repeated queue for clients
   //serverObj.close(); closes the http server
 }
@@ -177,6 +248,15 @@ function getHostIp(){
   return String(hostIP);
 }
 
+/*
+ * returns the clients country
+ */
+function getCountry(){
+  return country;
+}
+
+
+// startServer();
 module.exports.stopClientPolling = stopClientPolling;
 module.exports.startServer = startServer;
 module.exports.getHostIp = getHostIp;
@@ -184,3 +264,4 @@ module.exports.serverEvent = em;
 module.exports.startClientPolling = startClientPolling;
 module.exports.updateUsers = updateUsers;
 module.exports.changeGameStatus = changeGameStatus;
+module.exports.getCountry = getCountry;
