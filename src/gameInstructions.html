@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Diplomacy Instructions</title>
+        <title>Diplomacy - How to Play</title>
         <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -9,23 +9,55 @@
         <link rel="stylesheet" href="gameInstructions.css" >
     </head>
     <body>
-        <nav class="navbar navbar-inverse">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="#"><i>DIPLOMACY</i></a>
+        <div>
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#"><i>DIPLOMACY</i></a>
 <!--                    <a class="navbar-brand form-inline my-2 my-lg-0" href="#"><i>HOW TO PLAY</i></a>-->
+                    </div>
                 </div>
+            </nav>
+        </div>
+        <div id = "content">
+            <h1 id = "title">Player Guide - How to Play</h1>
+            <hr>
+            <!-- Game Controls/Buttons -->
+            <h3>Game Controls</h3>
+            <button type="button" disabled class="btn btn-warning" onclick="move()" >Move</button>
+            <button type="button" disabled class="btn btn-warning" onclick="move()" >Support</button>
+            <button type="button" disabled class="btn btn-warning" onclick="move()" >Convoy</button>
+            <button type="button" disabled class="btn btn-warning" onclick="move()" >Hold</button>
+            <hr>
+            
+            <!-- How to Carry Out a Command In-Game -->
+            <h3>Carrying out commands</h3>
+            <div>
+                <!-- Moving -->
+                <br>
+                <h4>How to Move</h4>
+                <p>In order to move a troop/fleet, select the troop/fleet that you would like to move. Then click on the move button and then on the area in which you want to move to.</p>
+                
+                <!-- Attacking -->
+                <br>
+                <h4>How to Attack</h4>
+                <p>In order to attack a troop/fleet, select the troop/fleet that you would like to use to attack with and then click on the attack button. Then click on the province you would like to attack.</p>
+                
+                <!-- Holding -->
+                <br>
+                <h4>How to Hold</h4>
+                <p>In order to Hold a troop/fleet, select the troop/fleet that you would like to use to Hold, then click on the hold button. If no order is made for a fleet/troop it will automatically be held for that round.</p>
             </div>
-        </nav>
-        <h1 id = "content">Player Guide - How to Play</h1>
-        <hr>
-        <h3>Game Controls</h3>
-        <hr>
-        <h3>How to carry out commands</h3>
-        <hr>
-        <h3>How to communicate with other players</h3>
-        <hr>
-        <h3>Additional Resources</h3>
-        <hr>
+            <br>
+            <hr>
+            
+            <!-- How to chat with others, whether its group chat or private messaging  -->
+            <h3>Communicating with other players</h3>
+            <hr>
+            
+            <!-- Other resources that can be used to learn more about the game  -->
+            <h3>Additional Resources</h3>
+            <hr>
+        </div>
     </body>
 </html>

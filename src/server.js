@@ -1,29 +1,32 @@
 const express = require('express')
 const app = express();
-const mongoose = require('mongoose')
 const http = require('http');
 const os = require('os');
 const ip = require('ip');
 const events = require('events');
+const Order = require('./models/order')
+const User = require('./models/user')
+
+var em = new events.EventEmitter();
 
 var bodyParser = require("body-parser")
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
 mongoose.Promise = global.Promise
-mongoose.connect("mongodb://localhost:27017/diplomacy")
-var em = new events.EventEmitter();
-
-
+mongoose.connect("mongodb://localhost:27017/diplomacy",{ useNewUrlParser: true })
 const port = 3001
 const hostIP = ip.address()
 
-var order = require('./models/order')
 
 let users = [];             // array to hold userNames of clients
 let intervalObj;            // Timeout object that polls for user information
 let setting;
+let adjucation;
 
+// app.get("/", (req, res) => {
+//   res.send("got a get");
+// })
 
 /**
  * handle post request from clients trying to Join
@@ -50,11 +53,26 @@ app.post("/", (req, res) => {
   req.on("error", (err)=>{
     console.log("got an error");
   });
+    //Send user to database
+    var user = new User(req.body)
+
+    console.log(user)
+
+    user.save(req.body)
+        .then(item => {
+            console.log("item saved to database")
+        })
+        .catch(err => {
+            console.log("unable to save to database")
+        })
+
 });
 
-/**
- * Create a game object.
- */
+
+
+
+
+
 app.post("/sendSetting", (req, res) => {
   let body = []
   
@@ -75,12 +93,18 @@ app.post("/sendSetting", (req, res) => {
       "username": jsonObj.username,
       "IP": hostIP
     };
+
+    setAdjucation(jsonObj.adjucation)
+
     users.push(host);     // add host username to the list of usernames
     console.log("the users so far are ");
     console.log(users);
 
     console.log("Game setting are: ");
     console.log(setting);
+
+    console.log("\nAdjucation is: ");
+    console.log(adjucation);
 
     res.end();
   });
@@ -89,13 +113,20 @@ app.post("/sendSetting", (req, res) => {
   });
 });
 
-
+//Tells the server to put the orders in the database
 app.post("/addOrders", (req,res) => {
     console.log(req.body)
+    console.log(typeof req.body)
     for (let i = 0; i < (req.body).length; i++) {
-        let order = req.body[i];
+        console.log("this happened")
 
-        var myOrder = new order.Order(order)
+        let order = req.body[i]
+
+        console.log(order)
+
+        var myOrder = new Order(order)
+
+        console.log(myOrder)
 
         myOrder.save()
             .then(item => {
@@ -104,10 +135,29 @@ app.post("/addOrders", (req,res) => {
             .catch(err => {
                 console.log("unable to save to database")
             })
+    }
 
-        }
+    console.log("my boi")
+
+    res.end()
 });
 
+function setAdjucation(adj){
+  switch(adj){
+    case "15 minutes": adjucation = 15;
+      break;
+    case "30 minutes": adjucation = 30;
+      break;
+    case "60 minutes": adjucation = 60;
+      break;
+    case "120 minutes": adjucation = 120;
+      break;
+    case "Daily": adjucation = 1440; 
+      break;
+    default: console.log("Adjucation period not valid");
+      break;
+  }
+}
 
 
 
