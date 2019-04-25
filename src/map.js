@@ -12,23 +12,7 @@ var isSelected = false;
 region = [];
 var current_instruction;
 
-function move(){
-
-   // current_instruction.push("move");
-    // alert("click country to move to")
-    // D = document.getElementById("E")
-    // doc = D.getSVGDocument()
-    // country = doc.getElementById(id)
-    // country.style.fill = "#000000"
-    current_instruction = "moves";
-      var instruction_1 = new Object();
-    instruction_1.region_1 = region[0];
-    instruction_1.region_2 = region[1];
-    console.log(" object : " + instruction_1.region_1)
-    moveunit(region[0],region[1]);
-
-}
-
+//performs the move action, called by move()
 function moveunit(id, dest){
     //D = document.getElementById("E")
   /*  doc = D.getSVGDocument()
@@ -47,16 +31,28 @@ function moveunit(id, dest){
 
 }
 
+//gathers the first two selected provinces and calls moveunit()
+function move(){
+	
+    current_instruction = "moves";
+      var instruction_1 = new Object();
+    instruction_1.region_1 = region[0];
+    instruction_1.region_2 = region[1];
+    console.log(" object : " + instruction_1.region_1)
+    moveunit(region[0],region[1]);
+
+}
+
+//performs the support action, called by support()
 function supportunit(id, dest){
     console.log(region[0]+ " "+ current_instruction + " "+ region[1]);
 	region= []
 
 }
 
+//gathers the first two selected provinces and calls supportunit()
 function support() {
-    /*alert("click country to support")
-    current_instruction = "supports";
-    console.log(region);*/
+	
 	current_instruction = "supports";
     var instruction_1 = new Object();
     instruction_1.region_1 = region[0];
@@ -66,13 +62,16 @@ function support() {
 
 }
 
+//performs the convoy action, called by convoy()
 function convoyunit(id1, id2, dest){
     console.log(region[0]+ " "+ current_instruction + " "+ region[1] + " to " + region[2]);
 	region= []
 
 }
 
+//gathers the first three selected provinces and calls convoyunit()
 function convoy() {
+	
     current_instruction = "convoys";
     var instruction_1 = new Object();
     instruction_1.region_1 = region[0];
@@ -82,13 +81,17 @@ function convoy() {
     convoyunit(region[0],region[1]);
 }
 
+//performs the hold action, called by hold()
 function holdunit(id){
+	
     console.log(region[0]+ " "+ current_instruction);
 	region= []
 
 }
 
+//gathers the first selected provinces and calls holdunit()
 function hold() {
+	
     current_instruction = "holds";
     var instruction_1 = new Object();
     instruction_1.region_1 = region[0];
@@ -105,11 +108,9 @@ function closeForm() {
     document.getElementById("myForm").style.display = "none";
 }
 
-/**
- * Grabs a valid path from bw_map_updated.svg when click.
- */
+/* Grabs a valid path from bw_map_updated.svg when click */
 function getId(id){
-    alert(id)
+    //alert(id)
   
     if(region.length == 3)
     {
@@ -120,27 +121,22 @@ function getId(id){
   //  console.log(prv)//refer to the path
   /*  
     } */
-   console.log("here(): "+ region);
+   console.log("getId(): "+ region);
 }
 
 function selected(id){
     alert("selected(): "+ id);
     isSelected = true;
     prv=document.getElementById(id)
-    if(prv.style.fill === "rgb(234, 11, 140)"){
+	
+	//changes to blue when clicked, and hoverOut automatically changes it back to default
     prv.style.fill = "#3399ff"
-    }
-    else{
-    prv.style.fill = "#ea0b8c"
-    }
 }
 function hoverIn(id){
     prv=document.getElementById(id)
     originalColor = document.getElementById(id).style.fill
-    prv.style.fill="#000000"
+    prv.style.fill="#ffffff"
     prv.innerHTML = id;
- 
-
 }
 
 function hoverOut(id) {
