@@ -110,7 +110,7 @@ function Here(id){
     if(instruction_position == 0){
       // we need to grab the owner of the country
 
-      country = fs.readFileSync('country.txt');
+      country = fs.readFileSync('country.txt', "utf8");
       alert("your country is " + country)
 
       // then append it at the end of unitStr
