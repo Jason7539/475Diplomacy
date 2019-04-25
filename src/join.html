@@ -21,19 +21,17 @@
 
         <form id="sendForm" action="http://104.237.158.50:3001/" method="post">
             <label for="name">UserName (2 to 8 characters):</label> <br>
-            <input type="text" id="UserName" required minlength="2"
+            <input type="text" id="UserName" name="userName" required minlength="2"
             maxlength="8" size="10">
             <br>
             <label for="name">IP To Join:</label> <br>
-            <input type="text" id="ip" size="10">
+            <input type="text" id="ip" name="ip" size="10">
             <br>
             <br>
-            <input type="button" class="btn btn-danger" onclick="location.href='startScreen.html';" value="Back" />
-                        <button type="submit" class="btn btn-primary">Submit</button>
-
-
+                        <input type="submit" id="btn" value="Submit">
         </form>
 
+            <input type="button" class="btn btn-danger" onclick="location.href='startScreen.html';" value="Back" />
 
       </div>
     </div>
