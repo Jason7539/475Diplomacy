@@ -24,6 +24,13 @@ let intervalObj;            // Timeout object that polls for user information
 let serverObj;              // used to close http server
 let setting;
 let adjucation;
+
+let instruction = [];
+let userSubmissions = 0;
+let resolveReady = false;
+let usersThatRead = 0;
+let gameSize = 2;
+
 /**
  * handle post request from clients trying to Join
  * This stores the username and ip of clients trying to join a game
@@ -134,7 +141,6 @@ app.get('/lobby', function(req, res){
   res.send(names);
 });
 
-
 /**
  * Create html to show the game start status
  */
@@ -151,6 +157,162 @@ app.get('/gameStart', function(req, res){
     res.send(status);
   }
 });
+
+app.post("/instructionPost", (req, res) => {
+  let body = []
+  req.on("data", (chunk) =>{
+    body.push(chunk);
+  }).on("end", () =>{
+    let jsonObj = JSON.parse(Buffer.concat(body))
+
+    insertJson = {country:jsonObj.country,
+                  clientInstruction:jsonObj.instructions
+                  }
+
+    instruction.push(insertJson);
+    console.log("the insertJson is " + insertJson);
+    console.log("the instruction is " + insertJson.clientInstruction);
+
+    userSubmissions++;
+
+    // if everyone submitted begin the next round
+    if(userSubmissions == gameSize){
+      // begin resolve flag that resolve order is ready
+      console.log("setting resolve ready");
+      resolveReady = true;
+    }
+  })
+
+  req.on("error", (err)=>{
+    console.log("got an error");
+  });
+  res.end();
+});
+
+
+/*
+ * start server prompts user when to resolve orders and
+ * inform users what orders to execute
+ */
+app.get('/resolveOrders', function(req, res){
+  // get username of current users
+  if(resolveReady == false){
+    // the order isn't ready yet
+    res.send("not ready")
+    res.end();
+  }
+  else{
+    // alogrithm to determine which order executes
+    // then send them to all clients
+    usersThatRead++;
+    if(usersThatRead == gameSize){
+      console.log("closing resolve");
+      resolveReady = false;
+      usersThatRead = 0;
+    }
+
+    console.log("RESOLVE IS READY");
+    moves = []
+    // grab all instructions
+    for(i in instruction){
+      tempInstruct = instruction[i].clientInstruction.split(",");
+      for(x in tempInstruct){
+        moves.push(tempInstruct[x])   // add instruct for current country
+      }
+    }
+    console.log("all instruction in resolve is " + moves);
+
+    // now grab all the moves and holds
+    atk_holds = []
+    power_atk_holds = []
+    index = -1;
+    for(l in moves){
+      index = moves[l].indexOf("move")
+      if(index != -1){
+        atk_holds.push(moves[l])    // add move to proper array
+        power_atk_holds.push(0)     // add equivalent power level
+      }
+      index = -1
+    }
+
+    // grab all supports
+    support = []
+    index = -1
+    for(l in moves){
+      index = moves[l].indexOf("support")
+      if(index != -1){
+        support.push(moves[l]);
+      }
+      index = -1;
+    }
+
+    // increase power of moves
+    for(l in support){
+      supportInstruct = support[l].split("/")
+      // get the supported province
+      supported_province = supportInstruct[2]
+
+      // scan the move arrays
+      for(i in atk_holds){
+        atk_instruct = atk_holds[i].split("/")
+        atk_province = atk_instruct[0].split("-")[1]  // grab sitting province
+
+        // increase power level is province is being supported
+        if(supported_province == atk_province){
+          power_atk_holds[i] = power_atk_holds[i] + 1;
+        }
+      }
+    }
+    // so now we have array of moves and there power level.
+    // scan every atk instruct with itself. if there is conflicting moves
+    // compare power levels. if they are equal non execute
+
+    // if you are moving where someone is moving
+    for(i in atk_holds){
+      firstAtkDest = atk_holds[i].split("/")[2]     // grab first dest
+
+      for(l in atk_holds){
+        if(i == l){   // skip same moves
+          continue;
+        }
+        secondAtkDest = atk_holds[l].split("/")[2]  // grab second dest
+
+        if(firstAtkDest == secondAtkDest){  // resolve conflicting moves
+          console.log("There is a conflict to resolve");
+          firstPower = power_atk_holds[i]
+          secondPower = power_atk_holds[l]
+
+          if(firstPower > secondPower){
+            atk_holds.splice(l, 1)
+          } else if(firstPower < secondPower){
+            atk_holds.splice(i, 1)
+          }else{
+            if(i > l){
+              atk_holds.splice(i, 1)
+            }
+            atk_holds.splice(l, 1)
+          }
+        }
+      }
+    }
+
+    // resolve move onto a hold
+
+
+
+    console.log("the attack moves are " + atk_holds);
+    console.log("the equivalent power " + power_atk_holds);
+
+    // increase power level
+
+
+    // grab the units trying to move and support from all the instructiosn
+    res.send(atk_holds);
+    res.end();
+  }
+});
+
+
 
 
 /**

@@ -1,5 +1,8 @@
 const fs = require("fs")
 const db = require("./db_interactions/db_test.js")
+const http = require("http")
+var hostIp = "";
+
 
 instruction = {};    // Json object that holds instructions to send to host
 index = 0;           // keep the count of the number of instuctiosn
@@ -7,7 +10,7 @@ current_instruction = [];
 instruction_position = 0;     // keep the count of the position of the instruction (A-Moscow-Russia/move)
 var originalColor;
 country = ""
-
+let intervalObj;
 
 function peruse(id){
   D=document.getElementById("E")
@@ -84,8 +87,101 @@ function hold() {
 
 function endTurn() {
 // submit the current instruction to the database
-  db.testAdd(country, current_instruction);
+  // db.testAdd(country, current_instruction);
   alert("instuctions submitted to db")
+
+  // send information to host
+
+
+  hostIp = fs.readFileSync('hostIp.txt', "utf8");
+  alert("the host ip is " + hostIp)
+
+  clientCountry = fs.readFileSync('country.txt', "utf8");
+
+  // send the current instruction to host
+  var post = http.request({
+      hostname: hostIp,
+      port: 3001,
+      path: '/instructionPost',
+      method: 'POST',
+      'content-type': 'text/plain'
+    }, (res) => {
+      console.log("got a response");
+    })
+
+  post.on("Error", (err) =>{
+    console.log(err);
+  })
+
+  jsonObj = {country: clientCountry,
+             instructions: current_instruction.toString()}
+
+  post.write(JSON.stringify(jsonObj));
+
+  // pollResolve();
+  intervalObj = setInterval(pollResolve, 2000);
+
+  post.end();
+  // begin polling for resolve orders
+}
+
+
+function pollResolve(){
+  // ready the host server
+  console.log("polling for resolve");
+  var get = http.get({
+  hostname: hostIp,
+  port: 3001,
+  path: '/resolveOrders',
+  'content-type': 'text/plain'
+  }, (res) => {
+    body = []
+    res.on("data", (chunk) => {
+      body.push(chunk);
+    }).on("end", ()=>{
+
+      if(body[0] == "not ready"){
+        console.log("resolve not ready");
+        get.end();
+        return;
+      }
+      else{
+        // Begin executing orders that have been resolved
+        // alert(body)
+        body = JSON.parse(body)
+        for(i in body){
+          // execute all orders sent from host
+          // alert("the instructs are " + body[i])
+          execute(body[i])
+        }
+      }
+    })
+  })
+
+  get.end();
+
+}
+
+function execute(instruction){
+  D = document.getElementById("E")
+  doc = D.getSVGDocument()
+
+  order = instruction.split("/")
+  alert("trying to move " + order)
+  troop = doc.getElementById(order[0].toString())
+
+  dest = "C " + order[2]
+  target = doc.getElementById(dest)
+
+  // alert("the troop is :" + troop)
+  // alert("the dest is :" + target)
+  targetX = target.getAttribute("cx")
+  targetY = target.getAttribute("cy")
+  // grab x and y instead of cx cy if troop is rect
+
+
+  troop.setAttribute("cx", targetX)
+  troop.setAttribute("cy", targetY)
 }
 
 
@@ -111,7 +207,6 @@ function Here(id){
       // we need to grab the owner of the country
 
       country = fs.readFileSync('country.txt', "utf8");
-      alert("your country is " + country)
 
       // then append it at the end of unitStr
       // grab the Army unit
@@ -127,6 +222,8 @@ function Here(id){
         alert("no unit selected")
         return;
       }
+
+      alert("selected: " + unitStr)
       current_instruction.push(unitStr);
       // if the unit is still null there is no unit on that province //
       unitId = unit.id

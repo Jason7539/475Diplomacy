@@ -3,6 +3,8 @@ const client = require("./client.js");
 const server = require("./server.js");
 const http = require("http");
 const fs = require("fs");
+const mapjs = require("./map.js")
+
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let win
@@ -232,6 +234,13 @@ ipcMain.on("Options", (event, arg) => {
 ipcMain.on("SendUser", (event, arg) => {
   client.sendUser(arg.ip, arg.userName, arg.clientIP, arg);    // send username to server
                                             // determined by ip
+                                            // write hostip to file
+  fs.writeFile('hostIp.txt', arg.ip, (err) => {
+      // throws an error, you could also catch it here
+      if (err) throw err;
+      // success case, the file was saved
+      console.log("saved hostIp");
+  });
 });
 
 ipcMain.on("SendSetting", (event, arg) => {
@@ -254,6 +263,14 @@ ipcMain.on("SendSetting", (event, arg) => {
     console.log(err);
   });
   post.end();
+
+  // write hostip to file
+  fs.writeFile('hostIp.txt', arg.ip, (err) => {
+      // throws an error, you could also catch it here
+      if (err) throw err;
+      // success case, the file was saved
+      console.log("saved hostIp");
+  });
 });
 
 

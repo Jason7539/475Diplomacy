@@ -123,6 +123,11 @@ function getCountry(){
   return country;
 }
 
+
+
+
+
+module.exports.hostIP = hostIP;
 module.exports.requestUsers = requestUsers;
 module.exports.clientEvent = em;
 module.exports.sendUser = sendUser;
