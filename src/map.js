@@ -1,4 +1,5 @@
 // Json object that holds instructions to send to host
+
 var instruction = {
     region_1: '',
     region_2: '',
@@ -110,20 +111,32 @@ function closeForm() {
 
 /* Grabs a valid path from bw_map_updated.svg when click */
 function getId(id){
-    //alert(id)
-  
-    if(region.length == 3)
-    {
-        region= []
-    }
-    region.push(id)    // add province to current instruction
+	
+    //clicking same region twice in a row removes it from object
+	if(region[region.length - 1] == id)
+	{
+		region.pop()
+		console.log("pop - getId(): "+ region);
+	}
+	else{
+		//empties the object if size already 3
+		if(region.length == 3)
+		{
+			region= []
+		}
+		
+		//adds newest clicked province
+		region.push(id)    // add province to current instruction
+		console.log("getId(): "+ region);
+	}
 
   //  console.log(prv)//refer to the path
   /*  
     } */
-   console.log("getId(): "+ region);
+   
 }
 
+//verifies an item has been clicked and changes province's color
 function selected(id){
     alert("selected(): "+ id);
     isSelected = true;
