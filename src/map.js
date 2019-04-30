@@ -1,5 +1,5 @@
 const fs = require("fs")
-const db = require("./db_interactions/db_test.js")
+//const db = require("./db_interactions/db_test.js")
 const http = require("http")
 var hostIp = "";
 
