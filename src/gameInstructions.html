@@ -9,19 +9,24 @@
         <link rel="stylesheet" href="gameInstructions.css" >
     </head>
     <body>
+        <!-- Navigation Bar -->
         <div>
             <nav class="navbar navbar-inverse">
                 <div class="container-fluid">
                     <div class="navbar-header">
                         <a class="navbar-brand" href="#"><i>DIPLOMACY</i></a>
-<!--                    <a class="navbar-brand form-inline my-2 my-lg-0" href="#"><i>HOW TO PLAY</i></a>-->
                     </div>
                 </div>
             </nav>
         </div>
+        
+        <!-- Page Content -->
         <div id = "content">
+            
+            <!-- Page Title -->
             <h1 id = "title">Player Guide - How to Play</h1>
             <hr>
+            
             <!-- Game Controls/Buttons -->
             <h3>Game Controls</h3>
             <button type="button" disabled class="btn btn-warning" onclick="move()" >Move</button>
@@ -47,17 +52,35 @@
                 <br>
                 <h4>How to Hold</h4>
                 <p>In order to Hold a troop/fleet, select the troop/fleet that you would like to use to Hold, then click on the hold button. If no order is made for a fleet/troop it will automatically be held for that round.</p>
+                
+                <!-- Warning -->
+                <br>
+                <p>**When making a command, all rules must be followed or the user will be blocked from carrying out his/her command**</p>
             </div>
-            <br>
             <hr>
             
             <!-- How to chat with others, whether its group chat or private messaging  -->
             <h3>Communicating with other players</h3>
+            <p>Communication methods are still under development.</p>
             <hr>
             
             <!-- Other resources that can be used to learn more about the game  -->
             <h3>Additional Resources</h3>
+            <h4 type="button" class="btn btn-info btn-sm" onclick="openDipRuleBook()">The Rules of Diplomacy - Official Boardgame Rulebook</h4>
             <hr>
         </div>
+        
+        <!-- Opening Rulebook PDF through Electron-->
+        <script type="text/javascript">
+            const electron = require('electron');
+            function openDipRuleBook() {
+                const { BrowserWindow } = require('electron').remote
+                const PDFWindow = require('electron-pdf-window')
+                const win = new BrowserWindow({ width: 800, height: 600 })
+                PDFWindow.addSupport(win)
+                win.loadURL('diplomacy_rules.pdf')
+                ipcRenderer.send("Rulebook", "You selected to open Rulebook");
+            }
+        </script>
     </body>
 </html>
