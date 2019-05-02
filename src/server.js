@@ -10,6 +10,8 @@ const fs = require("fs")
 
 
 var em = new events.EventEmitter();
+var incrementer = -1;
+var initYear = 1900;
 gameStatus = false;
 
 const port = 3001;
@@ -19,6 +21,7 @@ serverFlag = false;
 
 country = ""                // what country the player is in charge of
 let countries = ["France", "Germany", "Italy", "Austria", "Turkey", "Russia", "England"]
+let seasons = ["Fall", "Winter", "Spring"]
 let users = [];             // array to hold userNames of clients
 let intervalObj;            // Timeout object that polls for user information
 let serverObj;              // used to close http server
@@ -428,6 +431,14 @@ function display_ip(){
 function changeGameStatus(){
   gameStatus = true;
   return gameStatus;
+}
+
+function displaySeason() {
+    incrementer++;
+    if (incrementer == 3) { 
+        incrementer = 0
+    }
+    return seasons[incrementer];
 }
 
 
