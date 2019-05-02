@@ -3,6 +3,8 @@ const client = require("./client.js");
 const server = require("./server.js");
 const http = require("http");
 const fs = require("fs");
+const electron = require('electron')
+
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let win
@@ -10,9 +12,18 @@ let startWin
 let chatWin
 let mapSwitch = false;    // flag to represent when the game screen is open
 
+let screen_width
+let screen_height
+
 function createWindow () {
+
+  //get the screen's width and height
+  //have to call electron.screen here
+  screen_width = electron.screen.getPrimaryDisplay().workAreaSize.width;
+  screen_height = electron.screen.getPrimaryDisplay().workAreaSize.height
+
   // Create the browser window.
-  win = new BrowserWindow({ width: 969, height: 545 })
+  win = new BrowserWindow({ width:screen_width, height:screen_height})
 
   // and load the index.html of the app.
   win.loadFile('index.html')
@@ -39,7 +50,7 @@ function createWindow () {
  */
 function createStart () {
   // Create the browser window.
-  startWin = new BrowserWindow({ width: 969, height: 545 })
+  startWin = new BrowserWindow({ width: screen_width, height: screen_height })
 
   // and load the index.html of the app.
   startWin.loadFile('startScreen.html')
@@ -61,7 +72,7 @@ function createStart () {
  */
 function lobby () {
   // Create the browser window.
-  startWin = new BrowserWindow({ width: 969, height: 545 })
+  startWin = new BrowserWindow({ width: screen_width, height: screen_height })
 
   // and load the index.html of the app.
   startWin.loadFile('clientLobby.html')
@@ -82,7 +93,7 @@ function lobby () {
  */
 function map () {
   // Create the browser window.
-  startWin = new BrowserWindow({ width: 969, height: 545 })
+  startWin = new BrowserWindow({ width: screen_width, height: screen_height })
   // and load the index.html of the app.
   startWin.loadFile('map.html')
   // Open the DevTools.

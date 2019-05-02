@@ -79,6 +79,7 @@ app.post("/sendSetting", (req, res) => {
     };
     // setting the country
     country = host.Country;
+
     fs.writeFile('country.txt', country, (err) => {
         // throws an error, you could also catch it here
         if (err) throw err;
@@ -93,6 +94,7 @@ app.post("/sendSetting", (req, res) => {
 
     users.push(host);     // add host username to the list of usernames
     console.log(setting);
+    console.log(users)
     res.end();
   });
   req.on("error", (err)=>{
@@ -256,6 +258,14 @@ function getCountry(){
 }
 
 
+/**
+ * return the country assigned to the player
+ */
+function grabCountry(){
+  let c = fs.readFileSync('country.txt');
+  return c;
+}
+
 // startServer();
 module.exports.stopClientPolling = stopClientPolling;
 module.exports.startServer = startServer;
@@ -265,3 +275,4 @@ module.exports.startClientPolling = startClientPolling;
 module.exports.updateUsers = updateUsers;
 module.exports.changeGameStatus = changeGameStatus;
 module.exports.getCountry = getCountry;
+module.exports.grabCountry = grabCountry;

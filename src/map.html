@@ -42,7 +42,7 @@
     <script src="./map.js"></script>
     <div class="container-fluid">
       <div class="col-sm-9">
-        <span><embed id = "E" src="./images/color_map1.svg" width="100%"></span><br/><br/>
+        <span><embed id = "E" src="./images/color_svg_map.svg" width="100%"></span><br/><br/>
         <button type="button" class="btn btn-warning" onclick="move()" >move</button>
         <button type="button" class="btn btn-warning" onclick="support()" >support</button>
         <button type="button" class="btn btn-warning" onclick="convoy()" >convoy</button>
@@ -50,6 +50,28 @@
         <button type="button" class="btn btn-warning"onclick="endTurn()" >end turn</button>
       </div>
     </div>
+
+    <div id="infoBox">
+      
+      <div>
+        <h2 id="playersInfo"></h2>
+      </div>
+
+      <div id="instructionBox">
+        <h1 style="color:#2a8c2e; font-weight: bold;">Current Orders</h1>
+        <p id="currentInstructions"> </p>
+      </div>
+    </div>
+
+
+    <script type="text/javascript">
+     
+      const server = require("./server.js");
+      let c = server.grabCountry();
+      document.getElementById("playersInfo").innerHTML = "You are: " + c;
+      
+    </script>
+
 
         <button class="open-button" onclick="openForm()">Chat</button>
         <div class="chat-popup" id="myForm">
@@ -64,13 +86,4 @@
 
 
   </body>
-  <script type="text/javascript">
-    const electron = require('electron');
-
-
-  </script>
-
-
-
-
 </html>

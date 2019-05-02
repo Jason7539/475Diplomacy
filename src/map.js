@@ -5,6 +5,7 @@ instruction = {};    // Json object that holds instructions to send to host
 index = 0;           // keep the count of the number of instuctiosn
 current_instruction = [];
 instruction_position = 0;     // keep the count of the position of the instruction (A-Moscow-Russia/move)
+total_instructions = "";     // PLEASE ADD THIS 
 var originalColor;
 country = ""
 
@@ -77,15 +78,26 @@ function hold() {
   if(instruction_position == 1){
     current_instruction[index] += "/hold"
     instruction_position = 0;
+
+    //show instruction on the screen
+    total_instructions +=  current_instruction[index] + "<br/>";
+    document.getElementById("currentInstructions").innerHTML = total_instructions;
+
     index++;
     alert("submitted: "  + current_instruction);
   }
 }
 
 function endTurn() {
+
+//======================================================= PLEASE ADD THIS
+total_instructions="";
+document.getElementById("currentInstructions").innerHTML = total_instructions;
+
+
 // submit the current instruction to the database
-  db.testAdd(country, current_instruction);
-  alert("instuctions submitted to db")
+  // db.testAdd(country, current_instruction);
+  // alert("instuctions submitted to db")
 }
 
 
@@ -137,8 +149,14 @@ function Here(id){
       // selecting the province to move the unit to
       current_instruction[index] += "/"+id
       instruction_position = 0
-      index++;
+      
       alert("submitted: "  + current_instruction);
+
+      //show instruction on the screen
+      total_instructions +=  current_instruction[index] + "<br/>";
+      document.getElementById("currentInstructions").innerHTML = total_instructions;
+
+      index++;
     }
 
 
