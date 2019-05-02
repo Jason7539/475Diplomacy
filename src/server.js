@@ -31,6 +31,28 @@ let resolveReady = false;
 let usersThatRead = 0;
 let gameSize = 1;
 
+let neighbor = {
+    Moscow:["Ukraine", "Stevastopol", "Warsaw", "Livonia", "Saint Petersburg"],
+    Saint_Petersburg:["Finland", "Norway", "Livonia","Moscow"],
+    Finland:["Sweden","Norway","Saint Petersburg"],
+    Sweden:["Norway","Finland"],
+    Norway:["Sweden","Finland","Saint Petersburg"],
+    Livonia:["Saint Petersburg","Moscow","Warsaw","Prussia"],
+    Ukraine:["Moscow","Warsaw","Galicia","Stevastopol","Rumania"],
+    Stevastopol:["Moscow","Ukraine","Rumania","Armenia"],
+    Armenia:["Stevastopol","Ankara","Smyrna","Syria"],
+    Syria:["Armenia","Smyrna"],
+    Smyrna:["Syria","Armenia","Ankara","Constantinople"],
+    Ankara:["Constantinople","Armenia","Smyrna"],
+    Constaninople:["Ankara","Smyrna","Bulgaria"],
+    Greece:["Albania","Serbia","Bulgaria"],
+    Albania:["Trieste","Serbia","Greece"],
+    Serbia:["Trieste","Budapest","Rumania","Bulgaria"],
+    Bulgaria:["Constantinople","Greece","Serbia","Rumania"],
+    Rumania:["Stevastopol","Ukraine","Galicia","Budapest","Bulgaria","Serbia"]
+    
+}
+
 
 /**
  * handle post request from clients trying to Join
