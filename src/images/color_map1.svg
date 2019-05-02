@@ -26,11 +26,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="5.6568545"
-     inkscape:cx="85.321857"
-     inkscape:cy="55.983437"
+     inkscape:zoom="8.0000004"
+     inkscape:cx="68.103278"
+     inkscape:cy="56.501994"
      inkscape:document-units="mm"
-     inkscape:current-layer="svg8"
+     inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:window-width="1920"
      inkscape:window-height="1015"
@@ -672,100 +672,12 @@
   </g>
   <script
      xlink:href="../map.js"
-     type="text/javascript"
-     id="script99" />
+     id="script99"
+     type="text/javascript" />
   <g
      inkscape:groupmode="layer"
      id="layer2"
      inkscape:label="units">
-    <rect
-       transform="translate(-1.2069223e-6,-318.42861)"
-       style="display:inline;fill:#00aad4;stroke-width:0.34017876"
-       id="F-Kiel-Germany"
-       width="0.88250315"
-       height="0.78657305"
-       x="158.89839"
-       y="338.31049" />
-    <ellipse
-       transform="translate(-1.2069223e-6,-318.42861)"
-       style="display:inline;fill:#00aad4;stroke-width:0.34017876"
-       id="A-Munich-Germany"
-       cx="159.47493"
-       cy="342.10144"
-       rx="0.421305"
-       ry="0.35284001" />
-    <ellipse
-       transform="translate(-1.2069223e-6,-318.42861)"
-       style="display:inline;fill:#00aad4;stroke-width:0.34017876"
-       id="A-Berlin-Germany"
-       cx="162.15097"
-       cy="338.44821"
-       rx="0.421305"
-       ry="0.35284001" />
-    <ellipse
-       transform="translate(-1.2069223e-6,-318.42861)"
-       style="display:inline;fill:#006400;stroke-width:0.34017876"
-       id="A-Venezia-Italy"
-       cx="159.73053"
-       cy="346.40115"
-       rx="0.421305"
-       ry="0.35284001" />
-    <ellipse
-       transform="translate(-1.2069223e-6,-318.42861)"
-       style="display:inline;fill:#006400;stroke-width:0.34017876"
-       id="A-Roma-Italy"
-       cx="160.79793"
-       cy="349.54324"
-       rx="0.421305"
-       ry="0.35284001" />
-    <rect
-       transform="translate(-1.2069223e-6,-318.42861)"
-       style="display:inline;fill:#006400;stroke-width:0.34017876"
-       id="F-Napoli-Italy"
-       width="0.88250315"
-       height="0.78657305"
-       x="162.85452"
-       y="352.06744" />
-    <ellipse
-       transform="translate(-1.2069223e-6,-318.42861)"
-       style="display:inline;fill:#7137c8;stroke-width:0.34017876"
-       id="A-Vienna-Austria"
-       cx="164.40677"
-       cy="343.05273"
-       rx="0.421305"
-       ry="0.35284001" />
-    <ellipse
-       transform="translate(-1.2069223e-6,-318.42861)"
-       style="display:inline;fill:#7137c8;stroke-width:0.34017876"
-       id="A-Budapest-Austria"
-       cx="167.80855"
-       cy="344.4985"
-       rx="0.421305"
-       ry="0.35284001" />
-    <rect
-       transform="translate(-1.2069223e-6,-318.42861)"
-       style="display:inline;fill:#7137c8;stroke-width:0.34017876"
-       id="F-Trieste-Austria"
-       width="0.88250315"
-       height="0.78657305"
-       x="163.73163"
-       y="346.52899" />
-    <ellipse
-       transform="translate(-1.2069223e-6,-318.42861)"
-       style="display:inline;fill:#28170b;stroke-width:0.34017876"
-       id="A-Warsaw-Russia"
-       cx="168.74405"
-       cy="339.56589"
-       rx="0.421305"
-       ry="0.35284001" />
-    <rect
-       transform="translate(-1.2069223e-6,-318.42861)"
-       style="display:inline;fill:#28170b;stroke-width:0.34017876"
-       id="F-Stevastopol-Russia"
-       width="0.88250315"
-       height="0.78657305"
-       x="181.31464"
-       y="340.95856" />
     <ellipse
        style="display:inline;fill:#28170b;stroke-width:0.34017876"
        id="A-Moscow-Russia"
@@ -774,83 +686,150 @@
        rx="0.421305"
        ry="0.35284001" />
     <rect
-       transform="translate(-1.2069223e-6,-318.42861)"
        style="display:inline;fill:#28170b;stroke-width:0.34017876"
        id="F-Saint Petersburg-Russia"
        width="0.88250315"
        height="0.78657305"
-       x="174.42601"
-       y="329.52002" />
+       x="174.62386"
+       y="11.177246" />
+    <rect
+       style="display:inline;fill:#28170b;stroke-width:0.34017876"
+       id="F-Stevastopol-Russia"
+       width="0.88250315"
+       height="0.78657305"
+       x="181.35905"
+       y="22.66316" />
     <ellipse
-       transform="translate(-1.2069223e-6,-318.42861)"
-       style="display:inline;fill:#aa8800;stroke-width:0.34017876"
-       id="A-Smyrna-Turkey"
-       cx="178.71835"
-       cy="353.45206"
+       style="display:inline;fill:#28170b;stroke-width:0.34017876"
+       id="A-Warsaw-Russia"
+       cx="168.69073"
+       cy="21.071968"
        rx="0.421305"
        ry="0.35284001" />
     <rect
-       transform="translate(-1.2069223e-6,-318.42861)"
        style="display:inline;fill:#aa8800;stroke-width:0.34017876"
        id="F-Ankara-Turkey"
        width="0.88250315"
        height="0.78657305"
-       x="178.9837"
-       y="349.6611" />
+       x="179.2543"
+       y="31.082153" />
     <ellipse
-       transform="translate(-1.2069223e-6,-318.42861)"
        style="display:inline;fill:#aa8800;stroke-width:0.34017876"
-       id="A-Constantinople-Turkey"
-       cx="175.3658"
-       cy="351.49765"
+       id="A-Smyrna-Turkey"
+       cx="178.7334"
+       cy="34.843037"
        rx="0.421305"
        ry="0.35284001" />
     <ellipse
-       style="display:inline;fill:#ff6600;stroke-width:0.34017876"
-       id="A-Liverpool-England"
-       cx="151.74783"
-       cy="334.96744"
+       style="display:inline;fill:#aa8800;stroke-width:0.34017876"
+       id="A-Constantinople-Turkey"
+       cx="175.66647"
+       cy="32.918697"
        rx="0.421305"
-       ry="0.35284001"
-       transform="translate(-1.2069223e-6,-318.42861)" />
+       ry="0.35284001" />
+    <ellipse
+       style="display:inline;fill:#7137c8;stroke-width:0.34017876"
+       id="A-Budapest-Austria"
+       cx="168.4502"
+       cy="26.363907"
+       rx="0.421305"
+       ry="0.35284001" />
     <rect
-       transform="translate(-1.2069223e-6,-318.42861)"
-       style="display:inline;fill:#ff6600;stroke-width:0.34017876"
-       id="F-Edinburgh-England"
+       style="display:inline;fill:#7137c8;stroke-width:0.34017876"
+       id="F-Trieste-Austria"
        width="0.88250315"
        height="0.78657305"
-       x="152.07529"
-       y="331.97565" />
+       x="163.85959"
+       y="28.015234" />
+    <ellipse
+       style="display:inline;fill:#7137c8;stroke-width:0.34017876"
+       id="A-Vienna-Austria"
+       cx="164.18056"
+       cy="24.259161"
+       rx="0.421305"
+       ry="0.35284001" />
     <rect
-       transform="translate(-1.2069223e-6,-318.42861)"
-       style="display:inline;fill:#ff6600;stroke-width:0.34017876"
-       id="F-London-England"
+       style="display:inline;fill:#00aad4;stroke-width:0.34017876"
+       id="F-Kiel-Germany"
        width="0.88250315"
        height="0.78657305"
-       x="152.58542"
-       y="337.73743" />
+       x="158.8203"
+       y="20.233734" />
+    <ellipse
+       style="display:inline;fill:#00aad4;stroke-width:0.34017876"
+       id="A-Munich-Germany"
+       cx="159.51669"
+       cy="23.476019"
+       rx="0.421305"
+       ry="0.35284001" />
     <rect
-       transform="translate(-1.2069223e-6,-318.42861)"
+       style="display:inline;fill:#006400;stroke-width:0.34017876"
+       id="F-Napoli-Italy"
+       width="0.88250315"
+       height="0.78657305"
+       x="162.92371"
+       y="33.436924" />
+    <ellipse
+       style="display:inline;fill:#006400;stroke-width:0.34017876"
+       id="A-Roma-Italy"
+       cx="160.70732"
+       cy="31.385172"
+       rx="0.421305"
+       ry="0.35284001" />
+    <ellipse
+       style="display:inline;fill:#006400;stroke-width:0.34017876"
+       id="A-Venezia-Italy"
+       cx="159.94191"
+       cy="28.089693"
+       rx="0.421305"
+       ry="0.35284001" />
+    <ellipse
+       style="display:inline;fill:#c83737;stroke-width:0.34017876"
+       id="A-Marseilles-France"
+       cx="154.54382"
+       cy="27.837233"
+       rx="0.421305"
+       ry="0.35284001" />
+    <ellipse
+       style="display:inline;fill:#c83737;stroke-width:0.34017876"
+       id="A-Paris-France"
+       cx="152.79988"
+       cy="23.808144"
+       rx="0.421305"
+       ry="0.35284001" />
+    <rect
        style="display:inline;fill:#c83737;stroke-width:0.34017876"
        id="F-Brest-France"
        width="0.88250315"
        height="0.78657305"
-       x="149.87804"
-       y="341.54279" />
+       x="150.19376"
+       y="23.023973" />
+    <rect
+       style="display:inline;fill:#ff6600;stroke-width:0.34017876"
+       id="F-Edinburgh-England"
+       width="0.88250315"
+       height="0.78657305"
+       x="152.28346"
+       y="13.357164" />
     <ellipse
-       transform="translate(-1.2069223e-6,-318.42861)"
-       style="display:inline;fill:#c83737;stroke-width:0.34017876"
-       id="A-Paris-France"
-       cx="152.86002"
-       cy="341.92105"
+       style="display:inline;fill:#ff6600;stroke-width:0.34017876"
+       id="A-Liverpool-England"
+       cx="151.82268"
+       cy="16.39642"
        rx="0.421305"
        ry="0.35284001" />
+    <rect
+       style="display:inline;fill:#ff6600;stroke-width:0.34017876"
+       id="F-London-England"
+       width="0.88250315"
+       height="0.78657305"
+       x="152.68938"
+       y="18.769375" />
     <ellipse
-       transform="translate(-1.2069223e-6,-318.42861)"
-       style="display:inline;fill:#c83737;stroke-width:0.34017876"
-       id="A-Marseilles-France"
-       cx="154.72421"
-       cy="346.17563"
+       style="display:inline;fill:#00aad4;stroke-width:0.34017876"
+       id="A-Berlin-Germany"
+       cx="162.12865"
+       cy="19.530329"
        rx="0.421305"
        ry="0.35284001" />
   </g>
@@ -1434,7 +1413,7 @@
      id="path406-7"
      sodipodi:sides="5"
      sodipodi:cx="162.00824"
-     sodipodi:cy="20.424423"
+     sodipodi:cy="20.60483"
      sodipodi:r1="0.7266221"
      sodipodi:r2="0.36331108"
      sodipodi:arg1="1.2120257"
@@ -1442,7 +1421,7 @@
      inkscape:flatsided="false"
      inkscape:rounded="0"
      inkscape:randomized="0"
-     d="m 162.26337,21.104781 -0.35188,-0.330165 -0.47147,0.102696 0.20527,-0.436686 -0.24336,-0.41666 0.47874,0.06028 0.32107,-0.360206 0.0906,0.473941 0.44179,0.194039 -0.42274,0.232634 z"
+     d="m 162.26337,21.285187 -0.35188,-0.330165 -0.47147,0.102697 0.20527,-0.436687 -0.24336,-0.416659 0.47874,0.06028 0.32107,-0.360206 0.0906,0.47394 0.44179,0.19404 -0.42274,0.232633 z"
      inkscape:transform-center-x="-0.059792899"
      inkscape:transform-center-y="-0.010013772" />
   <path
@@ -1756,8 +1735,8 @@
      style="fill:#ffff00;stroke-width:0.34017876"
      id="path406-36"
      sodipodi:sides="5"
-     sodipodi:cx="152.2281"
-     sodipodi:cy="15.236697"
+     sodipodi:cx="152.25817"
+     sodipodi:cy="14.860849"
      sodipodi:r1="0.7266221"
      sodipodi:r2="0.36331108"
      sodipodi:arg1="1.2120257"
@@ -1765,7 +1744,7 @@
      inkscape:flatsided="false"
      inkscape:rounded="0"
      inkscape:randomized="0"
-     d="m 152.48324,15.917055 -0.35188,-0.330165 -0.47147,0.102696 0.20526,-0.436686 -0.24336,-0.41666 0.47875,0.06028 0.32106,-0.360206 0.0906,0.473941 0.44179,0.194039 -0.42274,0.232634 z"
+     d="m 152.5133,15.541207 -0.35188,-0.330165 -0.47147,0.102696 0.20526,-0.436686 -0.24336,-0.416659 0.47875,0.06028 0.32106,-0.360206 0.0906,0.47394 0.44179,0.19404 -0.42274,0.232633 z"
      inkscape:transform-center-x="-0.059792899"
      inkscape:transform-center-y="-0.010013772" />
 </svg>
