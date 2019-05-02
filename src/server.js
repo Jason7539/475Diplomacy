@@ -341,7 +341,7 @@ function startServer () {
 function updateUsers () {
   if(serverFlag == false){
     serverFlag = true;
-    intervalObj = setInterval(updateUsers, 5000);
+    intervalObj = setInterval(updateUsers, 1000);
 
   }
   ipcRenderer.send("StartChecking");

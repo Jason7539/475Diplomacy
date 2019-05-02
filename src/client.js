@@ -97,7 +97,7 @@ function requestUsers(){
 function updateUsers(){
   ipcRenderer.send("updateClientLobby");    // send message to main to poll for users
   if(intervalFlag == false){
-    intervalObj = setInterval(updateUsers, 5000); // repeat polling every 5 seconds
+    intervalObj = setInterval(updateUsers, 1000); // repeat polling every 5 seconds
     intervalFlag = true;
   }
 }
