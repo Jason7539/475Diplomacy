@@ -88,13 +88,12 @@ function hold() {
 function endTurn() {
 // submit the current instruction to the database
   // db.testAdd(country, current_instruction);
-  alert("instuctions submitted to db")
+  alert("submitted: " + current_instruction)
 
   // send information to host
 
 
   hostIp = fs.readFileSync('hostIp.txt', "utf8");
-  alert("the host ip is " + hostIp)
 
   clientCountry = fs.readFileSync('country.txt', "utf8");
 
@@ -120,6 +119,10 @@ function endTurn() {
 
   // pollResolve();
   intervalObj = setInterval(pollResolve, 2000);
+  // reset instructions after posting
+  current_instruction = []
+  instruction_position = 0
+  index = 0;
 
   post.end();
   // begin polling for resolve orders
@@ -173,15 +176,25 @@ function execute(instruction){
   dest = "C " + order[2]
   target = doc.getElementById(dest)
 
-  // alert("the troop is :" + troop)
-  // alert("the dest is :" + target)
   targetX = target.getAttribute("cx")
   targetY = target.getAttribute("cy")
-  // grab x and y instead of cx cy if troop is rect
 
 
-  troop.setAttribute("cx", targetX)
-  troop.setAttribute("cy", targetY)
+  // test if troop is an army or fleet
+  if(troop.getAttribute("cx") == null){
+    troop.setAttribute("x", targetX)
+    troop.setAttribute("y", targetY)
+  }
+  else{
+    troop.setAttribute("cx", targetX)
+    troop.setAttribute("cy", targetY)
+  }
+
+  // changing id of unit
+  troopid = troop.id.toString().split("-")
+  newTroopid = troopid[0] + "-" + order[2] + "-" + troopid[2]
+
+  troop.setAttribute("id", newTroopid)
 }
 
 

@@ -18,7 +18,7 @@ pollFlag = false;
 serverFlag = false;
 
 country = ""                // what country the player is in charge of
-let countries = ["France", "Germany", "Italy", "Austria", "Turkey", "England", "Russia"]
+let countries = ["France", "Germany", "Italy", "Austria", "Turkey", "Russia", "England"]
 let users = [];             // array to hold userNames of clients
 let intervalObj;            // Timeout object that polls for user information
 let serverObj;              // used to close http server
@@ -29,7 +29,8 @@ let instruction = [];
 let userSubmissions = 0;
 let resolveReady = false;
 let usersThatRead = 0;
-let gameSize = 2;
+let gameSize = 1;
+
 
 /**
  * handle post request from clients trying to Join
@@ -92,7 +93,6 @@ app.post("/sendSetting", (req, res) => {
         // success case, the file was saved
         console.log('country saved!');
     });
-
 
 
 
@@ -180,6 +180,8 @@ app.post("/instructionPost", (req, res) => {
       // begin resolve flag that resolve order is ready
       console.log("setting resolve ready");
       resolveReady = true;
+      userSubmissions = 0;
+
     }
   })
 
@@ -208,7 +210,6 @@ app.get('/resolveOrders', function(req, res){
     if(usersThatRead == gameSize){
       console.log("closing resolve");
       resolveReady = false;
-      usersThatRead = 0;
     }
 
     console.log("RESOLVE IS READY");
@@ -307,7 +308,14 @@ app.get('/resolveOrders', function(req, res){
 
 
     // grab the units trying to move and support from all the instructiosn
+
+    // reset instruction after all clients reads them
+    if(usersThatRead == gameSize){
+      instruction = []
+      usersThatRead = 0;
+    }
     res.send(atk_holds);
+
     res.end();
   }
 });
