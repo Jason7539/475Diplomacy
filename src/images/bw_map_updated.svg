@@ -68,10 +68,13 @@
        height="38.288883"
        width="51.763725" />
   </g>
+  <g>
   <script
      xlink:href="../map.js"
      id="script99"
      type="text/javascript" />
+
+   </g>
   <g
      inkscape:groupmode="layer"
      id="layer2"

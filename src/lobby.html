@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'/>
+    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+   <link rel="stylesheet" href="main.css" >
+   
+   <script>if (window.module) module = window.module;</script>
+
+    <title>Game Lobby(Client)</title>
+</head>
+  
+  <body>
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#"><i>DIPLOMACY</i></a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li><a href="startScreen.html">HOME</a></li>
+          <li class="active"><a href="#">GAME: name of the game</a></li>
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">ABOUT <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li><a href="gameInstructions.html" target="_blank">How to Play</a></li>
+                
+                <li><a href="#">FAQs</a></li>
+                <li><a href="#">Send Feedback</a></li>
+
+            </ul>
+          </li>
+        </ul>
+      </div>
+  </nav>
+  <div class="container-fluid">
+    <div class="col-sm-6">
+      <h3>Current Players</h3>
+      <h4 id="users"></h4>
+
+
+      <br>
+      <button type="button" class="btn btn-primary" name="button" onclick="location.href='startScreen.html'"">Cancel</button>
+
+      <button type="button" class="btn btn-warning" onclick="stopPolling()" name="button">Start the Game!</button>
+    </div>
+    <div class="col-sm-6">
+      <h3>Game You are Playing: </h3>
+      <table class="table table-bordered">
+        <tr>
+          <th class="table-primary">Game Name: </th>
+          <th></th>
+        </tr>
+        <tr>
+          <th>Game Master:</th>
+          <th></th>
+        </tr>
+        <tr>
+          <th>Schedule Adjudication:</th>
+          <th></th>
+        </tr>
+      </table>
+      <p>Tell your friend to join the game using this IP:</p><p id="ip"></p>
+    </div>
+  </div>
+  </body>
+
+  <script >
+  // call main to call start
+  const electron = require('electron');
+  const server = require('./server.js');
+  const {ipcRenderer} = electron;
+
+  // update users trying to join
+  server.updateUsers();
+  ipcRenderer.on("ping", (event, message) => {
+      document.getElementById("users").innerHTML = message;
+  })
+
+  /*
+  * Close http server after names have been captured
+  * and stop client polling
+  */
+  function stopPolling(){
+    ipcRenderer.send("openMap")
+    server.stopClientPolling();
+    // send a message to client to stop
+  }
+
+  </script>
+</html>

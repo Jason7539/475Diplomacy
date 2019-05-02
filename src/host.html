@@ -14,15 +14,14 @@
 
     <title>HOSTING</title>
   </head>
-  <body onload="display_ip()">
-    <script src="server.js" type="text/javascript">
-
-    </script>
+  <body>
     <div class="container-fluid" style="margin-top:5%;">
     <div class="col-sm-3"></div>
       <div class="col-sm-6 form-white">
 
-        <form id="setting" action="javascript:sendSetting()" method="POST">
+
+     <!--   <form id="setting" action="javascript:sendSetting()" method="POST"> -->
+        <form id="setting" action="lobby.html">
         <fieldset>
         <legend >Let's Create a Game</legend>
           <div class="form-group">
@@ -51,7 +50,7 @@
 
             </select><br/>
             <input type="button" class="btn btn-danger" onclick="location.href='startScreen.html';" value="Back" />
-            <button  type="submit" class="btn btn-primary">Submit</button>
+            <button  type="submit" onclick="sendSetting()" class="btn btn-primary">Submit</button>
 
 
           <h4>TELL YOUR FRIENDS TO JOIN YOUR IP: </h4>
@@ -65,13 +64,18 @@
   </div>
   </body>
   <script>
-
   
     const server = require("./server.js");
     const electron = require('electron');
 
     // display the local ip
     document.getElementById("hostIP").innerHTML = server.getHostIp();
+
+     // update users trying to join
+    server.updateUsers();
+    ipcRenderer.on("ping", (event, message) => {
+        document.getElementById("users").innerHTML = message;
+    })
 
     function openForm() {
       document.getElementById("myForm").style.display = "block";
@@ -97,6 +101,7 @@
       };
       ipcRenderer.send("SendSetting", jsonSetting)
     }
+
 
 </script>
 </html>

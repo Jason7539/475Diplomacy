@@ -1,104 +1,202 @@
-// Json object that holds instructions to send to host
+const fs = require("fs")
+//const db = require("./db_interactions/db_test.js")
+const http = require("http")
+var hostIp = "";
 
-var instruction = {
-    region_1: '',
-    region_2: '',
-    current_instruction: ''
-}    
 
-index = 0           // index for instructions
-var originalColor 
-var isSelected = false;
+instruction = {};    // Json object that holds instructions to send to host
+index = 0;           // keep the count of the number of instuctiosn
+current_instruction = [];
+instruction_position = 0;     // keep the count of the position of the instruction (A-Moscow-Russia/move)
+var originalColor;
+country = ""
+let intervalObj;
 
-region = [];
-var current_instruction;
+function peruse(id){
+  D=document.getElementById("E")
+  SVGDoc=D.getSVGDocument()
+  who=SVGDoc.getElementById(id)
+  who.style.fill = "#3399ff"
+  whoName=who.id
+  current_instruction.push(String(who.id));
+  alert(whoName)
+}
 
-//performs the move action, called by move()
+// push the move command after the unit has been selected
+function move(){
+  if(instruction_position == 1){
+    current_instruction[index] += "/move"
+    instruction_position++
+  }
+}
+
 function moveunit(id, dest){
-    //D = document.getElementById("E")
-  /*  doc = D.getSVGDocument()
+    D = document.getElementById("E")
+    doc = D.getSVGDocument()
     troop = doc.getElementById(id)
 
     alert(troop.getAttribute("cx"))
-    target = doc.getElementById(dest) */
-   // alert(target)
 
-   // targetX = target.getAttribute("cx")
-    //troop.setAttribute("cx", targetX)
-    console.log(region[0]+ " "+ current_instruction + " "+ region[1]);
-	region= []
 
-    // store into the database 
+    target = doc.getElementById(dest)
+    alert(target)
 
+    targetX = target.getAttribute("cx")
+    troop.setAttribute("cx", targetX)
+    // moving
 }
 
-//gathers the first two selected provinces and calls moveunit()
-function move(){
-	
-    current_instruction = "moves";
-      var instruction_1 = new Object();
-    instruction_1.region_1 = region[0];
-    instruction_1.region_2 = region[1];
-    console.log(" object : " + instruction_1.region_1)
-    moveunit(region[0],region[1]);
-
-}
-
-//performs the support action, called by support()
-function supportunit(id, dest){
-    console.log(region[0]+ " "+ current_instruction + " "+ region[1]);
-	region= []
-
-}
-
-//gathers the first two selected provinces and calls supportunit()
 function support() {
-	
-	current_instruction = "supports";
-    var instruction_1 = new Object();
-    instruction_1.region_1 = region[0];
-    instruction_1.region_2 = region[1];
-    console.log(" object : " + instruction_1.region_1)
-    supportunit(region[0],region[1]);
-
+  if(instruction_position == 1){
+    current_instruction[index] += "/support"
+    instruction_position++
+  }
 }
 
-//performs the convoy action, called by convoy()
-function convoyunit(id1, id2, dest){
-    console.log(region[0]+ " "+ current_instruction + " "+ region[1] + " to " + region[2]);
-	region= []
-
-}
-
-//gathers the first three selected provinces and calls convoyunit()
 function convoy() {
-	
-    current_instruction = "convoys";
-    var instruction_1 = new Object();
-    instruction_1.region_1 = region[0];
-    instruction_1.region_2 = region[1];
-	instruction_1.region_3 = region[2];
-    console.log(" object : " + instruction_1.region_1)
-    convoyunit(region[0],region[1]);
+    alert(current_instruction)
+    // test to move the unit in moscow to ukraine
+
+
+    // D=document.getElementById("E")
+    // doc=D.getSVGDocument()
+    // unit = doc.getElementById("A-Moscow-Russia");
+    //
+    // alert("the unit is " + unit.id)
+    //
+    // // moving to province
+    // prov = doc.getElementById("C Ukraine");
+    // targetx = prov.getAttribute("cx");
+    // targety = prov.getAttribute("cy");
+    // alert("the x ,y is " + targetx + " " + targety)
+    //
+    // // moving the unit
+    // unit.setAttribute("cx", targetx);
+    // unit.setAttribute("cy", targety);
 }
 
-//performs the hold action, called by hold()
-function holdunit(id){
-	
-    console.log(region[0]+ " "+ current_instruction);
-	region= []
 
-}
-
-//gathers the first selected provinces and calls holdunit()
 function hold() {
-	
-    current_instruction = "holds";
-    var instruction_1 = new Object();
-    instruction_1.region_1 = region[0];
-    console.log(" object : " + instruction_1.region_1)
-    holdunit(region[0]);
+  if(instruction_position == 1){
+    current_instruction[index] += "/hold"
+    instruction_position = 0;
+    index++;
+    alert("submitted: "  + current_instruction);
+  }
 }
+
+function endTurn() {
+// submit the current instruction to the database
+  // db.testAdd(country, current_instruction);
+  alert("submitted: " + current_instruction)
+
+  // send information to host
+
+
+  hostIp = fs.readFileSync('hostIp.txt', "utf8");
+
+  clientCountry = fs.readFileSync('country.txt', "utf8");
+
+  // send the current instruction to host
+  var post = http.request({
+      hostname: hostIp,
+      port: 3001,
+      path: '/instructionPost',
+      method: 'POST',
+      'content-type': 'text/plain'
+    }, (res) => {
+      console.log("got a response");
+    })
+
+  post.on("Error", (err) =>{
+    console.log(err);
+  })
+
+  jsonObj = {country: clientCountry,
+             instructions: current_instruction.toString()}
+
+  post.write(JSON.stringify(jsonObj));
+
+  // pollResolve();
+  intervalObj = setInterval(pollResolve, 2000);
+  // reset instructions after posting
+  current_instruction = []
+  instruction_position = 0
+  index = 0;
+
+  post.end();
+  // begin polling for resolve orders
+}
+
+
+function pollResolve(){
+  // ready the host server
+  console.log("polling for resolve");
+  var get = http.get({
+  hostname: hostIp,
+  port: 3001,
+  path: '/resolveOrders',
+  'content-type': 'text/plain'
+  }, (res) => {
+    body = []
+    res.on("data", (chunk) => {
+      body.push(chunk);
+    }).on("end", ()=>{
+
+      if(body[0] == "not ready"){
+        console.log("resolve not ready");
+        get.end();
+        return;
+      }
+      else{
+        // Begin executing orders that have been resolved
+        // alert(body)
+        body = JSON.parse(body)
+        for(i in body){
+          // execute all orders sent from host
+          // alert("the instructs are " + body[i])
+          execute(body[i])
+        }
+      }
+    })
+  })
+
+  get.end();
+
+}
+
+function execute(instruction){
+  D = document.getElementById("E")
+  doc = D.getSVGDocument()
+
+  order = instruction.split("/")
+  alert("trying to move " + order)
+  troop = doc.getElementById(order[0].toString())
+
+  dest = "C " + order[2]
+  target = doc.getElementById(dest)
+
+  targetX = target.getAttribute("cx")
+  targetY = target.getAttribute("cy")
+
+
+  // test if troop is an army or fleet
+  if(troop.getAttribute("cx") == null){
+    troop.setAttribute("x", targetX)
+    troop.setAttribute("y", targetY)
+  }
+  else{
+    troop.setAttribute("cx", targetX)
+    troop.setAttribute("cy", targetY)
+  }
+
+  // changing id of unit
+  troopid = troop.id.toString().split("-")
+  newTroopid = troopid[0] + "-" + order[2] + "-" + troopid[2]
+
+  troop.setAttribute("id", newTroopid)
+}
+
 
 /* for chat display */
 function openForm() {
@@ -109,47 +207,64 @@ function closeForm() {
     document.getElementById("myForm").style.display = "none";
 }
 
-/* Grabs a valid path from bw_map_updated.svg when click */
-function getId(id){
-	
-    //clicking same region twice in a row removes it from object
-	if(region[region.length - 1] == id)
-	{
-		region.pop()
-		console.log("pop - getId(): "+ region);
-	}
-	else{
-		//empties the object if size already 3
-		if(region.length == 3)
-		{
-			region= []
-		}
-		
-		//adds newest clicked province
-		region.push(id)    // add province to current instruction
-		console.log("getId(): "+ region);
-	}
+/**
+ * Grabs a province or unit to be push on the instructions array
+ */
+function Here(id){
+    // grab the province that was clicked
+    D=document.getElementById("E")
+    SVGDoc=D.getSVGDocument()
 
-  //  console.log(prv)//refer to the path
-  /*  
-    } */
-   
-}
+    // grab the unit if this is the first click
+    if(instruction_position == 0){
+      // we need to grab the owner of the country
 
-//verifies an item has been clicked and changes province's color
-function selected(id){
-    alert("selected(): "+ id);
-    isSelected = true;
-    prv=document.getElementById(id)
-	
-	//changes to blue when clicked, and hoverOut automatically changes it back to default
+      country = fs.readFileSync('country.txt', "utf8");
+
+      // then append it at the end of unitStr
+      // grab the Army unit
+      unitStr = "A-" + String(id) + "-" + country
+      unit = SVGDoc.getElementById(unitStr);
+      // if Army unit does not exist grab the fleet
+      if(unit == null){
+        unitStr = "F-" + String(id) + "-" + country
+        unit = SVGDoc.getElementById(unitStr);
+      }
+      // if the unit is still null there is no troop in the province
+      if(unit == null){
+        alert("no unit selected")
+        return;
+      }
+
+      alert("selected: " + unitStr)
+      current_instruction.push(unitStr);
+      // if the unit is still null there is no unit on that province //
+      unitId = unit.id
+
+      instruction_position++
+    }
+    else if(instruction_position == 2){
+      // selecting the province to move the unit to
+      current_instruction[index] += "/"+id
+      instruction_position = 0
+      index++;
+      alert("submitted: "  + current_instruction);
+    }
+
+
+    // change color of province
+    if(prv.style.fill === "rgb(234, 11, 140)"){
     prv.style.fill = "#3399ff"
+    }
+    else{
+    prv.style.fill = "#ea0b8c"
+    }
 }
+
 function hoverIn(id){
     prv=document.getElementById(id)
     originalColor = document.getElementById(id).style.fill
-    prv.style.fill="#ffffff"
-    prv.innerHTML = id;
+    prv.style.fill="#000000"
 }
 
 function hoverOut(id) {
@@ -157,6 +272,4 @@ function hoverOut(id) {
     if (prv.style.fill !=  "#ea0b8c") {
         prv.style.fill = originalColor
     }
-    prv.innerHTML='';
 }
-

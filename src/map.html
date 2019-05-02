@@ -41,16 +41,17 @@
       </div>
     </nav>
     <!-- End of header -->
+    <script src="./map.js"></script>
     <div class="container-fluid">
       <div class="col-sm-9">
-        <span><embed id = "E" src="./images/color_svg_map.svg" width="100%"></span><br/><br/>
+        <span><embed id = "E" src="./images/color_map1.svg" width="100%"></span><br/><br/>
         <button type="button" class="btn btn-warning" onclick="move()" >move</button>
         <button type="button" class="btn btn-warning" onclick="support()" >support</button>
         <button type="button" class="btn btn-warning" onclick="convoy()" >convoy</button>
         <button type="button" class="btn btn-warning"onclick="hold()" >hold</button>
+        <button type="button" class="btn btn-warning"onclick="endTurn()" >end turn</button>
       </div>
     </div>
-
 
         <button class="open-button" onclick="openForm()">Chat</button>
         <div class="chat-popup" id="myForm">
@@ -58,6 +59,7 @@
             <h1>Chat</h1>
             <label for="msg"><b>Message</b></label>
             <textarea placeholder="type message..." name="msg" required></textarea>
+
             <button type="submit" class="btn">Send</button>
             <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
           </form>
@@ -66,4 +68,7 @@
   </body>
   <script type="text/javascript" src="map.js"></script>
 
+      </div>
+
+  </body>
 </html>
