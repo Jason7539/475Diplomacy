@@ -65,7 +65,7 @@
           <th></th>
         </tr>
       </table>
-      <p>Tell your friend to join the game using this IP:</p><p id="ip"></p>
+      <p>Tell your friend to join the game using this IP:</p><h4 id="hostIP"></h4>
     </div>
   </div>
   </body>
@@ -81,7 +81,7 @@
   ipcRenderer.on("ping", (event, message) => {
       document.getElementById("users").innerHTML = message;
   })
-
+ document.getElementById("hostIP").innerHTML = server.getHostIp();
   /*
   * Close http server after names have been captured
   * and stop client polling
