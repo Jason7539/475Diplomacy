@@ -100,3 +100,32 @@
    border-radius:0px;
    box-shadow: 0 0 0 8px white;
  }
+
+
+
+#infoBox{
+  position: absolute;
+  top: 0%;
+  left: 68%;
+  margin-top: 6%;
+  width: 30%;
+}
+
+#playersInfo{
+  font-size: 200%;
+  font-style: italic;
+  font-weight: bold;
+}
+
+#instructionBox{
+  position: relative;
+  margin-top: 6%;
+  text-align:center;
+}
+
+#currentInstructions{
+  font-size: 140%;
+  text-align: left;
+}
+
+

@@ -426,6 +426,14 @@ function getCountry(){
 }
 
 
+/**
+ * return the country assigned to the player
+ */
+function grabCountry(){
+  let c = fs.readFileSync('country.txt');
+  return c;
+}
+
 // startServer();
 module.exports.stopClientPolling = stopClientPolling;
 module.exports.startServer = startServer;
@@ -435,3 +443,4 @@ module.exports.startClientPolling = startClientPolling;
 module.exports.updateUsers = updateUsers;
 module.exports.changeGameStatus = changeGameStatus;
 module.exports.getCountry = getCountry;
+module.exports.grabCountry = grabCountry;
