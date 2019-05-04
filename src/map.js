@@ -30,6 +30,10 @@ function move(){
   if(instruction_position == 1){
     current_instruction[index] += "/move"
     instruction_position++
+
+    //show instruction on the screen
+    total_instructions += "/move"
+    document.getElementById("currentInstructions").innerHTML = total_instructions;
   }
 }
 
@@ -53,6 +57,10 @@ function support() {
   if(instruction_position == 1){
     current_instruction[index] += "/support"
     instruction_position++
+
+    //show instruction on the screen
+    total_instructions += "/support"
+    document.getElementById("currentInstructions").innerHTML = total_instructions;
   }
 }
 
@@ -84,12 +92,11 @@ function hold() {
     current_instruction[index] += "/hold"
     instruction_position = 0;
 
-    // show instruction on map.html
-    total_instructions += current_instruction[index] + "<br/>";
-    document.getElementById("currentInstructions").innerHTML = total_instructions;
-
     index++;
-    alert("submitted: "  + current_instruction);
+
+    //show instruction on the screen
+    total_instructions += "/hold" + "<br/>";
+    document.getElementById("currentInstructions").innerHTML = total_instructions;
   }
 }
 
@@ -242,12 +249,17 @@ function Here(id){
         return;
       }
 
-      alert("selected: " + unitStr)
       current_instruction.push(unitStr);
       // if the unit is still null there is no unit on that province //
       unitId = unit.id
 
       instruction_position++
+
+
+      //show instruction on the screen
+      total_instructions +=  current_instruction[index];
+      document.getElementById("currentInstructions").innerHTML = total_instructions;
+
     }
     else if(instruction_position == 2){
       // selecting the province to move the unit to
@@ -255,11 +267,10 @@ function Here(id){
       instruction_position = 0
 
       //show instruction on the screen
-      total_instructions +=  current_instruction[index] + "<br/>";
+      total_instructions +=  "/" +id + "<br/>";
       document.getElementById("currentInstructions").innerHTML = total_instructions;
 
       index++;
-      alert("submitted: "  + current_instruction);
     }
 
 
