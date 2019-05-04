@@ -11,6 +11,7 @@ const electron = require('electron')
 let win
 let startWin
 let chatWin
+let instrWin
 let mapSwitch = false;    // flag to represent when the game screen is open
 
 let screen_width;         // full size screen width
@@ -107,6 +108,20 @@ function map () {
     // in an array if your app supports multi windows, this is the time
     // when you should delete the corresponding element.
     startWin = null
+  })
+}
+
+/**
+ * creates a new window and loads executedInstr.html
+ * executes after users moves instruction
+ */
+function showExecuted () {
+  instrWin = new BrowserWindow({ width: 400, height: 600 })
+
+  instrWin.loadFile("executedInstr.html")
+
+  instrWin.on('closed', () =>{
+    instrWin = null
   })
 }
 
@@ -284,6 +299,14 @@ ipcMain.on("SendSetting", (event, arg) => {
       console.log("saved hostIp");
   });
 });
+
+/**
+ *  open window displaying executed orders after every turn
+ */
+ipcMain.on("showExecuted", (event, arg) =>{
+  showExecuted();
+})
+
 
 
 // In this file you can include the rest of your app's specific main process

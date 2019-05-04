@@ -2,6 +2,9 @@ const fs = require("fs")
 //const db = require("./db_interactions/db_test.js")
 const http = require("http")
 const events = require('events')
+const electron = require('electron');
+const {ipcRenderer} = electron;
+
 var hostIp = "";
 
 
@@ -13,6 +16,7 @@ country = ""
 let intervalObj;
 total_instructions = "";     // String to display current orders in map.html
 
+var em = new events.EventEmitter();
 
 
 
@@ -171,14 +175,36 @@ function pollResolve(){
         // Begin executing orders that have been resolved
         // alert(body)
         body = JSON.parse(body)
+
+        addedString = ""    // string to show user the executed instructions
         for(i in body){
           // execute all orders sent from host
           // alert("the instructs are " + body[i])
           execute(body[i])
+          addedString += body[i] + "<br/>"
         }
-        // write issued commands to users
 
 
+        stringHtml =`<!DOCTYPE html>
+        <html lang="en" dir="ltr">
+          <head>
+            <meta charset="utf-8">
+            <title>Executed Instructions</title>
+          </head>
+          <body>` +
+           addedString +`</body>
+                      </html>`
+
+
+        // write issued commands to file to show user
+        fs.writeFile('executedInstr.html', stringHtml, (err) => {
+          if(err) throw wrr;
+        });
+
+        // emit event to open window of executed instructions
+        // var instruct = window.open("executedInstr.html", "Instruction", "toolbar=no,scrollbars=yes,resizable=yes,top=500,left=500,width=400,height=400");
+        // instruct.document.write('<h1>Hello</h1>')
+        ipcRenderer.send("showExecuted");
       }
     })
   })
@@ -194,7 +220,6 @@ function execute(instruction){
   order = instruction.split("/")
 
   if(order[1] == "move"){
-    alert("trying to move " + order)
     troop = doc.getElementById(order[0].toString())
 
     dest = "C " + order[2]
@@ -221,7 +246,6 @@ function execute(instruction){
     troop.setAttribute("id", newTroopid)
   }
   else if(order[1] == "hold"){
-    alert("trying to hold " + order)
 
   }
 }
@@ -311,3 +335,5 @@ function hoverOut(id) {
         prv.style.fill = originalColor
     }
 }
+
+module.exports.mapEvent = em;
