@@ -300,11 +300,16 @@ app.get('/resolveOrders', function(req, res){
             atk.splice(l, 1)
           } else if(firstPower < secondPower){
             atk.splice(i, 1)
-          }else{
+          }else{  // if they have equal power pop both out 
             if(i > l){
               atk.splice(i, 1)
+              atk.splice(l, 1)
             }
-            atk.splice(l, 1)
+            else if(i < l){
+              atk.splice(l, 1)
+              atk.splice(i, 1)
+            }
+
           }
         }
       }
