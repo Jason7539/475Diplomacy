@@ -4,13 +4,16 @@ const http = require("http")
 var hostIp = "";
 
 
-instruction = {};    // Json object that holds instructions to send to host
 index = 0;           // keep the count of the number of instuctiosn
 current_instruction = [];
 instruction_position = 0;     // keep the count of the position of the instruction (A-Moscow-Russia/move)
 var originalColor;
 country = ""
 let intervalObj;
+total_instructions = "";     // String to display current orders in map.html
+
+
+
 
 function peruse(id){
   D=document.getElementById("E")
@@ -80,19 +83,22 @@ function hold() {
   if(instruction_position == 1){
     current_instruction[index] += "/hold"
     instruction_position = 0;
+
+    // show instruction on map.html
+    total_instructions += current_instruction[index] + "<br/>";
+    document.getElementById("currentInstructions").innerHTML = total_instructions;
+
     index++;
     alert("submitted: "  + current_instruction);
   }
 }
 
 function endTurn() {
-// submit the current instruction to the database
-  // db.testAdd(country, current_instruction);
   alert("submitted: " + current_instruction)
+  total_instructions="";
+  document.getElementById("currentInstructions").innerHTML = total_instructions;
 
   // send information to host
-
-
   hostIp = fs.readFileSync('hostIp.txt', "utf8");
 
   clientCountry = fs.readFileSync('country.txt', "utf8");
@@ -247,6 +253,11 @@ function Here(id){
       // selecting the province to move the unit to
       current_instruction[index] += "/"+id
       instruction_position = 0
+
+      //show instruction on the screen
+      total_instructions +=  current_instruction[index] + "<br/>";
+      document.getElementById("currentInstructions").innerHTML = total_instructions;
+
       index++;
       alert("submitted: "  + current_instruction);
     }
