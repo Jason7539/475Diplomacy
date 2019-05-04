@@ -1,6 +1,7 @@
 const fs = require("fs")
 //const db = require("./db_interactions/db_test.js")
 const http = require("http")
+const events = require('events')
 var hostIp = "";
 
 
@@ -66,24 +67,29 @@ function support() {
 
 function convoy() {
     alert(current_instruction)
-    // test to move the unit in moscow to ukraine
+
+    // try to create a unit
+    D=document.getElementById("E")
+    SVGDoc=D.getSVGDocument()
+    //who=SVGDoc.getElementById(id)
+
+    // var ellipse = SVGDoc.createElementNS("http://www.w3.org/2000/svg", "ellipse");
+    // ellipse.setAttribute("cx", "164.08784");
+    // ellipse.setAttribute("cy", "10.62364");
+    // ellipse.setAttribute("rx", "0.421305");
+    // ellipse.setAttribute("ry", "0.421305");
+    // ellipse.setAttribute("fill", "#ff00e9");
+    // ellipse.setAttribute("id", "A-Sweden-England")
 
 
-    // D=document.getElementById("E")
-    // doc=D.getSVGDocument()
-    // unit = doc.getElementById("A-Moscow-Russia");
-    //
-    // alert("the unit is " + unit.id)
-    //
-    // // moving to province
-    // prov = doc.getElementById("C Ukraine");
-    // targetx = prov.getAttribute("cx");
-    // targety = prov.getAttribute("cy");
-    // alert("the x ,y is " + targetx + " " + targety)
-    //
-    // // moving the unit
-    // unit.setAttribute("cx", targetx);
-    // unit.setAttribute("cy", targety);
+
+    // SVGDoc.getElementById("layer2").appendChild(ellipse);
+
+
+
+    // how to delete
+    // delUnit = SVGDoc.getElementById("F-Edinburgh-England")
+    // SVGDoc.getElementById("layer2").removeChild(delUnit)
 }
 
 
@@ -170,6 +176,9 @@ function pollResolve(){
           // alert("the instructs are " + body[i])
           execute(body[i])
         }
+        // write issued commands to users
+
+
       }
     })
   })
@@ -183,31 +192,38 @@ function execute(instruction){
   doc = D.getSVGDocument()
 
   order = instruction.split("/")
-  alert("trying to move " + order)
-  troop = doc.getElementById(order[0].toString())
 
-  dest = "C " + order[2]
-  target = doc.getElementById(dest)
+  if(order[1] == "move"){
+    alert("trying to move " + order)
+    troop = doc.getElementById(order[0].toString())
 
-  targetX = target.getAttribute("cx")
-  targetY = target.getAttribute("cy")
+    dest = "C " + order[2]
+    target = doc.getElementById(dest)
+
+    targetX = target.getAttribute("cx")
+    targetY = target.getAttribute("cy")
 
 
-  // test if troop is an army or fleet
-  if(troop.getAttribute("cx") == null){
-    troop.setAttribute("x", targetX)
-    troop.setAttribute("y", targetY)
+    // test if troop is an army or fleet
+    if(troop.getAttribute("cx") == null){
+      troop.setAttribute("x", targetX)
+      troop.setAttribute("y", targetY)
+    }
+    else{
+      troop.setAttribute("cx", targetX)
+      troop.setAttribute("cy", targetY)
+    }
+
+    // changing id of unit
+    troopid = troop.id.toString().split("-")
+    newTroopid = troopid[0] + "-" + order[2] + "-" + troopid[2]
+
+    troop.setAttribute("id", newTroopid)
   }
-  else{
-    troop.setAttribute("cx", targetX)
-    troop.setAttribute("cy", targetY)
+  else if(order[1] == "hold"){
+    alert("trying to hold " + order)
+
   }
-
-  // changing id of unit
-  troopid = troop.id.toString().split("-")
-  newTroopid = troopid[0] + "-" + order[2] + "-" + troopid[2]
-
-  troop.setAttribute("id", newTroopid)
 }
 
 

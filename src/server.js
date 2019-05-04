@@ -224,14 +224,27 @@ app.get('/resolveOrders', function(req, res){
     console.log("all instruction in resolve is " + moves);
 
     // now grab all the moves and holds
-    atk_holds = []
-    power_atk_holds = []
+    atk = []
+    power_atk = []
+    holds = []
+    power_holds = []
+
     index = -1;
     for(l in moves){
       index = moves[l].indexOf("move")
       if(index != -1){
-        atk_holds.push(moves[l])    // add move to proper array
-        power_atk_holds.push(0)     // add equivalent power level
+        atk.push(moves[l])    // add move to proper array
+        power_atk.push(0)     // add equivalent power level
+      }
+      index = -1
+    }
+
+    // grabbing all holds
+    for(l in moves){
+      index = moves[l].indexOf("hold")
+      if(index != -1){
+        holds.push(moves[l])    // add move to proper array
+        power_holds.push(0)     // add equivalent power level
       }
       index = -1
     }
@@ -254,13 +267,13 @@ app.get('/resolveOrders', function(req, res){
       supported_province = supportInstruct[2]
 
       // scan the move arrays
-      for(i in atk_holds){
-        atk_instruct = atk_holds[i].split("/")
+      for(i in atk){
+        atk_instruct = atk[i].split("/")
         atk_province = atk_instruct[0].split("-")[1]  // grab sitting province
 
         // increase power level is province is being supported
         if(supported_province == atk_province){
-          power_atk_holds[i] = power_atk_holds[i] + 1;
+          power_atk[i] = power_atk[i] + 1;
         }
       }
     }
@@ -269,40 +282,68 @@ app.get('/resolveOrders', function(req, res){
     // compare power levels. if they are equal non execute
 
     // if you are moving where someone is moving
-    for(i in atk_holds){
-      firstAtkDest = atk_holds[i].split("/")[2]     // grab first dest
+    for(i in atk){
+      firstAtkDest = atk[i].split("/")[2]     // grab first dest
 
-      for(l in atk_holds){
+      for(l in atk){
         if(i == l){   // skip same moves
           continue;
         }
-        secondAtkDest = atk_holds[l].split("/")[2]  // grab second dest
+        secondAtkDest = atk[l].split("/")[2]  // grab second dest
 
         if(firstAtkDest == secondAtkDest){  // resolve conflicting moves
-          console.log("There is a conflict to resolve");
-          firstPower = power_atk_holds[i]
-          secondPower = power_atk_holds[l]
+          console.log("There is a conflict two moves to resolve");
+          firstPower = power_atk[i]
+          secondPower = power_atk[l]
 
           if(firstPower > secondPower){
-            atk_holds.splice(l, 1)
+            atk.splice(l, 1)
           } else if(firstPower < secondPower){
-            atk_holds.splice(i, 1)
+            atk.splice(i, 1)
           }else{
             if(i > l){
-              atk_holds.splice(i, 1)
+              atk.splice(i, 1)
             }
-            atk_holds.splice(l, 1)
+            atk.splice(l, 1)
           }
         }
       }
     }
 
+    // resolve holds power
+    for(i in atk){
+      firstAtkDest = atk[i].split("/")[2]     // grab first dest
+
+      for(l in holds){
+        holdDest = holds[l].split("/")[0].split("-")[1]  // grab second dest
+
+        if(firstAtkDest == holdDest){  // resolve conflicting moves
+          console.log("There is a conflict of hold resolve");
+          firstPower = power_atk[i]
+          defPower = power_holds[l]
+
+          if(firstPower > defPower){
+            // atk.splice(l, 1)
+            // prompt defender to resolve
+
+          } else if(firstPower < secondPower){
+            atk.splice(i, 1)      // if hold wins push out atk
+
+          }else{
+            atk.splice(i, 1)      // else if both have equal power push out atk
+          }
+        }
+      }
+    }
+
+
+
     // resolve move onto a hold
 
 
 
-    console.log("the attack moves are " + atk_holds);
-    console.log("the equivalent power " + power_atk_holds);
+    console.log("the attack moves are " + atk);
+    console.log("the equivalent power " + power_atk);
 
     // increase power level
 
@@ -314,7 +355,9 @@ app.get('/resolveOrders', function(req, res){
       instruction = []
       usersThatRead = 0;
     }
-    res.send(atk_holds);
+
+    atk = atk.concat(holds)
+    res.send(atk);
 
     res.end();
   }
