@@ -53,8 +53,8 @@ app.post("/", (req, res) => {
     users.push(jsonClient);     // add the username to the list of usernames
     console.log("the users so far are ");
     console.log(users);
-    console.log("settings are ");
-    console.log("GAME NAME ");
+    gameSize += 1;                 // increase gameSize for resolve calculations
+    console.log("the size is " + gameSize);
     res.end();
   });
   req.on("error", (err)=>{
