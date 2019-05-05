@@ -173,8 +173,12 @@ function pollResolve(){
       }
       else{
         // Begin executing orders that have been resolved
-        // alert(body)
-        body = JSON.parse(body)
+
+        // update the year and season
+        date = JSON.parse(body).date
+        document.getElementById("yearSeason").innerHTML = date
+
+        body = JSON.parse(body).instruct
 
         addedString = ""    // string to show user the executed instructions
         for(i in body){
@@ -192,7 +196,8 @@ function pollResolve(){
             <title>Executed Instructions</title>
           </head>
           <body>` +
-           addedString +`</body>
+           addedString +
+            "<button type=" + "button" +">Click Me!</button>" + `</body>
                       </html>`
 
 

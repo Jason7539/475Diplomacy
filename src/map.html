@@ -55,6 +55,7 @@
 
     <div id="infoBox">
       <div>
+        <h2 id="yearSeason">fall 1901</h2>
         <h2 id="playersInfo"></h2>
       </div>
       <div id="instructionBox">
@@ -63,11 +64,11 @@
       </div>
     </div>
     <script type="text/javascript">
-     
+
       const server = require("./server.js");
       let c = server.grabCountry();
       document.getElementById("playersInfo").innerHTML = "You are: " + c;
-      
+
     </script>
 
 

@@ -18,7 +18,7 @@ pollFlag = false;
 serverFlag = false;
 
 country = ""                // what country the player is in charge of
-let countries = ["France", "Germany", "Italy", "Austria", "Turkey", "Russia", "England"]
+let countries = ["France", "Germany", "Italy", "Austria", "Turkey", "England", "Russia"]
 let users = [];             // array to hold userNames of clients
 let intervalObj;            // Timeout object that polls for user information
 let serverObj;              // used to close http server
@@ -30,6 +30,31 @@ let userSubmissions = 0;
 let resolveReady = false;
 let usersThatRead = 0;
 let gameSize = 1;
+
+let year = 1901;          // variable used ingame to hold year
+let season = "fall";      // initalize the starting season
+
+let neighbor = {
+    Moscow:["Ukraine", "Stevastopol", "Warsaw", "Livonia", "Saint Petersburg"],
+    "Saint Petersburg":["Finland", "Norway", "Livonia","Moscow"],
+    Finland:["Sweden","Norway","Saint Petersburg"],
+    Sweden:["Norway","Finland"],
+    Norway:["Sweden","Finland","Saint Petersburg"],
+    Livonia:["Saint Petersburg","Moscow","Warsaw","Prussia"],
+    Ukraine:["Moscow","Warsaw","Galicia","Stevastopol","Rumania"],
+    Stevastopol:["Moscow","Ukraine","Rumania","Armenia"],
+    Armenia:["Stevastopol","Ankara","Smyrna","Syria"],
+    Syria:["Armenia","Smyrna"],
+    Smyrna:["Syria","Armenia","Ankara","Constantinople"],
+    Ankara:["Constantinople","Armenia","Smyrna"],
+    Constaninople:["Ankara","Smyrna","Bulgaria"],
+    Greece:["Albania","Serbia","Bulgaria"],
+    Albania:["Trieste","Serbia","Greece"],
+    Serbia:["Trieste","Budapest","Rumania","Bulgaria"],
+    Bulgaria:["Constantinople","Greece","Serbia","Rumania"],
+    Rumania:["Stevastopol","Ukraine","Galicia","Budapest","Bulgaria","Serbia"]
+
+}
 
 
 /**
@@ -239,6 +264,22 @@ app.get('/resolveOrders', function(req, res){
       index = -1
     }
 
+    //////////////////// neighbor resolve ///////////////////////
+    // // remove the move if it's not going to a neighbor
+    // for(i in atk){
+    //   source = atk[i].split("/")[0].split("-")[1]
+    //   dest = atk[i].split("/")[2]
+    //
+    //   // remove the instruction if it's not going to a neighbor
+    //   if(!neighbor[source].includes(dest)){
+    //     console.log("REMOVING: " + atk[i]);
+    //     atk.splice(i, 1)
+    //     power_atk.splice(i, 1)
+    //   }
+    // }
+
+
+
     // grabbing all holds
     for(l in moves){
       index = moves[l].indexOf("hold")
@@ -300,7 +341,7 @@ app.get('/resolveOrders', function(req, res){
             atk.splice(l, 1)
           } else if(firstPower < secondPower){
             atk.splice(i, 1)
-          }else{  // if they have equal power pop both out 
+          }else{  // if they have equal power pop both out
             if(i > l){
               atk.splice(i, 1)
               atk.splice(l, 1)
@@ -362,7 +403,25 @@ app.get('/resolveOrders', function(req, res){
     }
 
     atk = atk.concat(holds)
-    res.send(atk);
+
+
+    if(season == "fall"){
+      season = "spring"
+    }
+    else if(season == "spring"){
+      season = "winter"
+    }
+    else if(season == "winter"){
+      season = "fall"
+      year++;
+    }
+
+    jsonObj = {
+              date: year + " " + season,
+              instruct: atk
+              }
+
+    res.send(jsonObj);
 
     res.end();
   }
