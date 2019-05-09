@@ -18,10 +18,10 @@ country = "";               // what country the player is in charge of
  * should be called from join.html.
  * it also stores client username and host ip
  */
-function sendUser(hip, userName, clientIP, obj){
+function sendUser(ip, userName, clientIP, obj){
     var post = http.request({
     hostname: ip,
-    port: port,
+    port: 3001,
     path: '/',
     method: 'POST',
     'content-type': 'text/plain'

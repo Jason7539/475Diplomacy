@@ -12,12 +12,12 @@
      .button {
       display: inline-block;
       margin-top:2%;
-    } 
+    }
     html,#start-page{
       text-align:center;
       margin-top:10%;
       background-color:transparent;
-    } 
+    }
 
 
   </style>
@@ -26,7 +26,7 @@
   <img src="images/diplomacySplash.jpg" alt="Diplomacy Board" style="position:fixed;top:0px;left:0px;width:100%;height:100%;z-index:-1;">
    <p> <button type="button" class="btn  btn-danger btn-sm" onclick="Host()"> Create game </button></p>
     <p><button type="button" class="btn btn-danger btn-sm" onclick="Join()"> Join game </button></p>
-    <p><button type="button" class="btn btn-info btn-sm" onclick="Help()"> Help </button></p>
+    <p><button type="Help,button" class="btn btn-info btn-sm" onclick="Help()"> Help </button></p>
     <p><button type="exit,button" class="btn btn-primary btn-sm" onclick="window.top.close(); return false">Exit</button></p>
 
     <a href="index.html"> start </a>
@@ -59,26 +59,11 @@
       }
 
       function Help() {
-          const { BrowserWindow } = require('electron').remote
-          const PDFWindow = require('electron-pdf-window')
-          const win = new BrowserWindow({ width: 800, height: 600 })
-          PDFWindow.addSupport(win)
-          win.loadURL('UserManual.pdf')
-          ipcRenderer.send("Options", "You selected Options");
-          
-        
-//        location.href="rules.html";
-//        const {
-//          ipcRenderer
-//        } = electron;
-//        
-//        let win = new BrowserWindow({
-//            webPreferences: {
-//                plugins: true
-//            }
-//        })
-//        ipcRenderer.send("Options", "You selected Options");
-//        location.href="rules.html"
+        const {
+          ipcRenderer
+        } = electron;
+
+        ipcRenderer.send("Options", "You selected Options");
 
       }
 
